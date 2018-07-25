@@ -1,0 +1,520 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0A25C3F4E43FC2731E6E3684 /* Pods_Scoutable.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1847497075A832D52630A938 /* Pods_Scoutable.framework */; };
+		FA17B67C2109099C005FEF30 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA17B67B2109099C005FEF30 /* UserService.swift */; };
+		FA17B67F210909E0005FEF30 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA17B67E210909E0005FEF30 /* User.swift */; };
+		FA17B68221090AA6005FEF30 /* Storyboard+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA17B68121090AA6005FEF30 /* Storyboard+Utility.swift */; };
+		FA17B68621090CA3005FEF30 /* ScoutTeamController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA17B68521090CA2005FEF30 /* ScoutTeamController.swift */; };
+		FA17B6882109107D005FEF30 /* UsernameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA17B6872109107D005FEF30 /* UsernameController.swift */; };
+		FAB059782108F34100ABED45 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB059772108F34100ABED45 /* AppDelegate.swift */; };
+		FAB0597A2108F34100ABED45 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB059792108F34100ABED45 /* MainController.swift */; };
+		FAB0597D2108F34100ABED45 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAB0597B2108F34100ABED45 /* Main.storyboard */; };
+		FAB059802108F34100ABED45 /* Scoutable.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FAB0597E2108F34100ABED45 /* Scoutable.xcdatamodeld */; };
+		FAB059822108F34300ABED45 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAB059812108F34300ABED45 /* Assets.xcassets */; };
+		FAB059852108F34300ABED45 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAB059832108F34300ABED45 /* LaunchScreen.storyboard */; };
+		FAB0598F2108F4B800ABED45 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FAB0598E2108F4B800ABED45 /* GoogleService-Info.plist */; };
+		FAE11505210907D600BAEFB7 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAE11504210907D600BAEFB7 /* Login.storyboard */; };
+		FAE115072109084700BAEFB7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE115062109084700BAEFB7 /* LoginViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1847497075A832D52630A938 /* Pods_Scoutable.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Scoutable.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC1EFCAA12612E1B31142F4B /* Pods-Scoutable.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Scoutable.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Scoutable/Pods-Scoutable.debug.xcconfig"; sourceTree = "<group>"; };
+		F65E5F5A969B242D7D2AFB91 /* Pods-Scoutable.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Scoutable.release.xcconfig"; path = "Pods/Target Support Files/Pods-Scoutable/Pods-Scoutable.release.xcconfig"; sourceTree = "<group>"; };
+		FA17B67B2109099C005FEF30 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		FA17B67E210909E0005FEF30 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		FA17B68121090AA6005FEF30 /* Storyboard+Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Storyboard+Utility.swift"; sourceTree = "<group>"; };
+		FA17B68521090CA2005FEF30 /* ScoutTeamController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoutTeamController.swift; sourceTree = "<group>"; };
+		FA17B6872109107D005FEF30 /* UsernameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsernameController.swift; sourceTree = "<group>"; };
+		FAB059742108F34100ABED45 /* Scoutable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scoutable.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FAB059772108F34100ABED45 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		FAB059792108F34100ABED45 /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
+		FAB0597C2108F34100ABED45 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		FAB0597F2108F34100ABED45 /* Scoutable.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Scoutable.xcdatamodel; sourceTree = "<group>"; };
+		FAB059812108F34300ABED45 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FAB059842108F34300ABED45 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		FAB059862108F34400ABED45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FAB0598E2108F4B800ABED45 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		FAE11504210907D600BAEFB7 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		FAE115062109084700BAEFB7 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FAB059712108F34100ABED45 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0A25C3F4E43FC2731E6E3684 /* Pods_Scoutable.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		171E3063BD2FD7D5BBFFA4B2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DC1EFCAA12612E1B31142F4B /* Pods-Scoutable.debug.xcconfig */,
+				F65E5F5A969B242D7D2AFB91 /* Pods-Scoutable.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		7378365414098F5A3A6E6884 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1847497075A832D52630A938 /* Pods_Scoutable.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FA17B67A2109096B005FEF30 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				FA17B67B2109099C005FEF30 /* UserService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		FA17B67D210909D5005FEF30 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				FA17B67E210909E0005FEF30 /* User.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		FA17B68021090A93005FEF30 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				FA17B68121090AA6005FEF30 /* Storyboard+Utility.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		FAB0596B2108F34100ABED45 = {
+			isa = PBXGroup;
+			children = (
+				FAB059762108F34100ABED45 /* Scoutable */,
+				FAB059752108F34100ABED45 /* Products */,
+				171E3063BD2FD7D5BBFFA4B2 /* Pods */,
+				7378365414098F5A3A6E6884 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		FAB059752108F34100ABED45 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FAB059742108F34100ABED45 /* Scoutable.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FAB059762108F34100ABED45 /* Scoutable */ = {
+			isa = PBXGroup;
+			children = (
+				FAB059772108F34100ABED45 /* AppDelegate.swift */,
+				FA17B68021090A93005FEF30 /* Extensions */,
+				FA17B67D210909D5005FEF30 /* Models */,
+				FA17B67A2109096B005FEF30 /* Services */,
+				FAB0598D2108F43A00ABED45 /* Storyboards */,
+				FAB0598C2108F43400ABED45 /* Controllers */,
+				FAB059862108F34400ABED45 /* Info.plist */,
+				FAB059812108F34300ABED45 /* Assets.xcassets */,
+				FAB0598E2108F4B800ABED45 /* GoogleService-Info.plist */,
+				FAB0597E2108F34100ABED45 /* Scoutable.xcdatamodeld */,
+			);
+			path = Scoutable;
+			sourceTree = "<group>";
+		};
+		FAB0598C2108F43400ABED45 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				FA17B68521090CA2005FEF30 /* ScoutTeamController.swift */,
+				FAB059792108F34100ABED45 /* MainController.swift */,
+				FAE115062109084700BAEFB7 /* LoginViewController.swift */,
+				FA17B6872109107D005FEF30 /* UsernameController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		FAB0598D2108F43A00ABED45 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				FAB059832108F34300ABED45 /* LaunchScreen.storyboard */,
+				FAB0597B2108F34100ABED45 /* Main.storyboard */,
+				FAE11504210907D600BAEFB7 /* Login.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FAB059732108F34100ABED45 /* Scoutable */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FAB059892108F34400ABED45 /* Build configuration list for PBXNativeTarget "Scoutable" */;
+			buildPhases = (
+				C146CF0CBBB785D21A54AADB /* [CP] Check Pods Manifest.lock */,
+				FAB059702108F34100ABED45 /* Sources */,
+				FAB059712108F34100ABED45 /* Frameworks */,
+				FAB059722108F34100ABED45 /* Resources */,
+				87A5074E99F9048D3CFF2FDD /* [CP] Embed Pods Frameworks */,
+				AD44238AE2A95805309BC96D /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Scoutable;
+			productName = Scoutable;
+			productReference = FAB059742108F34100ABED45 /* Scoutable.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FAB0596C2108F34100ABED45 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0940;
+				LastUpgradeCheck = 0940;
+				ORGANIZATIONNAME = RKIV;
+				TargetAttributes = {
+					FAB059732108F34100ABED45 = {
+						CreatedOnToolsVersion = 9.4.1;
+					};
+				};
+			};
+			buildConfigurationList = FAB0596F2108F34100ABED45 /* Build configuration list for PBXProject "Scoutable" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = FAB0596B2108F34100ABED45;
+			productRefGroup = FAB059752108F34100ABED45 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FAB059732108F34100ABED45 /* Scoutable */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FAB059722108F34100ABED45 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAB059852108F34300ABED45 /* LaunchScreen.storyboard in Resources */,
+				FAB0598F2108F4B800ABED45 /* GoogleService-Info.plist in Resources */,
+				FAB059822108F34300ABED45 /* Assets.xcassets in Resources */,
+				FAE11505210907D600BAEFB7 /* Login.storyboard in Resources */,
+				FAB0597D2108F34100ABED45 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		87A5074E99F9048D3CFF2FDD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Scoutable/Pods-Scoutable-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Scoutable/Pods-Scoutable-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AD44238AE2A95805309BC96D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Scoutable/Pods-Scoutable-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseAuthUI.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseAuthUI.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Scoutable/Pods-Scoutable-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C146CF0CBBB785D21A54AADB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Scoutable-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FAB059702108F34100ABED45 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAE115072109084700BAEFB7 /* LoginViewController.swift in Sources */,
+				FA17B67C2109099C005FEF30 /* UserService.swift in Sources */,
+				FA17B67F210909E0005FEF30 /* User.swift in Sources */,
+				FAB059802108F34100ABED45 /* Scoutable.xcdatamodeld in Sources */,
+				FAB0597A2108F34100ABED45 /* MainController.swift in Sources */,
+				FA17B68621090CA3005FEF30 /* ScoutTeamController.swift in Sources */,
+				FA17B68221090AA6005FEF30 /* Storyboard+Utility.swift in Sources */,
+				FAB059782108F34100ABED45 /* AppDelegate.swift in Sources */,
+				FA17B6882109107D005FEF30 /* UsernameController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		FAB0597B2108F34100ABED45 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FAB0597C2108F34100ABED45 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		FAB059832108F34300ABED45 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FAB059842108F34300ABED45 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		FAB059872108F34400ABED45 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		FAB059882108F34400ABED45 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FAB0598A2108F34400ABED45 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DC1EFCAA12612E1B31142F4B /* Pods-Scoutable.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2Z8K4BDAJ4;
+				INFOPLIST_FILE = Scoutable/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.RKIV.Scoutable;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		FAB0598B2108F34400ABED45 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F65E5F5A969B242D7D2AFB91 /* Pods-Scoutable.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2Z8K4BDAJ4;
+				INFOPLIST_FILE = Scoutable/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.RKIV.Scoutable;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FAB0596F2108F34100ABED45 /* Build configuration list for PBXProject "Scoutable" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FAB059872108F34400ABED45 /* Debug */,
+				FAB059882108F34400ABED45 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FAB059892108F34400ABED45 /* Build configuration list for PBXNativeTarget "Scoutable" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FAB0598A2108F34400ABED45 /* Debug */,
+				FAB0598B2108F34400ABED45 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		FAB0597E2108F34100ABED45 /* Scoutable.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				FAB0597F2108F34100ABED45 /* Scoutable.xcdatamodel */,
+			);
+			currentVersion = FAB0597F2108F34100ABED45 /* Scoutable.xcdatamodel */;
+			path = Scoutable.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = FAB0596C2108F34100ABED45 /* Project object */;
+}
