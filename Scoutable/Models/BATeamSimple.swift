@@ -9,10 +9,10 @@
 import Foundation
 
 struct BATeamSimple: Codable{
-    var team_number: String
+    var team_number: Int
     var nickname: String
     var name: String
-    var city: String
-    var state_prov: String
-    var country: String
+    var city: String?
+    var state_prov: String?
+    var country: String?
 }

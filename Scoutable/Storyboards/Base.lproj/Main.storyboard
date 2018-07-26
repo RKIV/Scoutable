@@ -37,14 +37,14 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Team Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kep-Us-Oh0">
-                                                    <rect key="frame" x="82" y="11" width="257" height="21"/>
+                                                    <rect key="frame" x="82" y="11" width="278" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Team Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="23h-Jn-19Q">
-                                                    <rect key="frame" x="82" y="46" width="100" height="18"/>
+                                                    <rect key="frame" x="82" y="46" width="278" height="18"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
@@ -79,16 +79,33 @@
             </objects>
             <point key="canvasLocation" x="972" y="31.934032983508249"/>
         </scene>
-        <!--Events/ Districs-->
+        <!--Events-->
+        <scene sceneID="pVu-P8-Z9j">
+            <objects>
+                <navigationController id="vo4-WO-Ejp" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Events" id="5eW-LK-qhW"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="tVV-Xy-Maf">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="OxZ-uO-jCB" kind="relationship" relationship="rootViewController" id="olg-ne-BJd"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lxM-X1-lWF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1076" y="848"/>
+        </scene>
+        <!--Events-->
         <scene sceneID="JVH-bI-D6W">
             <objects>
-                <viewController id="OxZ-uO-jCB" sceneMemberID="viewController">
+                <viewController id="OxZ-uO-jCB" customClass="EventsController" customModule="Scoutable" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2z8-hf-hm7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NQ5-81-VXH">
-                                <rect key="frame" x="0.0" y="20" width="375" height="548"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="504"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="2NO-wD-LtW">
@@ -98,6 +115,9 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="5lm-cl-rFp" kind="show" id="NF7-ug-18o"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -124,10 +144,37 @@
                         <viewLayoutGuide key="safeArea" id="Sqp-Jk-YWE"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Events/ Districs" id="wYb-V4-EKn"/>
+                    <navigationItem key="navigationItem" title="Events" id="U9D-6E-fjk"/>
+                    <connections>
+                        <outlet property="eventsTableView" destination="NQ5-81-VXH" id="xBw-g7-wfF"/>
+                        <segue destination="5lm-cl-rFp" kind="show" identifier="toDistrictList" animates="NO" id="XlZ-1u-sVs"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="76b-5g-LDK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1664.8" y="31.934032983508249"/>
+            <point key="canvasLocation" x="2198" y="848"/>
+        </scene>
+        <!--Title-->
+        <scene sceneID="rDl-dh-yWu">
+            <objects>
+                <viewController id="5lm-cl-rFp" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Gvf-tA-qQJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="pqm-hK-NrY"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Title" id="Ajw-WS-TA0">
+                        <barButtonItem key="leftBarButtonItem" title="Your Events" id="nxn-Qc-oOA">
+                            <connections>
+                                <action selector="goBack" destination="RpS-f2-yRL" id="q9Z-nE-ZLa"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RpS-f2-yRL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3063" y="848"/>
         </scene>
         <!--Settings-->
         <scene sceneID="P50-Z1-bMh">
@@ -143,7 +190,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n58-u0-6db" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2364" y="31.934032983508249"/>
+            <point key="canvasLocation" x="2956" y="32"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="fyI-0i-C3P">
@@ -156,7 +203,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="kQa-JP-KCI"/>
-                        <segue destination="OxZ-uO-jCB" kind="relationship" relationship="viewControllers" id="l7a-7K-cK8"/>
+                        <segue destination="vo4-WO-Ejp" kind="relationship" relationship="viewControllers" id="yG7-8F-VL5"/>
                         <segue destination="i4g-R1-PJR" kind="relationship" relationship="viewControllers" id="Zvt-fy-4Za"/>
                     </connections>
                 </tabBarController>
@@ -165,4 +212,7 @@
             <point key="canvasLocation" x="32.799999999999997" y="31.934032983508249"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="XlZ-1u-sVs"/>
+    </inferredMetricsTieBreakers>
 </document>

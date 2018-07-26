@@ -27,6 +27,13 @@ class User: NSObject {
         return currentUser
     }
     
+    static var currentUserExists: Bool {
+        if _current == nil {
+            return false
+        }
+        return true
+    }
+    
     
     static func setCurrent(_ user: User, writeToUserDefaults: Bool = false){
         if writeToUserDefaults{

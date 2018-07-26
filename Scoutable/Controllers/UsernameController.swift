@@ -13,6 +13,7 @@ import FirebaseDatabase
 class UsernameViewController: UIViewController {
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var usernameTextField: UITextField!
+    @IBOutlet weak var teamNumberTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +30,13 @@ class UsernameViewController: UIViewController {
             guard let user = user else { return }
             //Set current user
             User.setCurrent(user, writeToUserDefaults: true)
-            print("About to perform segue")
+            if let teamNumber = self.teamNumberTextField.text{
+                if teamNumber != "" {
+                    UserService.setRoboticsTeamNumber(as: Int(teamNumber)!)
+                }
+
+            }
+
             self.performSegue(withIdentifier: "toTeamSelection", sender: self)
         })
     }

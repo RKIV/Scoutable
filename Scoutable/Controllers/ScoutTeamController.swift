@@ -50,10 +50,6 @@ class ScoutTeamController: UIViewController {
         self.performSegue(withIdentifier: "toTeamCreation", sender: self)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let destination = segue.destination as! TeamCreationController
-        destination.scoutTeamTextField.text = self.scoutTeamTextField.text
-    }
     
     
     

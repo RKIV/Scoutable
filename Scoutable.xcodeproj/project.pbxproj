@@ -18,6 +18,7 @@
 		FA64971A21095758002A40C1 /* BlueAllianceAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA64971921095758002A40C1 /* BlueAllianceAPIService.swift */; };
 		FA64971C210957C0002A40C1 /* BATeamSimple.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA64971B210957C0002A40C1 /* BATeamSimple.swift */; };
 		FA64972121096813002A40C1 /* TeamCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA64972021096813002A40C1 /* TeamCellView.swift */; };
+		FA64972721098D64002A40C1 /* EventsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA64972621098D64002A40C1 /* EventsController.swift */; };
 		FAB059782108F34100ABED45 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB059772108F34100ABED45 /* AppDelegate.swift */; };
 		FAB0597A2108F34100ABED45 /* TeamsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB059792108F34100ABED45 /* TeamsController.swift */; };
 		FAB0597D2108F34100ABED45 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAB0597B2108F34100ABED45 /* Main.storyboard */; };
@@ -43,6 +44,7 @@
 		FA64971921095758002A40C1 /* BlueAllianceAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlueAllianceAPIService.swift; sourceTree = "<group>"; };
 		FA64971B210957C0002A40C1 /* BATeamSimple.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BATeamSimple.swift; sourceTree = "<group>"; };
 		FA64972021096813002A40C1 /* TeamCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamCellView.swift; sourceTree = "<group>"; };
+		FA64972621098D64002A40C1 /* EventsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsController.swift; sourceTree = "<group>"; };
 		FAB059742108F34100ABED45 /* Scoutable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scoutable.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAB059772108F34100ABED45 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAB059792108F34100ABED45 /* TeamsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsController.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 		FAB0598C2108F43400ABED45 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				FA64972621098D64002A40C1 /* EventsController.swift */,
 				FA17B68521090CA2005FEF30 /* ScoutTeamController.swift */,
 				FAB059792108F34100ABED45 /* TeamsController.swift */,
 				FAE115062109084700BAEFB7 /* LoginViewController.swift */,
@@ -326,6 +329,7 @@
 				FAB059802108F34100ABED45 /* Scoutable.xcdatamodeld in Sources */,
 				FA17B68E21093F1F005FEF30 /* ScoutTeamService.swift in Sources */,
 				FAB0597A2108F34100ABED45 /* TeamsController.swift in Sources */,
+				FA64972721098D64002A40C1 /* EventsController.swift in Sources */,
 				FA17B68621090CA3005FEF30 /* ScoutTeamController.swift in Sources */,
 				FA17B68221090AA6005FEF30 /* Storyboard+Utility.swift in Sources */,
 				FAB059782108F34100ABED45 /* AppDelegate.swift in Sources */,

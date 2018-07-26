@@ -41,11 +41,6 @@ class TeamCreationController: UIViewController {
        
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let destination = segue.destination as! ScoutTeamController
-        destination.scoutTeamTextField.text = self.scoutTeamTextField.text
-    }
-    
     @IBAction func cancelButtonTapped(_ sender: Any) {
         dismiss(animated: true)
     }
