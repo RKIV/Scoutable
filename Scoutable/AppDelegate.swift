@@ -102,7 +102,7 @@ extension AppDelegate {
         
         if Auth.auth().currentUser != nil,
             let userData = defaults.object(forKey: "currentUser") as? Data,
-            let user = NSKeyedUnarchiver.unarchiveObject(with: userData) as? User{            
+            let user = try? JSONDecoder().decode(User.self, from: userData) {
             User.setCurrent(user)
             
             initialViewController = UIStoryboard.initialViewController(for: .main)

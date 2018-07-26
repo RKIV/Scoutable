@@ -12,6 +12,37 @@ struct BLueAllianceAPIService{
     static let authKey = "?X-TBA-Auth-Key=kBs60SNuL1nxdenLv33plVaEsQIexpDwN9nnrCNhHOy7KoOKjW7xzpaPtYQE9nPH"
     static let baseURL = "https://www.thebluealliance.com/api/v3"
     
+    // MARK: Get Teams
+    static func teamList(page: Int, done: @escaping ([BATeamSimple]) -> ()){
+        let urlString = "\(baseURL)/teams/\(page)/simple\(authKey)"
+        guard let url = URL(string: urlString) else {return}
+        decodeTeams(for: url) { (data) in
+            done(data)
+        }
+    }
+    static func teamList(forDistrictKey districtKey: String, page: Int, done: @escaping ([BATeamSimple]) -> ()){
+        let urlString = "\(baseURL)/district/\(districtKey)/\(page)/simple\(authKey)"
+        guard let url = URL(string: urlString) else {return}
+        decodeTeams(for: url) { (data) in
+            done(data)
+        }
+
+    }
+    static func team(forNumber teamNumber: Int, done: @escaping (BATeamSimple) -> ()){
+        let urlString = "\(baseURL)/team/frc\(teamNumber)/simple\(authKey)"
+        guard let url = URL(string: urlString) else {return}
+        decodeTeam(for: url) { (data) in
+            done(data)
+        }
+    }
+    
+    // MARK: Get Events
+    static func eventsList(forTeamNumber teamNumber: Int){
+        
+    }
+}
+
+extension BLueAllianceAPIService{
     private static func decodeTeams(for url: URL, decodingDone: @escaping ([BATeamSimple]) -> ()){
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             if error != nil {
@@ -29,7 +60,7 @@ struct BLueAllianceAPIService{
                     }
                     return true
                 })
-//                print(filteredData)
+                //                print(filteredData)
                 print("Decodng Teams Done")
                 decodingDone(filteredData)
                 //Get back to the main queue
@@ -60,34 +91,6 @@ struct BLueAllianceAPIService{
             }.resume()
     }
     
-    static func teamList(page: Int, done: @escaping ([BATeamSimple]) -> ()){
-        let urlString = "\(baseURL)/teams/\(page)/simple\(authKey)"
-        guard let url = URL(string: urlString) else {return}
-        decodeTeams(for: url) { (data) in
-            done(data)
-        }
-        
-        
-    }
-    
-    static func teamList(forDistrictKey districtKey: String, page: Int, done: @escaping ([BATeamSimple]) -> ()){
-        
-        let urlString = "\(baseURL)/district/\(districtKey)/\(page)/simple\(authKey)"
-        guard let url = URL(string: urlString) else {return}
-        decodeTeams(for: url) { (data) in
-            done(data)
-        }
-
-    }
-    static func teamList(forEvent: String){
-        
-    }
-    static func team(forNumber teamNumber: Int, done: @escaping (BATeamSimple) -> ()){
-        let urlString = "\(baseURL)/team/frc\(teamNumber)/simple\(authKey)"
-        guard let url = URL(string: urlString) else {return}
-        decodeTeam(for: url) { (data) in
-            done(data)
-        }
-    }
+//    private static func decodeEvents
 }
 

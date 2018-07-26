@@ -9,7 +9,7 @@
 import Foundation
 import FirebaseDatabase.FIRDataSnapshot
 
-class User: NSObject {
+class User: Codable {
     
     let uid: String
     let username: String
@@ -31,7 +31,7 @@ class User: NSObject {
     
     static func setCurrent(_ user: User, writeToUserDefaults: Bool = false){
         if writeToUserDefaults{
-            let data = NSKeyedArchiver.archivedData(withRootObject: user)
+            let data = try! JSONEncoder().encode(user)
             UserDefaults.standard.set(data, forKey: "currentUser")
             let guestData = NSKeyedArchiver.archivedData(withRootObject: false)
             UserDefaults.standard.set(guestData, forKey: "isGuestUser")
@@ -50,7 +50,7 @@ class User: NSObject {
         self.uid = uid
         self.username = username
         self.isLeader = false
-        super.init()
+//        super.init()
     }
     
     init?(snapshot: DataSnapshot){
@@ -73,7 +73,7 @@ class User: NSObject {
         if let teamNumber = dict["roboticsTeamNumber"] as? Int{
             self.roboticsTeamNumber = teamNumber
         }
-        super.init()
+//        super.init()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -86,10 +86,10 @@ class User: NSObject {
     }
 }
 
-extension User: NSCoding {
-    func encode(with aCoder: NSCoder) {
-        aCoder.encode(uid, forKey: "uid")
-        aCoder.encode(username, forKey: "username")
-    }
-    
-}
+//extension User: NSCoding {
+//    func encode(with aCoder: NSCoder) {
+//        aCoder.encode(uid, forKey: "uid")
+//        aCoder.encode(username, forKey: "username")
+//    }
+//
+//}

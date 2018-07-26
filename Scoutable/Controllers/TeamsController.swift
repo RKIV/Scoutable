@@ -29,8 +29,11 @@ class TeamsController: UIViewController {
         teamTableView.refreshControl?.beginRefreshing()
         teamTableView.refreshControl?.addTarget(self, action: #selector(refreshEnd), for: .valueChanged)
         loadTeams{
-            self.teamTableView.reloadData()
-            self.teamTableView.refreshControl?.endRefreshing()
+            print("complete called")
+            DispatchQueue.main.async {
+                self.teamTableView.reloadData()
+                self.teamTableView.refreshControl?.endRefreshing()
+            }
         }
         teamTableView.dataSource = self
         teamTableView.delegate = self
@@ -38,6 +41,7 @@ class TeamsController: UIViewController {
     }
     
     @objc func refreshEnd(){
+        teamTableView.reloadData()
         teamTableView.refreshControl?.endRefreshing()
     }
 
@@ -48,6 +52,7 @@ class TeamsController: UIViewController {
 
     func loadTeams(complete: @escaping () -> ()) {
         BLueAllianceAPIService.teamList(page: currentPage) { (data) in
+            _ = Thread.current.name
             self.teamsArray += data
             if let teamNumber = User.current?.roboticsTeamNumber{
                 BLueAllianceAPIService.team(forNumber: teamNumber) { (teamData) in
@@ -71,9 +76,6 @@ class TeamsController: UIViewController {
                 }
             }
         }
-        
-
-       
     }
     
     
@@ -83,6 +85,22 @@ class TeamsController: UIViewController {
         self.view.window?.rootViewController = initialViewController
         self.view.window?.makeKeyAndVisible()
     }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let indexPath = teamTableView.indexPathForSelectedRow
+        teamTableView.deselectRow(at: indexPath!, animated: true)
+        var teamNumber: Int = 0
+        switch indexPath?.section{
+        case 0:
+            teamNumber = (personalTeam?.team_number)!
+        case 1:
+            teamNumber = teamsArray[(indexPath?.row)!].team_number
+        default:
+            print("Unexpected section")
+        }
+        
+        
+    }
+
 }
 
 extension TeamsController: UITableViewDataSource{
@@ -102,24 +120,31 @@ extension TeamsController: UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "teamCell") as! TeamCellView
+        
         switch indexPath.section{
         case 0:
-            if let teamData = personalTeam, indexPath.section == 0{
+            if let teamData = personalTeam{
+                let cell = tableView.dequeueReusableCell(withIdentifier: "teamCell") as! TeamCellView
                 cell.teamName.text = teamData.nickname
                 cell.teamNumber.text = String(teamData.team_number)
                 cell.teamLocation.text = "\(teamData.city!) \(teamData.state_prov!) \(teamData.country!)"
+                return cell
             } else {
-                cell.teamName.text = "No personal team"
+                let cell = tableView.dequeueReusableCell(withIdentifier: "noPersonalTeamCell") as! NoPersonalTeamCellView
+                return cell
             }
         case 1:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "teamCell") as! TeamCellView
             cell.teamName.text = teamsArray[indexPath.row].nickname
             cell.teamNumber.text = String(teamsArray[indexPath.row].team_number)
             cell.teamLocation.text = "\(teamsArray[indexPath.row].city!) \(teamsArray[indexPath.row].state_prov!) \(teamsArray[indexPath.row].country!)"
+            return cell
         default:
             print("Unexected section")
+            let defaultCell = tableView.dequeueReusableCell(withIdentifier: "teamCell") as! TeamCellView
+            return defaultCell
         }
-        return cell
+        
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -130,13 +155,11 @@ extension TeamsController: UITableViewDataSource{
             }
         }
     }
-    
 }
 
 extension TeamsController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 75
     }
-    
 }
 
