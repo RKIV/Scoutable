@@ -19,7 +19,7 @@ class UsernameViewController: UIViewController {
         nextButton.layer.cornerRadius = 6
     }
     
-    @IBAction func nextButtonTapped(_ sender: Any) {
+    @IBAction func nextButtonTouched(_ sender: Any) {
         //Check that there is a client side user and check that the username Text Field is filled in
         guard let firUser = Auth.auth().currentUser,
             let username = usernameTextField.text,
@@ -28,12 +28,10 @@ class UsernameViewController: UIViewController {
         UserService.create(firUser, username: username, completion: {(user) in
             guard let user = user else { return }
             //Set current user
-//            User.setCurrent(user, writeToUserDefaults: true)
+            User.setCurrent(user, writeToUserDefaults: true)
             print("About to perform segue")
             self.performSegue(withIdentifier: "toTeamSelection", sender: self)
         })
-        
-        
     }
     
     

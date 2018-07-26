@@ -11,18 +11,20 @@ import FirebaseAuth
 import FirebaseDatabase
 
 class ScoutTeamController: UIViewController {
-    @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet weak var requestButton: UIButton!
     @IBOutlet weak var scoutTeamTextField: UITextField!
+    
+    
     @IBOutlet weak var dneLabel: UILabel!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        nextButton.layer.cornerRadius = 6
+        requestButton.layer.cornerRadius = 6
         dneLabel.isHidden = true
     }
     
-    @IBAction func nextButtonTapped(_ sender: Any) {
+    @IBAction func requestButtonTapped(_ sender: Any) {
         //Check that there is a client side user and check that the username Text Field is filled in
         guard let scoutTeam = scoutTeamTextField.text,
             !scoutTeam.isEmpty else { return }
@@ -30,19 +32,9 @@ class ScoutTeamController: UIViewController {
         //Put in a request to joing team
         ref.child("scoutTeams").observeSingleEvent(of: .value){ (snapshot) in
             if snapshot.hasChild(scoutTeam){
-                ref.child("scoutTeams").child(scoutTeam).child("users").child(User.current.uid).child("accepted").setValue(false) { (error, _) in
-                    if let error = error {
-                        print("Team request failed:", error.localizedDescription)
-                    }
-                    ref.child("users").child(User.current.uid).child("requests").child(scoutTeam).setValue(false) { (error, _) in
-                        if let error = error{
-                            print("Team request failed:", error.localizedDescription)
-                        }
-                        //Send to Main storyboard
-
-                    }
-                }
+                TeamServices.makeTeamRequest(to: scoutTeam)
             }else{
+                // TODO: Refresh label for UX
                 self.dneLabel.isHidden = false
             }
         }
@@ -54,6 +46,7 @@ class ScoutTeamController: UIViewController {
     }
     
     @IBAction func createTeamButtonPressed(_ sender: Any) {
+        self.performSegue(withIdentifier: "toTeamCreation", sender: self)
     }
     
     
