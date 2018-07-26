@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0A25C3F4E43FC2731E6E3684 /* Pods_Scoutable.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1847497075A832D52630A938 /* Pods_Scoutable.framework */; };
+		FA0BC886210A52340089E1C1 /* BAEventSimple.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0BC885210A52340089E1C1 /* BAEventSimple.swift */; };
+		FA0BC88A210A59480089E1C1 /* EventCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0BC889210A59470089E1C1 /* EventCellView.swift */; };
 		FA17B67C2109099C005FEF30 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA17B67B2109099C005FEF30 /* UserService.swift */; };
 		FA17B67F210909E0005FEF30 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA17B67E210909E0005FEF30 /* User.swift */; };
 		FA17B68221090AA6005FEF30 /* Storyboard+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA17B68121090AA6005FEF30 /* Storyboard+Utility.swift */; };
@@ -35,6 +37,8 @@
 		1847497075A832D52630A938 /* Pods_Scoutable.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Scoutable.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC1EFCAA12612E1B31142F4B /* Pods-Scoutable.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Scoutable.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Scoutable/Pods-Scoutable.debug.xcconfig"; sourceTree = "<group>"; };
 		F65E5F5A969B242D7D2AFB91 /* Pods-Scoutable.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Scoutable.release.xcconfig"; path = "Pods/Target Support Files/Pods-Scoutable/Pods-Scoutable.release.xcconfig"; sourceTree = "<group>"; };
+		FA0BC885210A52340089E1C1 /* BAEventSimple.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAEventSimple.swift; sourceTree = "<group>"; };
+		FA0BC889210A59470089E1C1 /* EventCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCellView.swift; sourceTree = "<group>"; };
 		FA17B67B2109099C005FEF30 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		FA17B67E210909E0005FEF30 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		FA17B68121090AA6005FEF30 /* Storyboard+Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Storyboard+Utility.swift"; sourceTree = "<group>"; };
@@ -104,6 +108,7 @@
 			children = (
 				FA17B67E210909E0005FEF30 /* User.swift */,
 				FA64971B210957C0002A40C1 /* BATeamSimple.swift */,
+				FA0BC885210A52340089E1C1 /* BAEventSimple.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -119,6 +124,7 @@
 		FA64971D210967A6002A40C1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				FA0BC889210A59470089E1C1 /* EventCellView.swift */,
 				FA64972021096813002A40C1 /* TeamCellView.swift */,
 				FA649728210A3E6D002A40C1 /* NoPersonalTeamCellView.swift */,
 			);
@@ -324,6 +330,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA64971C210957C0002A40C1 /* BATeamSimple.swift in Sources */,
+				FA0BC88A210A59480089E1C1 /* EventCellView.swift in Sources */,
 				FAE115072109084700BAEFB7 /* LoginViewController.swift in Sources */,
 				FA17B67C2109099C005FEF30 /* UserService.swift in Sources */,
 				FA17B67F210909E0005FEF30 /* User.swift in Sources */,
@@ -334,6 +341,7 @@
 				FAB0597A2108F34100ABED45 /* TeamsController.swift in Sources */,
 				FA64972721098D64002A40C1 /* EventsController.swift in Sources */,
 				FA17B68621090CA3005FEF30 /* ScoutTeamController.swift in Sources */,
+				FA0BC886210A52340089E1C1 /* BAEventSimple.swift in Sources */,
 				FA649729210A3E6D002A40C1 /* NoPersonalTeamCellView.swift in Sources */,
 				FA17B68221090AA6005FEF30 /* Storyboard+Utility.swift in Sources */,
 				FAB059782108F34100ABED45 /* AppDelegate.swift in Sources */,

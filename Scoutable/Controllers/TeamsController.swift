@@ -51,11 +51,11 @@ class TeamsController: UIViewController {
     }
 
     func loadTeams(complete: @escaping () -> ()) {
-        BLueAllianceAPIService.teamList(page: currentPage) { (data) in
+        BLueAllianceAPIService.teamListSimple(page: currentPage) { (data) in
             _ = Thread.current.name
             self.teamsArray += data
             if let teamNumber = User.current?.roboticsTeamNumber{
-                BLueAllianceAPIService.team(forNumber: teamNumber) { (teamData) in
+                BLueAllianceAPIService.teamSimple(forNumber: teamNumber) { (teamData) in
                     self.personalTeam = teamData
                      complete()
                 }
@@ -63,7 +63,7 @@ class TeamsController: UIViewController {
                 if (User.current?.uid) != nil{
                     UserService.show(forUID: (User.current?.uid)!, completion: { (user) in
                         if let teamNumber = user?.roboticsTeamNumber{
-                            BLueAllianceAPIService.team(forNumber: teamNumber) { (teamData) in
+                            BLueAllianceAPIService.teamSimple(forNumber: teamNumber) { (teamData) in
                                 self.personalTeam = teamData
                                 complete()
                             }
@@ -78,13 +78,13 @@ class TeamsController: UIViewController {
         }
     }
     
-    
     @IBAction func logButtonTapped(_ sender: Any) {
         User.logOut()
         let initialViewController = UIStoryboard.initialViewController(for: .login)
         self.view.window?.rootViewController = initialViewController
         self.view.window?.makeKeyAndVisible()
     }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let indexPath = teamTableView.indexPathForSelectedRow
         teamTableView.deselectRow(at: indexPath!, animated: true)
