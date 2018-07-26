@@ -36,7 +36,7 @@ struct ScoutTeamServices{
                 print(error.localizedDescription)
             }
             let userReference = ref.child("users").child((User.current?.uid)!)
-            let userAttrs = ["team" : scoutTeam, "hasTeam" : true, "isLeader" : true] as [String : Any]
+            let userAttrs = ["scoutTeam" : scoutTeam, "hasTeam" : true, "isLeader" : true] as [String : Any]
             userReference.updateChildValues(userAttrs)
         }
     }

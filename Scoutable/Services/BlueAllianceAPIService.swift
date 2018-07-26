@@ -30,6 +30,7 @@ struct BLueAllianceAPIService{
                     return true
                 })
 //                print(filteredData)
+                print("Decodng Teams Done")
                 decodingDone(filteredData)
                 //Get back to the main queue
             } catch let jsonError {
@@ -50,6 +51,7 @@ struct BLueAllianceAPIService{
                 //Decode retrived data with JSONDecoder and assing type of Article object
                 let baTeamSimpleData = try JSONDecoder().decode(BATeamSimple.self, from: data)
                 //                print(filteredData)
+                print("Decoding Team Done")
                 decodingDone(baTeamSimpleData)
                 //Get back to the main queue
             } catch let jsonError {

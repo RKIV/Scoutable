@@ -10,6 +10,23 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Teams-->
+        <scene sceneID="glN-X4-Hh1">
+            <objects>
+                <navigationController id="qGR-V1-jI9" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Teams" id="Sy1-KC-prl"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="rhy-0W-rfb">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="M4m-Rq-6QV"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="h0c-Yn-YaQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="945" y="-716"/>
+        </scene>
         <!--Robotics Teams-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -18,12 +35,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="P1E-UC-4Wd">
-                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="P1E-UC-4Wd">
+                                <rect key="frame" x="0.0" y="108" width="375" height="510"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="teamCell" rowHeight="75" id="ZxY-cW-rY0" customClass="TeamCellView" customModule="Scoutable" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="75"/>
+                                        <rect key="frame" x="0.0" y="55.5" width="375" height="75"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZxY-cW-rY0" id="K9o-4x-N1l">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="74.5"/>
@@ -56,12 +73,21 @@
                                             <outlet property="teamLocation" destination="23h-Jn-19Q" id="k99-0j-GLD"/>
                                             <outlet property="teamName" destination="kep-Us-Oh0" id="ARJ-sc-srC"/>
                                             <outlet property="teamNumber" destination="vhb-bw-bos" id="aLc-dh-LaJ"/>
+                                            <segue destination="Brm-RA-Zpu" kind="show" id="9Ni-Ch-q3f"/>
                                         </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="noPersonalTeamCell" rowHeight="75" id="p4z-kb-BcP" customClass="TeamCellView" customModule="Scoutable" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="130.5" width="375" height="75"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="p4z-kb-BcP" id="1gO-gx-VKq">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="74.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4hO-xJ-vAE">
-                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="Pfg-lx-XxC"/>
                                 </constraints>
@@ -89,6 +115,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Robotics Teams" id="TeI-sZ-1oh"/>
+                    <navigationItem key="navigationItem" id="vZY-ay-VZ9"/>
                     <connections>
                         <outlet property="logButton" destination="84M-aQ-oeQ" id="r2H-gL-okt"/>
                         <outlet property="teamTableView" destination="P1E-UC-4Wd" id="VLc-U8-adf"/>
@@ -96,7 +123,22 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="972" y="31.934032983508249"/>
+            <point key="canvasLocation" x="1846" y="-716"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="fOx-sa-BgH">
+            <objects>
+                <viewController id="Brm-RA-Zpu" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Lu9-eW-luc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="8KX-Gc-gu9"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pPp-0V-f3v" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2644" y="-716"/>
         </scene>
         <!--Events-->
         <scene sceneID="pVu-P8-Z9j">
@@ -113,7 +155,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lxM-X1-lWF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1076" y="848"/>
+            <point key="canvasLocation" x="33" y="872"/>
         </scene>
         <!--Events-->
         <scene sceneID="JVH-bI-D6W">
@@ -163,7 +205,13 @@
                         <viewLayoutGuide key="safeArea" id="Sqp-Jk-YWE"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Events/ Districs" id="wYb-V4-EKn"/>
-                    <navigationItem key="navigationItem" title="Events" id="U9D-6E-fjk"/>
+                    <navigationItem key="navigationItem" title="Events" id="U9D-6E-fjk">
+                        <barButtonItem key="rightBarButtonItem" title="Log Out" id="Ckq-lz-ac1">
+                            <connections>
+                                <action selector="logButtonPressed:" destination="OxZ-uO-jCB" id="A8T-ff-f9G"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="eventsTableView" destination="NQ5-81-VXH" id="xBw-g7-wfF"/>
                         <segue destination="5lm-cl-rFp" kind="show" identifier="toDistrictList" animates="NO" id="XlZ-1u-sVs"/>
@@ -171,7 +219,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="76b-5g-LDK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2198" y="848"/>
+            <point key="canvasLocation" x="945" y="871"/>
         </scene>
         <!--Title-->
         <scene sceneID="rDl-dh-yWu">
@@ -193,7 +241,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RpS-f2-yRL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3063" y="848"/>
+            <point key="canvasLocation" x="1846" y="871"/>
         </scene>
         <!--Settings-->
         <scene sceneID="P50-Z1-bMh">
@@ -209,7 +257,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n58-u0-6db" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2002" y="32"/>
+            <point key="canvasLocation" x="945" y="32"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="fyI-0i-C3P">
@@ -221,7 +269,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="kQa-JP-KCI"/>
+                        <segue destination="qGR-V1-jI9" kind="relationship" relationship="viewControllers" id="PBK-Rv-kqO"/>
                         <segue destination="vo4-WO-Ejp" kind="relationship" relationship="viewControllers" id="yG7-8F-VL5"/>
                         <segue destination="i4g-R1-PJR" kind="relationship" relationship="viewControllers" id="Zvt-fy-4Za"/>
                     </connections>

@@ -16,7 +16,7 @@ class User: NSObject {
     var scoutTeam: String?
     var hasTeam: Bool = false
     var isLeader: Bool = false
-    var teamNumber: Int?
+    var roboticsTeamNumber: Int?
     
     private static var _current: User?
     
@@ -57,7 +57,6 @@ class User: NSObject {
         guard let dict = snapshot.value as? [String : Any],
             let username = dict["username"] as? String
             else { return nil }
-        
         self.uid = snapshot.key
         self.username = username
         if let scoutTeam = dict["scoutTeam"] as? String {
@@ -70,6 +69,9 @@ class User: NSObject {
             }
         } else {
             hasTeam = false
+        }
+        if let teamNumber = dict["roboticsTeamNumber"] as? Int{
+            self.roboticsTeamNumber = teamNumber
         }
         super.init()
     }

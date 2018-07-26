@@ -15,13 +15,11 @@ class TeamsController: UIViewController {
     
     private let refreshControl = UIRefreshControl()
     private var currentPage = 0
-    var teamsArray: [BATeamSimple] = Array()
+    var teamsArray: [BATeamSimple] = []
     var personalTeam: BATeamSimple?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        teamTableView.dataSource = self
-        teamTableView.delegate = self
         logButton.title = User.current == nil ? "Log In" : "Log Out"
         if #available(iOS 10.0, *) {
             teamTableView.refreshControl = refreshControl
@@ -34,6 +32,8 @@ class TeamsController: UIViewController {
             self.teamTableView.reloadData()
             self.teamTableView.refreshControl?.endRefreshing()
         }
+        teamTableView.dataSource = self
+        teamTableView.delegate = self
         // Do any additional setup after loading the view, typically from a nib.
     }
     
@@ -49,14 +49,31 @@ class TeamsController: UIViewController {
     func loadTeams(complete: @escaping () -> ()) {
         BLueAllianceAPIService.teamList(page: currentPage) { (data) in
             self.teamsArray += data
-            complete()
-        }
-        
-        if let teamNumber = User.current?.teamNumber{
-            BLueAllianceAPIService.team(forNumber: teamNumber) { (teamData) in
-                self.personalTeam = teamData
+            if let teamNumber = User.current?.roboticsTeamNumber{
+                BLueAllianceAPIService.team(forNumber: teamNumber) { (teamData) in
+                    self.personalTeam = teamData
+                     complete()
+                }
+            } else{
+                if (User.current?.uid) != nil{
+                    UserService.show(forUID: (User.current?.uid)!, completion: { (user) in
+                        if let teamNumber = user?.roboticsTeamNumber{
+                            BLueAllianceAPIService.team(forNumber: teamNumber) { (teamData) in
+                                self.personalTeam = teamData
+                                complete()
+                            }
+                        } else {
+                            complete()
+                        }
+                    })
+                } else{
+                    complete()
+                }
             }
         }
+        
+
+       
     }
     
     
@@ -70,32 +87,39 @@ class TeamsController: UIViewController {
 
 extension TeamsController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if User.current?.teamNumber != nil && section == 0{
+        switch section{
+        case 0:
             return 1
+        case 1:
+            return teamsArray.count
+        default:
+            return 0
         }
-        return teamsArray.count
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        if User.current?.teamNumber != nil{
-            return 2
-        }
-        return 1
+        return 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "teamCell") as! TeamCellView
-        if let teamData = personalTeam, indexPath.section == 0{
+        switch indexPath.section{
+        case 0:
+            if let teamData = personalTeam, indexPath.section == 0{
                 cell.teamName.text = teamData.nickname
                 cell.teamNumber.text = String(teamData.team_number)
                 cell.teamLocation.text = "\(teamData.city!) \(teamData.state_prov!) \(teamData.country!)"
-        } else {
+            } else {
+                cell.teamName.text = "No personal team"
+            }
+        case 1:
             cell.teamName.text = teamsArray[indexPath.row].nickname
             cell.teamNumber.text = String(teamsArray[indexPath.row].team_number)
             cell.teamLocation.text = "\(teamsArray[indexPath.row].city!) \(teamsArray[indexPath.row].state_prov!) \(teamsArray[indexPath.row].country!)"
+        default:
+            print("Unexected section")
         }
         return cell
-
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

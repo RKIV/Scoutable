@@ -59,6 +59,7 @@ extension LoginViewController: FUIAuthDelegate{
         UserService.show(forUID: user.uid) { (user) in
             //If the user already has an account set the current user and send to main storyboard
             if let user = user{
+                print("Setting current for user Team#: \(user.roboticsTeamNumber)")
                 User.setCurrent(user, writeToUserDefaults: true)
                 
                 let initialViewController = UIStoryboard.initialViewController(for: .main)

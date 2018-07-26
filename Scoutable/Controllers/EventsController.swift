@@ -19,6 +19,12 @@ class EventsController: UIViewController{
         super.viewDidLoad()
 //        eventsTableView.dataSource = self
     }
+    @IBAction func logButtonPressed(_ sender: Any) {
+        User.logOut()
+        let initialViewController = UIStoryboard.initialViewController(for: .login)
+        self.view.window?.rootViewController = initialViewController
+        self.view.window?.makeKeyAndVisible()
+    }
 }
 
 //extension EventsController: UITableViewDataSource{

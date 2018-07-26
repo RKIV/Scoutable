@@ -34,14 +34,16 @@ struct UserService{
     //Read a user on the database
     static func show(forUID uid: String, completion: @escaping (User?) -> Void){
         let ref = Database.database().reference().child("users").child(uid)
-        ref.observeSingleEvent(of: .value, with: {(snapshot) in
+        ref.observeSingleEvent(of: .value, with: { (snapshot) in
             guard let user = User(snapshot: snapshot) else {
                 completion(nil)
                 
                 return
             }
             completion(user)
-        })
+        }) { (error) in
+            print("Error incorrect uid: \(error.localizedDescription)")
+        }
     }
     
     static func setRoboticsTeamNumber(as teamNumber: Int){
@@ -51,6 +53,6 @@ struct UserService{
                 print(error.localizedDescription)
             }
         }
-        User.current?.teamNumber = teamNumber
+        User.current?.roboticsTeamNumber = teamNumber
     }
 }
