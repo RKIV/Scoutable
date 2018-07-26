@@ -32,13 +32,14 @@ class ScoutTeamController: UIViewController {
         //Put in a request to joing team
         ref.child("scoutTeams").observeSingleEvent(of: .value){ (snapshot) in
             if snapshot.hasChild(scoutTeam){
-                TeamServices.makeTeamRequest(to: scoutTeam)
+                ScoutTeamServices.makeTeamRequest(to: scoutTeam)
             }else{
                 // TODO: Refresh label for UX
                 self.dneLabel.isHidden = false
             }
         }
     }
+    // TODO: Add Alert
     @IBAction func skipButtonPressed(_ sender: Any) {
         let initialViewController = UIStoryboard.initialViewController(for: .main)
         self.view.window?.rootViewController = initialViewController
@@ -48,6 +49,13 @@ class ScoutTeamController: UIViewController {
     @IBAction func createTeamButtonPressed(_ sender: Any) {
         self.performSegue(withIdentifier: "toTeamCreation", sender: self)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destination = segue.destination as! TeamCreationController
+        destination.scoutTeamTextField.text = self.scoutTeamTextField.text
+    }
+    
+    
     
     
 }

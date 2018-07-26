@@ -14,9 +14,12 @@
 		FA17B68621090CA3005FEF30 /* ScoutTeamController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA17B68521090CA2005FEF30 /* ScoutTeamController.swift */; };
 		FA17B6882109107D005FEF30 /* UsernameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA17B6872109107D005FEF30 /* UsernameController.swift */; };
 		FA17B68A21093C1B005FEF30 /* TeamCreationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA17B68921093C1B005FEF30 /* TeamCreationController.swift */; };
-		FA17B68E21093F1F005FEF30 /* TeamService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA17B68D21093F1F005FEF30 /* TeamService.swift */; };
+		FA17B68E21093F1F005FEF30 /* ScoutTeamService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA17B68D21093F1F005FEF30 /* ScoutTeamService.swift */; };
+		FA64971A21095758002A40C1 /* BlueAllianceAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA64971921095758002A40C1 /* BlueAllianceAPIService.swift */; };
+		FA64971C210957C0002A40C1 /* BATeamSimple.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA64971B210957C0002A40C1 /* BATeamSimple.swift */; };
+		FA64972121096813002A40C1 /* TeamCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA64972021096813002A40C1 /* TeamCellView.swift */; };
 		FAB059782108F34100ABED45 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB059772108F34100ABED45 /* AppDelegate.swift */; };
-		FAB0597A2108F34100ABED45 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB059792108F34100ABED45 /* MainController.swift */; };
+		FAB0597A2108F34100ABED45 /* TeamsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB059792108F34100ABED45 /* TeamsController.swift */; };
 		FAB0597D2108F34100ABED45 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAB0597B2108F34100ABED45 /* Main.storyboard */; };
 		FAB059802108F34100ABED45 /* Scoutable.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FAB0597E2108F34100ABED45 /* Scoutable.xcdatamodeld */; };
 		FAB059822108F34300ABED45 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAB059812108F34300ABED45 /* Assets.xcassets */; };
@@ -36,10 +39,13 @@
 		FA17B68521090CA2005FEF30 /* ScoutTeamController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoutTeamController.swift; sourceTree = "<group>"; };
 		FA17B6872109107D005FEF30 /* UsernameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsernameController.swift; sourceTree = "<group>"; };
 		FA17B68921093C1B005FEF30 /* TeamCreationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamCreationController.swift; sourceTree = "<group>"; };
-		FA17B68D21093F1F005FEF30 /* TeamService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamService.swift; sourceTree = "<group>"; };
+		FA17B68D21093F1F005FEF30 /* ScoutTeamService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoutTeamService.swift; sourceTree = "<group>"; };
+		FA64971921095758002A40C1 /* BlueAllianceAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlueAllianceAPIService.swift; sourceTree = "<group>"; };
+		FA64971B210957C0002A40C1 /* BATeamSimple.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BATeamSimple.swift; sourceTree = "<group>"; };
+		FA64972021096813002A40C1 /* TeamCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamCellView.swift; sourceTree = "<group>"; };
 		FAB059742108F34100ABED45 /* Scoutable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scoutable.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAB059772108F34100ABED45 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		FAB059792108F34100ABED45 /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
+		FAB059792108F34100ABED45 /* TeamsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsController.swift; sourceTree = "<group>"; };
 		FAB0597C2108F34100ABED45 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FAB0597F2108F34100ABED45 /* Scoutable.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Scoutable.xcdatamodel; sourceTree = "<group>"; };
 		FAB059812108F34300ABED45 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -83,7 +89,8 @@
 			isa = PBXGroup;
 			children = (
 				FA17B67B2109099C005FEF30 /* UserService.swift */,
-				FA17B68D21093F1F005FEF30 /* TeamService.swift */,
+				FA17B68D21093F1F005FEF30 /* ScoutTeamService.swift */,
+				FA64971921095758002A40C1 /* BlueAllianceAPIService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -92,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				FA17B67E210909E0005FEF30 /* User.swift */,
+				FA64971B210957C0002A40C1 /* BATeamSimple.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -102,6 +110,14 @@
 				FA17B68121090AA6005FEF30 /* Storyboard+Utility.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		FA64971D210967A6002A40C1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FA64972021096813002A40C1 /* TeamCellView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		FAB0596B2108F34100ABED45 = {
@@ -126,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				FAB059772108F34100ABED45 /* AppDelegate.swift */,
+				FA64971D210967A6002A40C1 /* Views */,
 				FA17B68021090A93005FEF30 /* Extensions */,
 				FA17B67D210909D5005FEF30 /* Models */,
 				FA17B67A2109096B005FEF30 /* Services */,
@@ -143,7 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				FA17B68521090CA2005FEF30 /* ScoutTeamController.swift */,
-				FAB059792108F34100ABED45 /* MainController.swift */,
+				FAB059792108F34100ABED45 /* TeamsController.swift */,
 				FAE115062109084700BAEFB7 /* LoginViewController.swift */,
 				FA17B6872109107D005FEF30 /* UsernameController.swift */,
 				FA17B68921093C1B005FEF30 /* TeamCreationController.swift */,
@@ -300,12 +317,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA64971C210957C0002A40C1 /* BATeamSimple.swift in Sources */,
 				FAE115072109084700BAEFB7 /* LoginViewController.swift in Sources */,
 				FA17B67C2109099C005FEF30 /* UserService.swift in Sources */,
 				FA17B67F210909E0005FEF30 /* User.swift in Sources */,
+				FA64971A21095758002A40C1 /* BlueAllianceAPIService.swift in Sources */,
+				FA64972121096813002A40C1 /* TeamCellView.swift in Sources */,
 				FAB059802108F34100ABED45 /* Scoutable.xcdatamodeld in Sources */,
-				FA17B68E21093F1F005FEF30 /* TeamService.swift in Sources */,
-				FAB0597A2108F34100ABED45 /* MainController.swift in Sources */,
+				FA17B68E21093F1F005FEF30 /* ScoutTeamService.swift in Sources */,
+				FAB0597A2108F34100ABED45 /* TeamsController.swift in Sources */,
 				FA17B68621090CA3005FEF30 /* ScoutTeamController.swift in Sources */,
 				FA17B68221090AA6005FEF30 /* Storyboard+Utility.swift in Sources */,
 				FAB059782108F34100ABED45 /* AppDelegate.swift in Sources */,

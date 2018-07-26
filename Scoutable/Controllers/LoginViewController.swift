@@ -33,12 +33,8 @@ class LoginViewController: UIViewController {
         let authViewController = authUI.authViewController()
         
         present(authViewController, animated: true)
-        
-        
-        
     }
-    
-    
+    // TODO: Add Skip button functionality
 }
 
 extension LoginViewController: FUIAuthDelegate{

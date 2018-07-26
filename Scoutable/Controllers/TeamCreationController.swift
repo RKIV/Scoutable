@@ -32,7 +32,7 @@ class TeamCreationController: UIViewController {
                 // TODO: Refresh label for UX
                 self.alreadyExistsLabel.isHidden = false
             } else {
-                TeamServices.create(scoutTeam)
+                ScoutTeamServices.create(scoutTeam)
                 let initialViewController = UIStoryboard.initialViewController(for: .main)
                 self.view.window?.rootViewController = initialViewController
                 self.view.window?.makeKeyAndVisible()
@@ -40,4 +40,14 @@ class TeamCreationController: UIViewController {
         }
        
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destination = segue.destination as! ScoutTeamController
+        destination.scoutTeamTextField.text = self.scoutTeamTextField.text
+    }
+    
+    @IBAction func cancelButtonTapped(_ sender: Any) {
+        dismiss(animated: true)
+    }
+    
 }
