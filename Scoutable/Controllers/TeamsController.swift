@@ -12,6 +12,8 @@ class TeamsController: UIViewController {
     
     @IBOutlet weak var logButton: UIBarButtonItem!
     @IBOutlet weak var teamTableView: UITableView!
+    
+    private let refreshControl = UIRefreshControl()
     private var currentPage = 0
     var teamsArray: [BATeamSimple] = Array()
     var personalTeam: BATeamSimple?
@@ -20,11 +22,23 @@ class TeamsController: UIViewController {
         super.viewDidLoad()
         teamTableView.dataSource = self
         teamTableView.delegate = self
+        logButton.title = User.current == nil ? "Log In" : "Log Out"
+        if #available(iOS 10.0, *) {
+            teamTableView.refreshControl = refreshControl
+        } else {
+            teamTableView.addSubview(refreshControl)
+        }
+        teamTableView.refreshControl?.beginRefreshing()
+        teamTableView.refreshControl?.addTarget(self, action: #selector(refreshEnd), for: .valueChanged)
         loadTeams{
             self.teamTableView.reloadData()
+            self.teamTableView.refreshControl?.endRefreshing()
         }
-        logButton.title = User.current == nil ? "Log In" : "Log Out"
         // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    @objc func refreshEnd(){
+        teamTableView.refreshControl?.endRefreshing()
     }
 
     override func didReceiveMemoryWarning() {
@@ -92,11 +106,13 @@ extension TeamsController: UITableViewDataSource{
             }
         }
     }
+    
 }
 
 extension TeamsController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 75
     }
+    
 }
 
