@@ -51,5 +51,6 @@ struct UserService{
                 print(error.localizedDescription)
             }
         }
+        User.current.teamNumber = teamNumber
     }
 }

@@ -35,6 +35,15 @@ class LoginViewController: UIViewController {
         present(authViewController, animated: true)
     }
     // TODO: Add Skip button functionality
+    @IBAction func skipButtonTapped(_ sender: Any) {
+        let data = NSKeyedArchiver.archivedData(withRootObject: true)
+        UserDefaults.standard.set(data, forKey: "isGuestUser")
+        let initialViewController = UIStoryboard.initialViewController(for: .main)
+        self.view.window?.rootViewController = initialViewController
+        self.view.window?.makeKeyAndVisible()
+
+    }
+    
 }
 
 extension LoginViewController: FUIAuthDelegate{

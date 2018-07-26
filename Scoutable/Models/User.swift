@@ -16,6 +16,7 @@ class User: NSObject {
     var scoutTeam: String?
     var hasTeam: Bool = false
     var isLeader: Bool = false
+    var teamNumber: Int?
     
     private static var _current: User?
     
@@ -38,10 +39,17 @@ class User: NSObject {
     static func setCurrent(_ user: User, writeToUserDefaults: Bool = false){
         if writeToUserDefaults{
             let data = NSKeyedArchiver.archivedData(withRootObject: user)
-            
             UserDefaults.standard.set(data, forKey: "currentUser")
+            let guestData = NSKeyedArchiver.archivedData(withRootObject: false)
+            UserDefaults.standard.set(guestData, forKey: "isGuestUser")
         }
         _current = user
+    }
+    
+    static func logOut(){
+        UserDefaults.standard.set(nil, forKey: "currentUser")
+        UserDefaults.standard.set(nil, forKey: "isGuestUser")
+        _current = nil
     }
     
     

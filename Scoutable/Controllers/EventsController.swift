@@ -21,7 +21,7 @@ class EventsController: UIViewController{
     }
 }
 
-extension EventsController: UITableViewDataSource{
+//extension EventsController: UITableViewDataSource{
 //    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 //        return 0
 //    }
@@ -31,4 +31,4 @@ extension EventsController: UITableViewDataSource{
 //    }
     
     
-}
+//}
