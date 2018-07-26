@@ -13,7 +13,7 @@ class EventsController: UIViewController{
     @IBOutlet weak var eventsTableView: UITableView!
     
     override func viewDidLoad() {
-        if !User.currentUserExists {
+        if User.current == nil {
             performSegue(withIdentifier: "toDistrictList", sender: self)
         }
         super.viewDidLoad()

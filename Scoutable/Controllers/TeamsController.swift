@@ -23,7 +23,7 @@ class TeamsController: UIViewController {
         loadTeams{
             self.teamTableView.reloadData()
         }
-        logButton.title = User.currentUserExists ? "Log Out" : "Log In"
+        logButton.title = User.current == nil ? "Log In" : "Log Out"
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -38,7 +38,7 @@ class TeamsController: UIViewController {
             complete()
         }
         
-        if User.currentUserExists, let teamNumber = User.current.teamNumber{
+        if let teamNumber = User.current?.teamNumber{
             BLueAllianceAPIService.team(forNumber: teamNumber) { (teamData) in
                 self.personalTeam = teamData
             }
@@ -56,14 +56,14 @@ class TeamsController: UIViewController {
 
 extension TeamsController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if User.currentUserExists && User.current.teamNumber != nil && section == 0{
+        if User.current?.teamNumber != nil && section == 0{
             return 1
         }
         return teamsArray.count
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        if User.currentUserExists && User.current.teamNumber != nil{
+        if User.current?.teamNumber != nil{
             return 2
         }
         return 1

@@ -45,12 +45,12 @@ struct UserService{
     }
     
     static func setRoboticsTeamNumber(as teamNumber: Int){
-        let ref = Database.database().reference().child("users").child(User.current.uid).child("roboticsTeamNumber")
+        let ref = Database.database().reference().child("users").child((User.current?.uid)!).child("roboticsTeamNumber")
         ref.setValue(teamNumber) { (error, _) in
             if let error = error{
                 print(error.localizedDescription)
             }
         }
-        User.current.teamNumber = teamNumber
+        User.current?.teamNumber = teamNumber
     }
 }

@@ -107,13 +107,8 @@ extension AppDelegate {
             User.setCurrent(user)
             
             initialViewController = UIStoryboard.initialViewController(for: .main)
-        }else if let guestData = defaults.object(forKey: "isGuestUser") as? Data,
-            let guest = NSKeyedUnarchiver.unarchiveObject(with: guestData) as? Bool{
-            if guest{
-                initialViewController = UIStoryboard.initialViewController(for: .main)
-            } else {
-                initialViewController = UIStoryboard.initialViewController(for: .login)
-            }
+        }else if let guestData = defaults.object(forKey: "isGuestUser") as? Data{
+            initialViewController = UIStoryboard.initialViewController(for: .main)
         } else {
             initialViewController = UIStoryboard.initialViewController(for: .login)
         }

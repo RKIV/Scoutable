@@ -20,19 +20,12 @@ class User: NSObject {
     
     private static var _current: User?
     
-    static var current: User {
+    static var current: User? {
         guard let currentUser = _current else {
-            fatalError("Error: current user doesn't exist")
+            return nil
         }
         
         return currentUser
-    }
-    
-    static var currentUserExists: Bool {
-        if _current == nil {
-            return false
-        }
-        return true
     }
     
     
