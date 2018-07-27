@@ -54,6 +54,39 @@ struct BlueAllianceAPIService{
             done(data)
         }
     }
+    
+    static func districtsList(forYear year: Int, done: @escaping ([BADistric]?) -> ()){
+        decodeDistricts(forYear: year) { (districts) in
+            done(districts)
+        }
+        
+    }
+    
+    static func maxTeam(complete: @escaping (Int) -> ()){
+        var max = 0
+        for i in 10...20{
+            maxTeamOnPage(pgNum: i) { (num) in
+                if num > max {
+                    max = num
+                }
+                if i == 20 {
+                    complete(max)
+                }
+            }
+        }
+    }
+    
+    private static func maxTeamOnPage(pgNum: Int, complete: @escaping (Int) -> ()){
+        
+        BlueAllianceAPIService.decodeTeamKeys(for: pgNum) { (returnedKeys) in
+            _ = pgNum
+            if returnedKeys.count > 0{
+                complete(Int(String((returnedKeys.last?.split(separator: "c")[1])!))!)
+            } else {
+                complete(0)
+            }
+        }
+    }
 }
 
 extension BlueAllianceAPIService{
@@ -131,6 +164,50 @@ extension BlueAllianceAPIService{
                 decodingDone(baTeamSimpleData)
             } catch let jsonError {
                 print(jsonError)
+            }
+            }.resume()
+    }
+    
+    private static func decodeTeamKeys(for pgNum: Int, decodingDone: @escaping ([String]) -> ()){
+        let urlString = "\(baseURL)/teams/\(pgNum)/keys\(authKey)"
+        guard let url = URL(string: urlString) else {return}
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            if error != nil {
+                print(error!.localizedDescription)
+            }
+            
+            guard let data = data else { return }
+            
+            do {
+                let keys = try JSONDecoder().decode([String].self, from: data)
+                decodingDone(keys)
+            } catch let jsonError {
+                print(jsonError)
+            }
+            }.resume()
+    }
+    
+    private static func decodeDistricts(forYear year: Int, decodingDone: @escaping ([BADistric]?) -> ()){
+        let now = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy"
+        let currentYear = dateFormatter.string(from: now)
+        guard year >= 1992 && year <= Int(currentYear)! else {return decodingDone(nil)}
+        let urlString = "\(baseURL)/districts/\(year)\(authKey)"
+        guard let url = URL(string: urlString) else {return}
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            if error != nil {
+                print(error!.localizedDescription)
+            }
+            
+            guard let data = data else { return }
+            
+            do {
+                
+                let districts = try JSONDecoder().decode([BADistric].self, from: data)
+                decodingDone(districts)
+            } catch let jsonError {
+                print("Json error: \(jsonError)")
             }
             }.resume()
     }

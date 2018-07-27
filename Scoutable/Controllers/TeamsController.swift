@@ -27,13 +27,6 @@ class TeamsController: UIViewController {
             teamTableView.addSubview(refreshControl)
         }
         teamTableView.refreshControl?.beginRefreshing()
-        if !(User.current?.hasTeam)!{
-            UserService.show(forUID: (User.current?.uid)!) { (user) in
-                if (user?.hasTeam)!{
-                    User.setCurrent(user!)
-                }
-            }
-        }
         teamTableView.refreshControl?.addTarget(self, action: #selector(refreshEnd), for: .valueChanged)
         loadTeams{
             print("complete called")
@@ -46,6 +39,19 @@ class TeamsController: UIViewController {
         teamTableView.delegate = self
         // Do any additional setup after loading the view, typically from a nib.
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super .viewWillAppear(animated)
+        UserService.show(forUID: (User.current?.uid)!) { (user) in
+            if let user = user{
+                User.setCurrent(user, writeToUserDefaults: true)
+                self.loadPersonalTeam {
+                    DispatchQueue.main.async {
+                        self.teamTableView.reloadData()
+                    }
+                }
+            }
+        }
+    }
     
     @objc func refreshEnd(){
         teamTableView.reloadData()
@@ -56,11 +62,20 @@ class TeamsController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
+    func loadPersonalTeam(complete: @escaping () -> ()){
+        if let teamNumber = User.current?.roboticsTeamNumber{
+            BlueAllianceAPIService.teamSimple(forNumber: teamNumber) { (teamData) in
+                self.personalTeam = teamData
+                complete()
+            }
+        }
+    }
+    
     func loadTeams(complete: @escaping () -> ()) {
         BlueAllianceAPIService.teamListSimple(page: currentPage) { (data) in
-            _ = Thread.current.name
             self.teamsArray += data
+            self.currentPage += 1
             if let teamNumber = User.current?.roboticsTeamNumber{
                 BlueAllianceAPIService.teamSimple(forNumber: teamNumber) { (teamData) in
                     self.personalTeam = teamData
