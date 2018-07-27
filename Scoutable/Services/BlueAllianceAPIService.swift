@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct BLueAllianceAPIService{
+struct BlueAllianceAPIService{
     static let authKey = "?X-TBA-Auth-Key=kBs60SNuL1nxdenLv33plVaEsQIexpDwN9nnrCNhHOy7KoOKjW7xzpaPtYQE9nPH"
     static let baseURL = "https://www.thebluealliance.com/api/v3"
     
@@ -20,6 +20,7 @@ struct BLueAllianceAPIService{
             done(data)
         }
     }
+    
     static func teamListSimple(forDistrictKey districtKey: String, page: Int, done: @escaping ([BATeamSimple]) -> ()){
         let urlString = "\(baseURL)/district/\(districtKey)/\(page)/simple\(authKey)"
         guard let url = URL(string: urlString) else {return}
@@ -28,6 +29,7 @@ struct BLueAllianceAPIService{
         }
 
     }
+    
     static func teamSimple(forNumber teamNumber: Int, done: @escaping (BATeamSimple) -> ()){
         let urlString = "\(baseURL)/team/frc\(teamNumber)/simple\(authKey)"
         guard let url = URL(string: urlString) else {return}
@@ -36,9 +38,17 @@ struct BLueAllianceAPIService{
         }
     }
     
+    static func team(forNumber teamNumber: Int, done: @escaping (BATeam) -> ()){
+        let urlString =  "\(baseURL)/team/frc\(teamNumber)\(authKey)"
+        guard let url = URL(string: urlString) else {return}
+        decodeTeam(for: url) { (data) in
+            done(data)
+        }
+    }
+    
     // MARK: Get Events
-    static func eventsListSimple(forTeamNumber teamNumber: Int, done: @escaping ([BAEventSimple]) -> ()){
-        let urlString = "\(baseURL)/team/frc\(teamNumber)/events/simple\(authKey)"
+    static func eventsList(forTeamNumber teamNumber: Int, done: @escaping ([BAEventSimple]) -> ()){
+        let urlString = "\(baseURL)/team/frc\(teamNumber)/events\(authKey)"
         guard let url = URL(string: urlString) else {return}
         decodeEventsSimple(for: url) { (data) in
             done(data)
@@ -46,7 +56,7 @@ struct BLueAllianceAPIService{
     }
 }
 
-extension BLueAllianceAPIService{
+extension BlueAllianceAPIService{
     private static func decodeTeamsSimple(for url: URL, decodingDone: @escaping ([BATeamSimple]) -> ()){
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             if error != nil {
@@ -101,6 +111,23 @@ extension BLueAllianceAPIService{
             
             do {
                 let baTeamSimpleData = try JSONDecoder().decode([BAEventSimple].self, from: data)
+                decodingDone(baTeamSimpleData)
+            } catch let jsonError {
+                print(jsonError)
+            }
+            }.resume()
+    }
+    
+    private static func decodeTeam(for url: URL, decodingDone: @escaping (BATeam) -> ()){
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            if error != nil {
+                print(error!.localizedDescription)
+            }
+            
+            guard let data = data else { return }
+            
+            do {
+                let baTeamSimpleData = try JSONDecoder().decode(BATeam.self, from: data)
                 decodingDone(baTeamSimpleData)
             } catch let jsonError {
                 print(jsonError)

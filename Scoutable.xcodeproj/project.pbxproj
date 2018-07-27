@@ -10,6 +10,8 @@
 		0A25C3F4E43FC2731E6E3684 /* Pods_Scoutable.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1847497075A832D52630A938 /* Pods_Scoutable.framework */; };
 		FA0BC886210A52340089E1C1 /* BAEventSimple.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0BC885210A52340089E1C1 /* BAEventSimple.swift */; };
 		FA0BC88A210A59480089E1C1 /* EventCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0BC889210A59470089E1C1 /* EventCellView.swift */; };
+		FA0BC88E210A811F0089E1C1 /* IndividualTeamController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0BC88D210A811F0089E1C1 /* IndividualTeamController.swift */; };
+		FA0BC890210A85430089E1C1 /* BATeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0BC88F210A85430089E1C1 /* BATeam.swift */; };
 		FA17B67C2109099C005FEF30 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA17B67B2109099C005FEF30 /* UserService.swift */; };
 		FA17B67F210909E0005FEF30 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA17B67E210909E0005FEF30 /* User.swift */; };
 		FA17B68221090AA6005FEF30 /* Storyboard+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA17B68121090AA6005FEF30 /* Storyboard+Utility.swift */; };
@@ -39,6 +41,8 @@
 		F65E5F5A969B242D7D2AFB91 /* Pods-Scoutable.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Scoutable.release.xcconfig"; path = "Pods/Target Support Files/Pods-Scoutable/Pods-Scoutable.release.xcconfig"; sourceTree = "<group>"; };
 		FA0BC885210A52340089E1C1 /* BAEventSimple.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAEventSimple.swift; sourceTree = "<group>"; };
 		FA0BC889210A59470089E1C1 /* EventCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCellView.swift; sourceTree = "<group>"; };
+		FA0BC88D210A811F0089E1C1 /* IndividualTeamController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndividualTeamController.swift; sourceTree = "<group>"; };
+		FA0BC88F210A85430089E1C1 /* BATeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BATeam.swift; sourceTree = "<group>"; };
 		FA17B67B2109099C005FEF30 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		FA17B67E210909E0005FEF30 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		FA17B68121090AA6005FEF30 /* Storyboard+Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Storyboard+Utility.swift"; sourceTree = "<group>"; };
@@ -109,6 +113,7 @@
 				FA17B67E210909E0005FEF30 /* User.swift */,
 				FA64971B210957C0002A40C1 /* BATeamSimple.swift */,
 				FA0BC885210A52340089E1C1 /* BAEventSimple.swift */,
+				FA0BC88F210A85430089E1C1 /* BATeam.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -170,6 +175,7 @@
 		FAB0598C2108F43400ABED45 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				FA0BC88D210A811F0089E1C1 /* IndividualTeamController.swift */,
 				FA64972621098D64002A40C1 /* EventsController.swift */,
 				FA17B68521090CA2005FEF30 /* ScoutTeamController.swift */,
 				FAB059792108F34100ABED45 /* TeamsController.swift */,
@@ -330,9 +336,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA64971C210957C0002A40C1 /* BATeamSimple.swift in Sources */,
+				FA0BC88E210A811F0089E1C1 /* IndividualTeamController.swift in Sources */,
 				FA0BC88A210A59480089E1C1 /* EventCellView.swift in Sources */,
 				FAE115072109084700BAEFB7 /* LoginViewController.swift in Sources */,
 				FA17B67C2109099C005FEF30 /* UserService.swift in Sources */,
+				FA0BC890210A85430089E1C1 /* BATeam.swift in Sources */,
 				FA17B67F210909E0005FEF30 /* User.swift in Sources */,
 				FA64971A21095758002A40C1 /* BlueAllianceAPIService.swift in Sources */,
 				FA64972121096813002A40C1 /* TeamCellView.swift in Sources */,

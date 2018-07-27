@@ -51,11 +51,11 @@ class TeamsController: UIViewController {
     }
 
     func loadTeams(complete: @escaping () -> ()) {
-        BLueAllianceAPIService.teamListSimple(page: currentPage) { (data) in
+        BlueAllianceAPIService.teamListSimple(page: currentPage) { (data) in
             _ = Thread.current.name
             self.teamsArray += data
             if let teamNumber = User.current?.roboticsTeamNumber{
-                BLueAllianceAPIService.teamSimple(forNumber: teamNumber) { (teamData) in
+                BlueAllianceAPIService.teamSimple(forNumber: teamNumber) { (teamData) in
                     self.personalTeam = teamData
                      complete()
                 }
@@ -63,7 +63,7 @@ class TeamsController: UIViewController {
                 if (User.current?.uid) != nil{
                     UserService.show(forUID: (User.current?.uid)!, completion: { (user) in
                         if let teamNumber = user?.roboticsTeamNumber{
-                            BLueAllianceAPIService.teamSimple(forNumber: teamNumber) { (teamData) in
+                            BlueAllianceAPIService.teamSimple(forNumber: teamNumber) { (teamData) in
                                 self.personalTeam = teamData
                                 complete()
                             }
@@ -89,15 +89,21 @@ class TeamsController: UIViewController {
         let indexPath = teamTableView.indexPathForSelectedRow
         teamTableView.deselectRow(at: indexPath!, animated: true)
         var teamNumber: Int = 0
+        var teamName: String = ""
+        let teamSimple = teamsArray[(indexPath?.row)!]
         switch indexPath?.section{
         case 0:
             teamNumber = (personalTeam?.team_number)!
+            teamName = (personalTeam?.nickname)!
         case 1:
-            teamNumber = teamsArray[(indexPath?.row)!].team_number
+            teamNumber = teamSimple.team_number
+            teamName = teamSimple.nickname
         default:
             print("Unexpected section")
         }
-        
+        let destination = segue.destination as! IndividualTeamController
+        destination.teamNumber = teamNumber
+        destination.teamName = teamName
         
     }
 

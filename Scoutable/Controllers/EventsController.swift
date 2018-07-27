@@ -37,7 +37,7 @@ class EventsController: UIViewController{
         eventsTableView.delegate = self
     }
     func loadEvents(complete: @escaping () -> ()){
-        BLueAllianceAPIService.eventsListSimple(forTeamNumber: (User.current?.roboticsTeamNumber)!) { (eventsData) in
+        BlueAllianceAPIService.eventsList(forTeamNumber: (User.current?.roboticsTeamNumber)!) { (eventsData) in
             self.eventsArray = eventsData
             complete()
         }
