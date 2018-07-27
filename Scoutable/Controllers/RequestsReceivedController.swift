@@ -31,7 +31,11 @@ class RequestsReceivedController: UITableViewController{
         super .viewDidLoad()
     }
     
-    
+    func dealtWithRequest(fromUID uid: String){
+        uidArray = uidArray.filter{$0 != uid}
+        userArray = userArray.filter{$0.uid != uid}
+        tableView.reloadData()
+    }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return userArray.count
@@ -40,6 +44,8 @@ class RequestsReceivedController: UITableViewController{
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "receivedRequestCell") as! ReceievedRequestCellView
         cell.userLabel.text = userArray[indexPath.row].username
+        cell.associatedUID = userArray[indexPath.row].uid
+        cell.parentTableView = self
         return cell
     }
     

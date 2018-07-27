@@ -179,8 +179,8 @@
 		FAB059762108F34100ABED45 /* Scoutable */ = {
 			isa = PBXGroup;
 			children = (
-				FA0BC893210AD11B0089E1C1 /* Constants */,
 				FAB059772108F34100ABED45 /* AppDelegate.swift */,
+				FA0BC893210AD11B0089E1C1 /* Constants */,
 				FA64971D210967A6002A40C1 /* Views */,
 				FA17B68021090A93005FEF30 /* Extensions */,
 				FA17B67D210909D5005FEF30 /* Models */,
@@ -257,6 +257,11 @@
 				TargetAttributes = {
 					FAB059732108F34100ABED45 = {
 						CreatedOnToolsVersion = 9.4.1;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};

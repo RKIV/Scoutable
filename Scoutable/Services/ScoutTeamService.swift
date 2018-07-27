@@ -59,7 +59,16 @@ struct ScoutTeamServices{
         } else {
             complete(nil, "User doesn't have team or is not leader")
         }
-        
+    }
+    
+    static func approveRequest(forUserUID uid: String, complete: @escaping (_ error: String?) -> ()){
+        guard (User.current?.hasTeam)! && (User.current?.isLeader)! else { return complete("User doesn't have team or is not leader") }
+        let scoutTeam = User.current?.scoutTeam
+        let userRef = Database.database().reference().child("users").child(uid).child("requests").child(scoutTeam!)
+        let scoutTeamRef = Database.database().reference().child("scoutTeams").child(scoutTeam!).child("requests").child(uid)
+        userRef.setValue(true)
+        scoutTeamRef.removeValue()
+        complete(nil)
     }
     
 }
