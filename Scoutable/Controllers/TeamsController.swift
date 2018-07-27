@@ -27,6 +27,13 @@ class TeamsController: UIViewController {
             teamTableView.addSubview(refreshControl)
         }
         teamTableView.refreshControl?.beginRefreshing()
+        if !(User.current?.hasTeam)!{
+            UserService.show(forUID: (User.current?.uid)!) { (user) in
+                if (user?.hasTeam)!{
+                    User.setCurrent(user!)
+                }
+            }
+        }
         teamTableView.refreshControl?.addTarget(self, action: #selector(refreshEnd), for: .valueChanged)
         loadTeams{
             print("complete called")

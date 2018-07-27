@@ -13,7 +13,7 @@ import FirebaseDatabase
 struct ScoutTeamServices{
     static func makeTeamRequest(to scoutTeam: String){
         let ref = Database.database().reference()
-        ref.child("scoutTeams").child(scoutTeam).child("users").child((User.current?.uid)!).child("accepted").setValue(false) { (error, _) in
+        ref.child("scoutTeams").child(scoutTeam).child("requests").child((User.current?.uid)!).setValue(false) { (error, _) in
             if let error = error{
                 print(error.localizedDescription)
             }
@@ -40,5 +40,27 @@ struct ScoutTeamServices{
             userReference.updateChildValues(userAttrs)
         }
     }
+    
+    static func getRequests(complete: @escaping ([String]?, _ error: String?) -> ()) {
+        if (User.current?.hasTeam)! && (User.current?.isLeader)!{
+            let scoutTeam = User.current?.scoutTeam
+            let ref = Database.database().reference().child("scoutTeams").child(scoutTeam!).child("requests")
+            ref.observeSingleEvent(of: .value) { (snapshot) in
+                if let dict = snapshot.value as? [String : Any?]{
+                    var uidArray = [String]()
+                    for element in dict{
+                        uidArray.append(element.key)
+                    }
+                    complete(uidArray, nil)
+                } else {
+                    complete(nil, "Snapshot not of correct type")
+                }
+            }
+        } else {
+            complete(nil, "User doesn't have team or is not leader")
+        }
+        
+    }
+    
 }
 

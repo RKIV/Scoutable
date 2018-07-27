@@ -33,6 +33,9 @@ class ScoutTeamController: UIViewController {
         ref.child("scoutTeams").observeSingleEvent(of: .value){ (snapshot) in
             if snapshot.hasChild(scoutTeam){
                 ScoutTeamServices.makeTeamRequest(to: scoutTeam)
+                let initialViewController = UIStoryboard.initialViewController(for: .main)
+                self.view.window?.rootViewController = initialViewController
+                self.view.window?.makeKeyAndVisible()
             }else{
                 // TODO: Refresh label for UX
                 self.dneLabel.isHidden = false

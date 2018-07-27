@@ -12,6 +12,11 @@
 		FA0BC88A210A59480089E1C1 /* EventCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0BC889210A59470089E1C1 /* EventCellView.swift */; };
 		FA0BC88E210A811F0089E1C1 /* IndividualTeamController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0BC88D210A811F0089E1C1 /* IndividualTeamController.swift */; };
 		FA0BC890210A85430089E1C1 /* BATeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0BC88F210A85430089E1C1 /* BATeam.swift */; };
+		FA0BC892210ACD6E0089E1C1 /* ScoutDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0BC891210ACD6E0089E1C1 /* ScoutDataService.swift */; };
+		FA0BC895210AD3090089E1C1 /* FieldTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0BC894210AD3090089E1C1 /* FieldTypes.swift */; };
+		FA0BC897210ADD160089E1C1 /* StaticScoutingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0BC896210ADD160089E1C1 /* StaticScoutingController.swift */; };
+		FA0BC89B210AE6030089E1C1 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0BC89A210AE6030089E1C1 /* SettingsController.swift */; };
+		FA0BC89D210AEE080089E1C1 /* RequestsReceivedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0BC89C210AEE080089E1C1 /* RequestsReceivedController.swift */; };
 		FA17B67C2109099C005FEF30 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA17B67B2109099C005FEF30 /* UserService.swift */; };
 		FA17B67F210909E0005FEF30 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA17B67E210909E0005FEF30 /* User.swift */; };
 		FA17B68221090AA6005FEF30 /* Storyboard+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA17B68121090AA6005FEF30 /* Storyboard+Utility.swift */; };
@@ -33,6 +38,7 @@
 		FAB0598F2108F4B800ABED45 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FAB0598E2108F4B800ABED45 /* GoogleService-Info.plist */; };
 		FAE11505210907D600BAEFB7 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAE11504210907D600BAEFB7 /* Login.storyboard */; };
 		FAE115072109084700BAEFB7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE115062109084700BAEFB7 /* LoginViewController.swift */; };
+		FAE975C0210B0C6800E2A951 /* ReceivedRequestCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE975BF210B0C6800E2A951 /* ReceivedRequestCellView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +49,11 @@
 		FA0BC889210A59470089E1C1 /* EventCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCellView.swift; sourceTree = "<group>"; };
 		FA0BC88D210A811F0089E1C1 /* IndividualTeamController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndividualTeamController.swift; sourceTree = "<group>"; };
 		FA0BC88F210A85430089E1C1 /* BATeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BATeam.swift; sourceTree = "<group>"; };
+		FA0BC891210ACD6E0089E1C1 /* ScoutDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoutDataService.swift; sourceTree = "<group>"; };
+		FA0BC894210AD3090089E1C1 /* FieldTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldTypes.swift; sourceTree = "<group>"; };
+		FA0BC896210ADD160089E1C1 /* StaticScoutingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticScoutingController.swift; sourceTree = "<group>"; };
+		FA0BC89A210AE6030089E1C1 /* SettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
+		FA0BC89C210AEE080089E1C1 /* RequestsReceivedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestsReceivedController.swift; sourceTree = "<group>"; };
 		FA17B67B2109099C005FEF30 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		FA17B67E210909E0005FEF30 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		FA17B68121090AA6005FEF30 /* Storyboard+Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Storyboard+Utility.swift"; sourceTree = "<group>"; };
@@ -66,6 +77,7 @@
 		FAB0598E2108F4B800ABED45 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FAE11504210907D600BAEFB7 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		FAE115062109084700BAEFB7 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		FAE975BF210B0C6800E2A951 /* ReceivedRequestCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceivedRequestCellView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,12 +109,21 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		FA0BC893210AD11B0089E1C1 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				FA0BC894210AD3090089E1C1 /* FieldTypes.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
 		FA17B67A2109096B005FEF30 /* Services */ = {
 			isa = PBXGroup;
 			children = (
 				FA17B67B2109099C005FEF30 /* UserService.swift */,
 				FA17B68D21093F1F005FEF30 /* ScoutTeamService.swift */,
 				FA64971921095758002A40C1 /* BlueAllianceAPIService.swift */,
+				FA0BC891210ACD6E0089E1C1 /* ScoutDataService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -132,6 +153,7 @@
 				FA0BC889210A59470089E1C1 /* EventCellView.swift */,
 				FA64972021096813002A40C1 /* TeamCellView.swift */,
 				FA649728210A3E6D002A40C1 /* NoPersonalTeamCellView.swift */,
+				FAE975BF210B0C6800E2A951 /* ReceivedRequestCellView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -157,6 +179,7 @@
 		FAB059762108F34100ABED45 /* Scoutable */ = {
 			isa = PBXGroup;
 			children = (
+				FA0BC893210AD11B0089E1C1 /* Constants */,
 				FAB059772108F34100ABED45 /* AppDelegate.swift */,
 				FA64971D210967A6002A40C1 /* Views */,
 				FA17B68021090A93005FEF30 /* Extensions */,
@@ -175,6 +198,7 @@
 		FAB0598C2108F43400ABED45 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				FA0BC89A210AE6030089E1C1 /* SettingsController.swift */,
 				FA0BC88D210A811F0089E1C1 /* IndividualTeamController.swift */,
 				FA64972621098D64002A40C1 /* EventsController.swift */,
 				FA17B68521090CA2005FEF30 /* ScoutTeamController.swift */,
@@ -182,6 +206,8 @@
 				FAE115062109084700BAEFB7 /* LoginViewController.swift */,
 				FA17B6872109107D005FEF30 /* UsernameController.swift */,
 				FA17B68921093C1B005FEF30 /* TeamCreationController.swift */,
+				FA0BC896210ADD160089E1C1 /* StaticScoutingController.swift */,
+				FA0BC89C210AEE080089E1C1 /* RequestsReceivedController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -335,10 +361,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA0BC89B210AE6030089E1C1 /* SettingsController.swift in Sources */,
 				FA64971C210957C0002A40C1 /* BATeamSimple.swift in Sources */,
 				FA0BC88E210A811F0089E1C1 /* IndividualTeamController.swift in Sources */,
 				FA0BC88A210A59480089E1C1 /* EventCellView.swift in Sources */,
 				FAE115072109084700BAEFB7 /* LoginViewController.swift in Sources */,
+				FA0BC897210ADD160089E1C1 /* StaticScoutingController.swift in Sources */,
 				FA17B67C2109099C005FEF30 /* UserService.swift in Sources */,
 				FA0BC890210A85430089E1C1 /* BATeam.swift in Sources */,
 				FA17B67F210909E0005FEF30 /* User.swift in Sources */,
@@ -348,10 +376,14 @@
 				FA17B68E21093F1F005FEF30 /* ScoutTeamService.swift in Sources */,
 				FAB0597A2108F34100ABED45 /* TeamsController.swift in Sources */,
 				FA64972721098D64002A40C1 /* EventsController.swift in Sources */,
+				FAE975C0210B0C6800E2A951 /* ReceivedRequestCellView.swift in Sources */,
 				FA17B68621090CA3005FEF30 /* ScoutTeamController.swift in Sources */,
+				FA0BC895210AD3090089E1C1 /* FieldTypes.swift in Sources */,
 				FA0BC886210A52340089E1C1 /* BAEventSimple.swift in Sources */,
+				FA0BC89D210AEE080089E1C1 /* RequestsReceivedController.swift in Sources */,
 				FA649729210A3E6D002A40C1 /* NoPersonalTeamCellView.swift in Sources */,
 				FA17B68221090AA6005FEF30 /* Storyboard+Utility.swift in Sources */,
+				FA0BC892210ACD6E0089E1C1 /* ScoutDataService.swift in Sources */,
 				FAB059782108F34100ABED45 /* AppDelegate.swift in Sources */,
 				FA17B6882109107D005FEF30 /* UsernameController.swift in Sources */,
 				FA17B68A21093C1B005FEF30 /* TeamCreationController.swift in Sources */,

@@ -38,7 +38,7 @@ class EventsController: UIViewController{
     }
     func loadEvents(complete: @escaping () -> ()){
         BlueAllianceAPIService.eventsList(forTeamNumber: (User.current?.roboticsTeamNumber)!) { (eventsData) in
-            self.eventsArray = eventsData
+            self.eventsArray = eventsData.reversed()
             complete()
         }
     }
