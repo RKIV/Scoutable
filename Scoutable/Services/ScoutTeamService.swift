@@ -1,5 +1,5 @@
 //
-//  TeamService.swift
+//  ScoutTeamService.swift
 //  Scoutable
 //
 //  Created by Robert Keller on 7/25/18.
@@ -30,7 +30,7 @@ struct ScoutTeamServices{
         User.current?.isLeader = true
         User.current?.scoutTeam = scoutTeam
         let ref = Database.database().reference()
-        let leaderAttrs = ["accepted" : true, "leader" : true]
+        let leaderAttrs = ["leader" : true]
         ref.child("scoutTeams").child(scoutTeam).child("users").child((User.current?.uid)!).setValue(leaderAttrs) { (error, _) in
             if let error = error{
                 print(error.localizedDescription)
@@ -69,6 +69,20 @@ struct ScoutTeamServices{
         userRef.setValue(true)
         scoutTeamRef.removeValue()
         complete(nil)
+    }
+    
+    static func getUsers(complete: @escaping ([String]?, _ error: String?) -> ()){
+        guard (User.current?.hasTeam)! && (User.current?.isLeader)! else { return complete(nil, "User doesn't have team or is not leader") }
+        let scoutTeam = User.current?.scoutTeam
+        let ref = Database.database().reference().child("scoutTeams").child(scoutTeam!).child("Users")
+        ref.observeSingleEvent(of: .value) { (snapshot) in
+            let dict = snapshot.value as? [String : Any]
+            var uidArray = [String]()
+            for item in dict!{
+                uidArray.append(item.key)
+            }
+            complete(uidArray, nil)
+        }
     }
     
 }

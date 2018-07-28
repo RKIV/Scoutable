@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class TeamsController: UIViewController {
     
@@ -41,16 +42,19 @@ class TeamsController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super .viewWillAppear(animated)
-        UserService.show(forUID: (User.current?.uid)!) { (user) in
-            if let user = user{
-                User.setCurrent(user, writeToUserDefaults: true)
-                self.loadPersonalTeam {
-                    DispatchQueue.main.async {
-                        self.teamTableView.reloadData()
+        if let currentUser = User.current{
+            UserService.show(forUID: currentUser.uid) { (user) in
+                if let user = user{
+                    User.setCurrent(user, writeToUserDefaults: true)
+                    self.loadPersonalTeam {
+                        DispatchQueue.main.async {
+                            self.teamTableView.reloadData()
+                        }
                     }
                 }
             }
         }
+        
     }
     
     @objc func refreshEnd(){
@@ -73,7 +77,7 @@ class TeamsController: UIViewController {
     }
     
     func loadTeams(complete: @escaping () -> ()) {
-        BlueAllianceAPIService.teamListSimple(page: currentPage) { (data) in
+        BlueAllianceAPIService.teamList(page: currentPage) { (data) in
             self.teamsArray += data
             self.currentPage += 1
             if let teamNumber = User.current?.roboticsTeamNumber{

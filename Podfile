@@ -11,5 +11,6 @@ target 'Scoutable' do
   pod 'Firebase/Auth'
   pod 'FirebaseUI/Auth'
   pod 'Firebase/Database'
+  pod 'SwiftyJSON', '~> 4.0'
 
 end

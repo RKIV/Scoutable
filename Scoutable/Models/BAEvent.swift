@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct BAEventSimple: Codable{
+struct BAEvent: Codable{
     var name: String
     var city: String?
     var state_prov: String?

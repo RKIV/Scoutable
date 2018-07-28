@@ -9,15 +9,16 @@
 import Foundation
 import UIKit
 
-class EventsController: UIViewController{
+class YourEventsController: UIViewController{
     @IBOutlet weak var eventsTableView: UITableView!
-    var eventsArray = [BAEventSimple]()
+    var eventsArray = [BAEvent]()
     var years = [Int]()
     private let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         if User.current?.roboticsTeamNumber == nil {
             performSegue(withIdentifier: "toDistrictList", sender: self)
+            return
         }
         super.viewDidLoad()
         if #available(iOS 10.0, *) {
@@ -50,6 +51,7 @@ class EventsController: UIViewController{
     func loadEvents(complete: @escaping () -> ()){
         BlueAllianceAPIService.eventsList(forTeamNumber: (User.current?.roboticsTeamNumber)!) { (eventsData) in
             self.eventsArray = eventsData.reversed()
+            self.years = []
             for event in self.eventsArray{
                 if !self.years.contains(event.year){
                     self.years.append(event.year)
@@ -81,9 +83,16 @@ class EventsController: UIViewController{
         performSegue(withIdentifier: "toDistrictList", sender: self)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toEventSpecifics"{
+            let destination = segue.destination as! TeamsAtEventController
+            destination.eventKey = eventsArray[(eventsTableView.indexPathForSelectedRow?.row)!].key
+        }
+    }
+    
 }
 
-extension EventsController: UITableViewDataSource{
+extension YourEventsController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if years.count <= 0{
             return 0
@@ -105,16 +114,16 @@ extension EventsController: UITableViewDataSource{
     }
 }
 
-extension EventsController: UITableViewDelegate{
+extension YourEventsController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 75
     }
     func numberOfSections(in tableView: UITableView) -> Int {
         return years.count
     }
-    func sectionIndexTitles(for tableView: UITableView) -> [String]? {
-        return years.map{String($0)}
-    }
+//    func sectionIndexTitles(for tableView: UITableView) -> [String]? {
+//        return years.map{String($0)}
+//    }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let v = UIView(frame: CGRect(x: 0, y:0, width: tableView.frame.width, height: 30))
         v.backgroundColor = .lightGray

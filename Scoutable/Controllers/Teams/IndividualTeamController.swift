@@ -20,7 +20,7 @@ class IndividualTeamController: UIViewController{
     var teamNumber = 0
     var teamName = ""
     var team: BATeam?
-    var eventsArray = [BAEventSimple]()
+    var eventsArray = [BAEvent]()
     var years = [Int]()
     override func viewDidLoad() {
         super.viewDidLoad()

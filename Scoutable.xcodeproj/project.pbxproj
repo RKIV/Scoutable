@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0A25C3F4E43FC2731E6E3684 /* Pods_Scoutable.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1847497075A832D52630A938 /* Pods_Scoutable.framework */; };
-		FA0BC886210A52340089E1C1 /* BAEventSimple.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0BC885210A52340089E1C1 /* BAEventSimple.swift */; };
+		FA0BC886210A52340089E1C1 /* BAEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0BC885210A52340089E1C1 /* BAEvent.swift */; };
 		FA0BC88A210A59480089E1C1 /* EventCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0BC889210A59470089E1C1 /* EventCellView.swift */; };
 		FA0BC88E210A811F0089E1C1 /* IndividualTeamController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0BC88D210A811F0089E1C1 /* IndividualTeamController.swift */; };
 		FA0BC890210A85430089E1C1 /* BATeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0BC88F210A85430089E1C1 /* BATeam.swift */; };
@@ -27,7 +27,6 @@
 		FA64971A21095758002A40C1 /* BlueAllianceAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA64971921095758002A40C1 /* BlueAllianceAPIService.swift */; };
 		FA64971C210957C0002A40C1 /* BATeamSimple.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA64971B210957C0002A40C1 /* BATeamSimple.swift */; };
 		FA64972121096813002A40C1 /* TeamCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA64972021096813002A40C1 /* TeamCellView.swift */; };
-		FA64972721098D64002A40C1 /* EventsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA64972621098D64002A40C1 /* EventsController.swift */; };
 		FA649729210A3E6D002A40C1 /* NoPersonalTeamCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA649728210A3E6D002A40C1 /* NoPersonalTeamCellView.swift */; };
 		FAB059782108F34100ABED45 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB059772108F34100ABED45 /* AppDelegate.swift */; };
 		FAB0597A2108F34100ABED45 /* TeamsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB059792108F34100ABED45 /* TeamsController.swift */; };
@@ -38,18 +37,25 @@
 		FAB0598F2108F4B800ABED45 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FAB0598E2108F4B800ABED45 /* GoogleService-Info.plist */; };
 		FAE11505210907D600BAEFB7 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAE11504210907D600BAEFB7 /* Login.storyboard */; };
 		FAE115072109084700BAEFB7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE115062109084700BAEFB7 /* LoginViewController.swift */; };
+		FAE1343D210CEDFE00CF69BE /* MatchCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE1343C210CEDFE00CF69BE /* MatchCellView.swift */; };
+		FAE13441210CF0B700CF69BE /* SeperatorCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE13440210CF0B600CF69BE /* SeperatorCellView.swift */; };
+		FAE1344B210D023C00CF69BE /* TeamsAtEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE1344A210D023C00CF69BE /* TeamsAtEventController.swift */; };
+		FAE1344D210D061400CF69BE /* EventTeamCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE1344C210D061400CF69BE /* EventTeamCellView.swift */; };
 		FAE975C0210B0C6800E2A951 /* ReceivedRequestCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE975BF210B0C6800E2A951 /* ReceivedRequestCellView.swift */; };
 		FAE975C4210B6FB000E2A951 /* ChangeRoboticsTeamController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE975C3210B6FB000E2A951 /* ChangeRoboticsTeamController.swift */; };
 		FAE975C6210B9EFA00E2A951 /* DistrictCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE975C5210B9EFA00E2A951 /* DistrictCellView.swift */; };
 		FAE975C8210B9F9300E2A951 /* BADistrict.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE975C7210B9F9300E2A951 /* BADistrict.swift */; };
 		FAE975CC210BA4A000E2A951 /* DistrictsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE975CB210BA4A000E2A951 /* DistrictsViewController.swift */; };
+		FAE975CE210BBFC700E2A951 /* YourEventsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE975CD210BBFC700E2A951 /* YourEventsController.swift */; };
+		FAE975D2210BC32A00E2A951 /* EventsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE975D1210BC32A00E2A951 /* EventsController.swift */; };
+		FAE975D4210BCF3F00E2A951 /* IndividualEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE975D3210BCF3F00E2A951 /* IndividualEventController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1847497075A832D52630A938 /* Pods_Scoutable.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Scoutable.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC1EFCAA12612E1B31142F4B /* Pods-Scoutable.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Scoutable.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Scoutable/Pods-Scoutable.debug.xcconfig"; sourceTree = "<group>"; };
 		F65E5F5A969B242D7D2AFB91 /* Pods-Scoutable.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Scoutable.release.xcconfig"; path = "Pods/Target Support Files/Pods-Scoutable/Pods-Scoutable.release.xcconfig"; sourceTree = "<group>"; };
-		FA0BC885210A52340089E1C1 /* BAEventSimple.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAEventSimple.swift; sourceTree = "<group>"; };
+		FA0BC885210A52340089E1C1 /* BAEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAEvent.swift; sourceTree = "<group>"; };
 		FA0BC889210A59470089E1C1 /* EventCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCellView.swift; sourceTree = "<group>"; };
 		FA0BC88D210A811F0089E1C1 /* IndividualTeamController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndividualTeamController.swift; sourceTree = "<group>"; };
 		FA0BC88F210A85430089E1C1 /* BATeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BATeam.swift; sourceTree = "<group>"; };
@@ -68,7 +74,6 @@
 		FA64971921095758002A40C1 /* BlueAllianceAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlueAllianceAPIService.swift; sourceTree = "<group>"; };
 		FA64971B210957C0002A40C1 /* BATeamSimple.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BATeamSimple.swift; sourceTree = "<group>"; };
 		FA64972021096813002A40C1 /* TeamCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamCellView.swift; sourceTree = "<group>"; };
-		FA64972621098D64002A40C1 /* EventsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsController.swift; sourceTree = "<group>"; };
 		FA649728210A3E6D002A40C1 /* NoPersonalTeamCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoPersonalTeamCellView.swift; sourceTree = "<group>"; };
 		FAB059742108F34100ABED45 /* Scoutable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scoutable.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAB059772108F34100ABED45 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -81,11 +86,18 @@
 		FAB0598E2108F4B800ABED45 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FAE11504210907D600BAEFB7 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		FAE115062109084700BAEFB7 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		FAE1343C210CEDFE00CF69BE /* MatchCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchCellView.swift; sourceTree = "<group>"; };
+		FAE13440210CF0B600CF69BE /* SeperatorCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeperatorCellView.swift; sourceTree = "<group>"; };
+		FAE1344A210D023C00CF69BE /* TeamsAtEventController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsAtEventController.swift; sourceTree = "<group>"; };
+		FAE1344C210D061400CF69BE /* EventTeamCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTeamCellView.swift; sourceTree = "<group>"; };
 		FAE975BF210B0C6800E2A951 /* ReceivedRequestCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceivedRequestCellView.swift; sourceTree = "<group>"; };
 		FAE975C3210B6FB000E2A951 /* ChangeRoboticsTeamController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeRoboticsTeamController.swift; sourceTree = "<group>"; };
 		FAE975C5210B9EFA00E2A951 /* DistrictCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistrictCellView.swift; sourceTree = "<group>"; };
 		FAE975C7210B9F9300E2A951 /* BADistrict.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BADistrict.swift; sourceTree = "<group>"; };
 		FAE975CB210BA4A000E2A951 /* DistrictsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DistrictsViewController.swift; sourceTree = "<group>"; };
+		FAE975CD210BBFC700E2A951 /* YourEventsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YourEventsController.swift; sourceTree = "<group>"; };
+		FAE975D1210BC32A00E2A951 /* EventsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsController.swift; sourceTree = "<group>"; };
+		FAE975D3210BCF3F00E2A951 /* IndividualEventController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndividualEventController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,7 +153,7 @@
 			children = (
 				FA17B67E210909E0005FEF30 /* User.swift */,
 				FA64971B210957C0002A40C1 /* BATeamSimple.swift */,
-				FA0BC885210A52340089E1C1 /* BAEventSimple.swift */,
+				FA0BC885210A52340089E1C1 /* BAEvent.swift */,
 				FA0BC88F210A85430089E1C1 /* BATeam.swift */,
 				FAE975C7210B9F9300E2A951 /* BADistrict.swift */,
 			);
@@ -159,11 +171,14 @@
 		FA64971D210967A6002A40C1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				FAE13440210CF0B600CF69BE /* SeperatorCellView.swift */,
+				FAE1343C210CEDFE00CF69BE /* MatchCellView.swift */,
 				FA0BC889210A59470089E1C1 /* EventCellView.swift */,
 				FA64972021096813002A40C1 /* TeamCellView.swift */,
 				FA649728210A3E6D002A40C1 /* NoPersonalTeamCellView.swift */,
 				FAE975BF210B0C6800E2A951 /* ReceivedRequestCellView.swift */,
 				FAE975C5210B9EFA00E2A951 /* DistrictCellView.swift */,
+				FAE1344C210D061400CF69BE /* EventTeamCellView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -208,18 +223,12 @@
 		FAB0598C2108F43400ABED45 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				FAE975CB210BA4A000E2A951 /* DistrictsViewController.swift */,
-				FA0BC89A210AE6030089E1C1 /* SettingsController.swift */,
-				FA0BC88D210A811F0089E1C1 /* IndividualTeamController.swift */,
-				FA64972621098D64002A40C1 /* EventsController.swift */,
-				FA17B68521090CA2005FEF30 /* ScoutTeamController.swift */,
-				FAB059792108F34100ABED45 /* TeamsController.swift */,
-				FAE115062109084700BAEFB7 /* LoginViewController.swift */,
-				FA17B6872109107D005FEF30 /* UsernameController.swift */,
-				FA17B68921093C1B005FEF30 /* TeamCreationController.swift */,
-				FA0BC896210ADD160089E1C1 /* StaticScoutingController.swift */,
-				FA0BC89C210AEE080089E1C1 /* RequestsReceivedController.swift */,
-				FAE975C3210B6FB000E2A951 /* ChangeRoboticsTeamController.swift */,
+				FAE13449210D004C00CF69BE /* Scouting */,
+				FAE13448210D003A00CF69BE /* Login */,
+				FAE13447210D001C00CF69BE /* Districts */,
+				FAE13446210D001800CF69BE /* Events */,
+				FAE13445210D001200CF69BE /* Settings */,
+				FAE13444210D000B00CF69BE /* Teams */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -232,6 +241,63 @@
 				FAE11504210907D600BAEFB7 /* Login.storyboard */,
 			);
 			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		FAE13444210D000B00CF69BE /* Teams */ = {
+			isa = PBXGroup;
+			children = (
+				FA0BC88D210A811F0089E1C1 /* IndividualTeamController.swift */,
+				FAB059792108F34100ABED45 /* TeamsController.swift */,
+				FAE1344A210D023C00CF69BE /* TeamsAtEventController.swift */,
+			);
+			path = Teams;
+			sourceTree = "<group>";
+		};
+		FAE13445210D001200CF69BE /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				FA0BC89A210AE6030089E1C1 /* SettingsController.swift */,
+				FA0BC89C210AEE080089E1C1 /* RequestsReceivedController.swift */,
+				FAE975C3210B6FB000E2A951 /* ChangeRoboticsTeamController.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		FAE13446210D001800CF69BE /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				FAE975D1210BC32A00E2A951 /* EventsController.swift */,
+				FAE975CD210BBFC700E2A951 /* YourEventsController.swift */,
+				FAE975D3210BCF3F00E2A951 /* IndividualEventController.swift */,
+			);
+			path = Events;
+			sourceTree = "<group>";
+		};
+		FAE13447210D001C00CF69BE /* Districts */ = {
+			isa = PBXGroup;
+			children = (
+				FAE975CB210BA4A000E2A951 /* DistrictsViewController.swift */,
+			);
+			path = Districts;
+			sourceTree = "<group>";
+		};
+		FAE13448210D003A00CF69BE /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				FA17B6872109107D005FEF30 /* UsernameController.swift */,
+				FAE115062109084700BAEFB7 /* LoginViewController.swift */,
+				FA17B68921093C1B005FEF30 /* TeamCreationController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		FAE13449210D004C00CF69BE /* Scouting */ = {
+			isa = PBXGroup;
+			children = (
+				FA0BC896210ADD160089E1C1 /* StaticScoutingController.swift */,
+				FA17B68521090CA2005FEF30 /* ScoutTeamController.swift */,
+			);
+			path = Scouting;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -320,6 +386,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-Scoutable/Pods-Scoutable-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -327,6 +394,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -387,20 +455,26 @@
 				FA17B67C2109099C005FEF30 /* UserService.swift in Sources */,
 				FA0BC890210A85430089E1C1 /* BATeam.swift in Sources */,
 				FAE975C4210B6FB000E2A951 /* ChangeRoboticsTeamController.swift in Sources */,
+				FAE975D4210BCF3F00E2A951 /* IndividualEventController.swift in Sources */,
+				FAE975D2210BC32A00E2A951 /* EventsController.swift in Sources */,
+				FAE975CE210BBFC700E2A951 /* YourEventsController.swift in Sources */,
+				FAE13441210CF0B700CF69BE /* SeperatorCellView.swift in Sources */,
 				FA17B67F210909E0005FEF30 /* User.swift in Sources */,
 				FA64971A21095758002A40C1 /* BlueAllianceAPIService.swift in Sources */,
 				FA64972121096813002A40C1 /* TeamCellView.swift in Sources */,
+				FAE1344B210D023C00CF69BE /* TeamsAtEventController.swift in Sources */,
 				FAE975C8210B9F9300E2A951 /* BADistrict.swift in Sources */,
 				FAB059802108F34100ABED45 /* Scoutable.xcdatamodeld in Sources */,
 				FA17B68E21093F1F005FEF30 /* ScoutTeamService.swift in Sources */,
 				FAE975C6210B9EFA00E2A951 /* DistrictCellView.swift in Sources */,
+				FAE1343D210CEDFE00CF69BE /* MatchCellView.swift in Sources */,
+				FAE1344D210D061400CF69BE /* EventTeamCellView.swift in Sources */,
 				FAE975CC210BA4A000E2A951 /* DistrictsViewController.swift in Sources */,
 				FAB0597A2108F34100ABED45 /* TeamsController.swift in Sources */,
-				FA64972721098D64002A40C1 /* EventsController.swift in Sources */,
 				FAE975C0210B0C6800E2A951 /* ReceivedRequestCellView.swift in Sources */,
 				FA17B68621090CA3005FEF30 /* ScoutTeamController.swift in Sources */,
 				FA0BC895210AD3090089E1C1 /* FieldTypes.swift in Sources */,
-				FA0BC886210A52340089E1C1 /* BAEventSimple.swift in Sources */,
+				FA0BC886210A52340089E1C1 /* BAEvent.swift in Sources */,
 				FA0BC89D210AEE080089E1C1 /* RequestsReceivedController.swift in Sources */,
 				FA649729210A3E6D002A40C1 /* NoPersonalTeamCellView.swift in Sources */,
 				FA17B68221090AA6005FEF30 /* Storyboard+Utility.swift in Sources */,
