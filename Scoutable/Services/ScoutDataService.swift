@@ -28,6 +28,8 @@ struct ScoutDataService{
             complete("User Has No Team or Isn't Leader")
         }
     }
+    
+    
     static func removeStaticTemplateField(_ fieldName: String, year: Int, complete: @escaping (_ error: String?) -> ()){
         if (User.current?.hasTeam)! && (User.current?.isLeader)!{
             let scoutTeam = User.current?.scoutTeam

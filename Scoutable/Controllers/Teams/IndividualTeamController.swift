@@ -33,16 +33,7 @@ class IndividualTeamController: UIViewController{
         }
         eventsTableView.refreshControl?.beginRefreshing()
         eventsTableView.refreshControl?.addTarget(self, action: #selector(refreshEnd), for: .valueChanged)
-        BlueAllianceAPIService.team(forNumber: teamNumber) { (team) in
-            self.team = team
-        }
-        BlueAllianceAPIService.eventsList(forTeamNumber: teamNumber) { (events) in
-            self.eventsArray = events.reversed()
-            for event in self.eventsArray{
-                if !self.years.contains(event.year){
-                    self.years.append(event.year)
-                } else { continue }
-            }
+        loadTeam {
             DispatchQueue.main.async {
                 self.eventYearPicker.reloadAllComponents()
                 self.eventsTableView.reloadData()
@@ -53,6 +44,22 @@ class IndividualTeamController: UIViewController{
         eventYearPicker.dataSource = self
         eventsTableView.dataSource = self
         eventsTableView.delegate = self
+    }
+    
+    func loadTeam(complete: @escaping () -> ()){
+        BlueAllianceAPIService.team(forNumber: teamNumber) { (team) in
+            self.team = team
+        }
+        BlueAllianceAPIService.eventsList(forTeamNumber: teamNumber) { (events) in
+            self.eventsArray = events.reversed()
+            for event in self.eventsArray{
+                if !self.years.contains(event.year){
+                    self.years.append(event.year)
+                } else { continue }
+            }
+            complete()
+
+        }
     }
     @objc func refreshEnd(){
         eventsTableView.reloadData()

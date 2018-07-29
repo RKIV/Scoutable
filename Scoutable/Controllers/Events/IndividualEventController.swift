@@ -23,6 +23,18 @@
 //
 //    override func viewDidLoad() {
 //        super .viewDidLoad()
+//        
+//        loadMatches {
+//            DispatchQueue.main.async {
+//
+//                self.tableView.reloadData()
+//            }
+//        }
+//
+//
+//    }
+//    
+//    func loadMatches(complete: @escaping () ->()){
 //        BlueAllianceAPIService.matchesSimple(eventKey: eventKey!) { (swiftyData) in
 //            self.finals = (swiftyData.array?.filter{$0["comp_level"].rawString() == "f"})!
 //            self.semifinals = (swiftyData.array?.filter{$0["comp_level"].rawString() == "sf"})!
@@ -64,11 +76,9 @@
 //            BlueAllianceAPIService.teams(forEvent: self.eventKey!) { (data) in
 //                let teams = data.array!
 //                self.teamNumbers = teams.map{$0["team_number"].rawValue as! Int}
-//                self.tableView.reloadData()
+//                complete()
 //            }
 //        }
-//
-//
 //    }
 //
 //    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
