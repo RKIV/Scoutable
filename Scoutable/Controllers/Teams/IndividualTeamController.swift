@@ -72,73 +72,28 @@ class IndividualTeamController: UIViewController{
     }
     
     func loadMatches(eventKey: String, complete: @escaping () ->()){
-        BlueAllianceAPIService.matchesSimple(eventKey: eventKey) { (swiftyData) in
-            self.finals = (swiftyData.array?.filter{$0["comp_level"].rawString() == "f"})!
-            self.semifinals = (swiftyData.array?.filter{$0["comp_level"].rawString() == "sf"})!
-            self.quarterfinals = (swiftyData.array?.filter{$0["comp_level"].rawString() == "qf"})!
-            self.qualifiers = (swiftyData.array?.filter{$0["comp_level"].rawString() == "qm"})!
-            self.finals = self.finals.sorted{$0["match_number"] < $1["match_number"]}
-            self.semifinals = self.semifinals.sorted(by: { (first, second) -> Bool in
-                if first["set_number"].rawValue as! Int == second["set_number"].rawValue as! Int{
-                    if (first["match_number"].rawValue as! Int) < (second["match_number"].rawValue as! Int){
-                        return true
-                    } else {
+        
+        BlueAllianceAPIService.matches(forEvent: eventKey, teamKey: "frc\(teamNumber)") { (data) in
+            let dict = ["qm" : 0, "qf" : 1, "sf" : 2, "f" : 3]
+            self.matches = (data.array?.sorted{ (first, second) -> Bool in
+                if dict[first["comp_level"].rawString()!]! == dict[second["comp_level"].rawString()!]!{
+                    if (first["set_number"].rawValue as! Int) == (second["set_number"].rawValue as! Int){
+                        if (first["match_number"].rawValue as! Int) < (second["match_number"].rawValue as! Int){
+                            return true
+                        }
                         return false
-                    }
-                } else if (first["set_number"].rawValue as! Int) < (second["set_number"].rawValue as! Int){
-                    return true
-                } else {
-                    return false
-                }
-            })
-            self.quarterfinals = self.quarterfinals.sorted(by: { (first, second) -> Bool in
-                if first["set_number"].rawValue as! Int == second["set_number"].rawValue as! Int{
-                    if (first["match_number"].rawValue as! Int) < (second["match_number"].rawValue as! Int){
+                    } else if (first["set_number"].rawValue as! Int) < (second["set_number"].rawValue as! Int){
                         return true
-                    } else {
-                        return false
                     }
-                } else if (first["set_number"].rawValue as! Int) < (second["set_number"].rawValue as! Int){
-                    return true
-                } else {
                     return false
-                }
-            })
-            self.qualifiers = self.qualifiers.sorted{$0["match_number"] < $1["match_number"]}
-            self.matches = self.qualifiers.filter{ (match) -> Bool in
-                let blueTeams = match["alliances"]["blue"]["team_keys"].rawValue as! [String]
-                let redTeams = match["alliances"]["blue"]["team_keys"].rawValue as! [String]
-                if blueTeams.contains("frc\(self.teamNumber)") || redTeams.contains("frc\(self.teamNumber)"){
+                } else if dict[first["comp_level"].rawString()!]! < dict[second["comp_level"].rawString()!]!{
                     return true
                 }
                 return false
-            }
-            self.matches += self.quarterfinals.filter{ (match) -> Bool in
-                let blueTeams = match["alliances"]["blue"]["team_keys"].rawValue as! [String]
-                let redTeams = match["alliances"]["blue"]["team_keys"].rawValue as! [String]
-                if blueTeams.contains("frc\(self.teamNumber)") || redTeams.contains("frc\(self.teamNumber)"){
-                    return true
-                }
-                return false
-            }
-            self.matches += self.semifinals.filter{ (match) -> Bool in
-                let blueTeams = match["alliances"]["blue"]["team_keys"].rawValue as! [String]
-                let redTeams = match["alliances"]["blue"]["team_keys"].rawValue as! [String]
-                if blueTeams.contains("frc\(self.teamNumber)") || redTeams.contains("frc\(self.teamNumber)"){
-                    return true
-                }
-                return false
-            }
-            self.matches += self.finals.filter{ (match) -> Bool in
-                let blueTeams = match["alliances"]["blue"]["team_keys"].rawValue as! [String]
-                let redTeams = match["alliances"]["blue"]["team_keys"].rawValue as! [String]
-                if blueTeams.contains("frc\(self.teamNumber)") || redTeams.contains("frc\(self.teamNumber)"){
-                    return true
-                }
-                return false
-            }
+            })!
             complete()
         }
+        
     }
     
     @objc func refreshEnd(){
@@ -197,16 +152,51 @@ extension IndividualTeamController: UITableViewDataSource, UITableViewDelegate{
             cell.redOneLabel.text = String((redTeams[0].rawString()?.split(separator: "c")[1])!)
             cell.redTwoLabel.text = String((redTeams[1].rawString()?.split(separator: "c")[1])!)
             cell.redThreeLabel.text = String((redTeams[2].rawString()?.split(separator: "c")[1])!)
-            let date = NSDate(timeIntervalSince1970: match["actual_time"].rawValue as! Double)
-            let formatter = DateFormatter()
-            formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-            let myString = (String(describing: date))
-            let yourDate = formatter.date(from: myString)
-            formatter.dateFormat = "HH:mm:ss"
-            cell.matchTimeLabel.text = formatter.string(for: yourDate)
+            
+            if (blueTeams.array![0].rawValue as! String) == "frc\(teamNumber)"{
+                cell.blueOneLabel.layer.backgroundColor = UIColor(red: 196/255.0, green: 196/255.0, blue: 196/255.0, alpha: 1.0).cgColor
+                cell.blueOneLabel.layer.cornerRadius = 4
+                cell.blueOneLabel.layer.masksToBounds = true
+            }
+            if (blueTeams.array![1].rawValue as! String) == "frc\(teamNumber)"{
+                cell.blueTwoLabel.layer.backgroundColor = UIColor(red: 196/255.0, green: 196/255.0, blue: 196/255.0, alpha: 1.0).cgColor
+                cell.blueTwoLabel.layer.cornerRadius = 4
+                cell.blueTwoLabel.layer.masksToBounds = true
+            }
+            if (blueTeams.array![2].rawValue as! String) == "frc\(teamNumber)"{
+                cell.blueThreeLabel.layer.backgroundColor = UIColor(red: 196/255.0, green: 196/255.0, blue: 196/255.0, alpha: 1.0).cgColor
+                cell.blueThreeLabel.layer.cornerRadius = 4
+                cell.blueThreeLabel.layer.masksToBounds = true
+            }
+            if (redTeams.array![0].rawValue as! String) == "frc\(teamNumber)"{
+                cell.redOneLabel.layer.backgroundColor = UIColor(red: 196/255.0, green: 196/255.0, blue: 196/255.0, alpha: 1.0).cgColor
+                cell.redOneLabel.layer.cornerRadius = 4
+                cell.redOneLabel.layer.masksToBounds = true
+            }
+            if (redTeams.array![1].rawValue as! String) == "frc\(teamNumber)"{
+                cell.redTwoLabel.layer.backgroundColor = UIColor(red: 196/255.0, green: 196/255.0, blue: 196/255.0, alpha: 1.0).cgColor
+                cell.redTwoLabel.layer.cornerRadius = 4
+                cell.redTwoLabel.layer.masksToBounds = true
+            }
+            if (redTeams.array![2].rawValue as! String) == "frc\(teamNumber)"{
+                cell.redThreeLabel.layer.backgroundColor = UIColor(red: 196/255.0, green: 196/255.0, blue: 196/255.0, alpha: 1.0).cgColor
+                cell.redThreeLabel.layer.cornerRadius = 4
+                cell.redThreeLabel.layer.masksToBounds = true
+            }
+            
+            
+            
+            if match["actual_time"] != JSON.null{
+                let date = NSDate(timeIntervalSince1970: match["actual_time"].rawValue as! Double)
+                let formatter = DateFormatter()
+                formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                let myString = (String(describing: date))
+                let yourDate = formatter.date(from: myString)
+                formatter.dateFormat = "HH:mm:ss"
+                cell.matchTimeLabel.text = formatter.string(for: yourDate)
+            }
             cell.blueScoreLabel.text = match["alliances"]["blue"]["score"].rawString()
             cell.redScoreLabel.text = match["alliances"]["red"]["score"].rawString()
-            cell.isUserInteractionEnabled = false
             return cell
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: "eventCell") as! EventCellView
@@ -220,12 +210,15 @@ extension IndividualTeamController: UITableViewDataSource, UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        loadMatches(eventKey: eventsArray[indexPath.row].key) {
-            DispatchQueue.main.async {
-                self.eventsTableView.reloadData()
-                self.tableViewHeightContraint.constant = CGFloat(75 * (self.eventsArray.filter{$0.year == self.years[self.eventYearPicker.selectedRow(inComponent: 0)]}.count + self.matches.count) + 60)
+        if indexPath.section == 0{
+            loadMatches(eventKey: eventsArray[indexPath.row].key) {
+                DispatchQueue.main.async {
+                    self.tableViewHeightContraint.constant = CGFloat(75 * (self.eventsArray.filter{$0.year == self.years[self.eventYearPicker.selectedRow(inComponent: 0)]}.count + self.matches.count) + 60)
+                    self.eventsTableView.reloadData()
+                }
             }
         }
+
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

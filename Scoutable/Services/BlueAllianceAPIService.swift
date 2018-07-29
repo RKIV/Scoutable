@@ -124,6 +124,14 @@ struct BlueAllianceAPIService{
         }
     }
     
+    static func matches(forEvent eventKey: String, teamKey: String, done: @escaping (JSON) -> ()){
+        let urlString = "\(baseURL)/team/\(teamKey)/event/\(eventKey)/matches\(authKey)"
+        guard let url = URL(string: urlString) else {return}
+        swiftyJson(forURL: url) {swiftyData in
+            done(swiftyData)
+        }
+    }
+    
     
 }
 
