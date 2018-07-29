@@ -153,36 +153,36 @@ extension IndividualTeamController: UITableViewDataSource, UITableViewDelegate{
             cell.redTwoLabel.text = String((redTeams[1].rawString()?.split(separator: "c")[1])!)
             cell.redThreeLabel.text = String((redTeams[2].rawString()?.split(separator: "c")[1])!)
             
-            if (blueTeams.array![0].rawValue as! String) == "frc\(teamNumber)"{
-                cell.blueOneLabel.layer.backgroundColor = UIColor(red: 196/255.0, green: 196/255.0, blue: 196/255.0, alpha: 1.0).cgColor
-                cell.blueOneLabel.layer.cornerRadius = 4
-                cell.blueOneLabel.layer.masksToBounds = true
-            }
-            if (blueTeams.array![1].rawValue as! String) == "frc\(teamNumber)"{
-                cell.blueTwoLabel.layer.backgroundColor = UIColor(red: 196/255.0, green: 196/255.0, blue: 196/255.0, alpha: 1.0).cgColor
-                cell.blueTwoLabel.layer.cornerRadius = 4
-                cell.blueTwoLabel.layer.masksToBounds = true
-            }
-            if (blueTeams.array![2].rawValue as! String) == "frc\(teamNumber)"{
-                cell.blueThreeLabel.layer.backgroundColor = UIColor(red: 196/255.0, green: 196/255.0, blue: 196/255.0, alpha: 1.0).cgColor
-                cell.blueThreeLabel.layer.cornerRadius = 4
-                cell.blueThreeLabel.layer.masksToBounds = true
-            }
-            if (redTeams.array![0].rawValue as! String) == "frc\(teamNumber)"{
-                cell.redOneLabel.layer.backgroundColor = UIColor(red: 196/255.0, green: 196/255.0, blue: 196/255.0, alpha: 1.0).cgColor
-                cell.redOneLabel.layer.cornerRadius = 4
-                cell.redOneLabel.layer.masksToBounds = true
-            }
-            if (redTeams.array![1].rawValue as! String) == "frc\(teamNumber)"{
-                cell.redTwoLabel.layer.backgroundColor = UIColor(red: 196/255.0, green: 196/255.0, blue: 196/255.0, alpha: 1.0).cgColor
-                cell.redTwoLabel.layer.cornerRadius = 4
-                cell.redTwoLabel.layer.masksToBounds = true
-            }
-            if (redTeams.array![2].rawValue as! String) == "frc\(teamNumber)"{
-                cell.redThreeLabel.layer.backgroundColor = UIColor(red: 196/255.0, green: 196/255.0, blue: 196/255.0, alpha: 1.0).cgColor
-                cell.redThreeLabel.layer.cornerRadius = 4
-                cell.redThreeLabel.layer.masksToBounds = true
-            }
+//            if (blueTeams.array![0].rawValue as! String) == "frc\(teamNumber)"{
+//                cell.blueOneLabel.layer.backgroundColor = UIColor(red: 196/255.0, green: 196/255.0, blue: 196/255.0, alpha: 1.0).cgColor
+//                cell.blueOneLabel.layer.cornerRadius = 4
+//                cell.blueOneLabel.layer.masksToBounds = true
+//            }
+//            if (blueTeams.array![1].rawValue as! String) == "frc\(teamNumber)"{
+//                cell.blueTwoLabel.layer.backgroundColor = UIColor(red: 196/255.0, green: 196/255.0, blue: 196/255.0, alpha: 1.0).cgColor
+//                cell.blueTwoLabel.layer.cornerRadius = 4
+//                cell.blueTwoLabel.layer.masksToBounds = true
+//            }
+//            if (blueTeams.array![2].rawValue as! String) == "frc\(teamNumber)"{
+//                cell.blueThreeLabel.layer.backgroundColor = UIColor(red: 196/255.0, green: 196/255.0, blue: 196/255.0, alpha: 1.0).cgColor
+//                cell.blueThreeLabel.layer.cornerRadius = 4
+//                cell.blueThreeLabel.layer.masksToBounds = true
+//            }
+//            if (redTeams.array![0].rawValue as! String) == "frc\(teamNumber)"{
+//                cell.redOneLabel.layer.backgroundColor = UIColor(red: 196/255.0, green: 196/255.0, blue: 196/255.0, alpha: 1.0).cgColor
+//                cell.redOneLabel.layer.cornerRadius = 4
+//                cell.redOneLabel.layer.masksToBounds = true
+//            }
+//            if (redTeams.array![1].rawValue as! String) == "frc\(teamNumber)"{
+//                cell.redTwoLabel.layer.backgroundColor = UIColor(red: 196/255.0, green: 196/255.0, blue: 196/255.0, alpha: 1.0).cgColor
+//                cell.redTwoLabel.layer.cornerRadius = 4
+//                cell.redTwoLabel.layer.masksToBounds = true
+//            }
+//            if (redTeams.array![2].rawValue as! String) == "frc\(teamNumber)"{
+//                cell.redThreeLabel.layer.backgroundColor = UIColor(red: 196/255.0, green: 196/255.0, blue: 196/255.0, alpha: 1.0).cgColor
+//                cell.redThreeLabel.layer.cornerRadius = 4
+//                cell.redThreeLabel.layer.masksToBounds = true
+//            }
             
             
             

@@ -12,16 +12,28 @@ import FirebaseDatabase
 
 struct ScoutDataService{
     
-    static func addStaticTemplateField(_ fieldName: String, fieldType : FieldTypes, year: Int, complete: @escaping (_ error: String?) -> ()){
+    static func addStaticTemplateCell(_ fieldName: String, fieldType : FieldTypes, year: Int, complete: @escaping (_ cellID: String?, _ error: String?) -> ()){
+        if (User.current?.hasTeam)! && (User.current?.isLeader)!{
+            let scoutTeam = User.current?.scoutTeam
+            let ref = Database.database().reference().child("scoutTeams").child(scoutTeam!).child("templates").child(String(year)).child("static").childByAutoId()
+            ref.updateChildValues(["name" : fieldName, "type" : fieldType.rawValue])
+            complete(ref.key, nil)
+        } else {
+            complete(nil, "User Has No Team or Isn't Leader")
+        }
+    }
+    
+    
+    static func removeStaticTemplateCell(cellID: String, year: Int, complete: @escaping (_ error: String?) -> ()){
         if (User.current?.hasTeam)! && (User.current?.isLeader)!{
             let scoutTeam = User.current?.scoutTeam
             let ref = Database.database().reference().child("scoutTeams").child(scoutTeam!).child("templates").child(String(year)).child("static")
             ref.observeSingleEvent(of: .value) { (snapshot) in
-                if snapshot.hasChild(fieldName){
-                    complete("Field Exists")
-                } else {
-                    ref.child(fieldName).setValue(fieldType.rawValue)
+                if snapshot.hasChild(cellID){
+                    ref.child(cellID).removeValue()
                     complete(nil)
+                } else {
+                    complete("Cell Doesn't Exist")
                 }
             }
         } else {
@@ -29,17 +41,17 @@ struct ScoutDataService{
         }
     }
     
-    
-    static func removeStaticTemplateField(_ fieldName: String, year: Int, complete: @escaping (_ error: String?) -> ()){
+    static func editStaticTemplateCell(from oldFieldName: String,to newFieldName: String, cellID: String, fieldType: FieldTypes, year: Int, complete: @escaping (_ error: String?) -> ()){
         if (User.current?.hasTeam)! && (User.current?.isLeader)!{
             let scoutTeam = User.current?.scoutTeam
             let ref = Database.database().reference().child("scoutTeams").child(scoutTeam!).child("templates").child(String(year)).child("static")
             ref.observeSingleEvent(of: .value) { (snapshot) in
-                if snapshot.hasChild(fieldName){
-                    ref.child(fieldName).removeValue()
+                if snapshot.hasChild(cellID){
+                    ref.child(cellID).child(oldFieldName).removeValue()
+                    ref.child(cellID).child(newFieldName).setValue(fieldType.rawValue)
                     complete(nil)
                 } else {
-                    complete("Field Doesn't Exist")
+                    complete("Cell Doesn't Exist")
                 }
             }
         } else {
@@ -47,34 +59,13 @@ struct ScoutDataService{
         }
     }
     
-    static func editStaticTemplateField(from oldFieldName: String,to newFieldName: String, fieldType: FieldTypes, year: Int, complete: @escaping (_ error: String?) -> ()){
-        if (User.current?.hasTeam)! && (User.current?.isLeader)!{
-            let scoutTeam = User.current?.scoutTeam
-            let ref = Database.database().reference().child("scoutTeams").child(scoutTeam!).child("templates").child(String(year)).child("static")
-            ref.observeSingleEvent(of: .value) { (snapshot) in
-                if snapshot.hasChild(oldFieldName){
-                    ref.child(oldFieldName).removeValue()
-                    ref.child(newFieldName).setValue(fieldType.rawValue)
-                    complete(nil)
-                } else {
-                    complete("Field Doesn't Exist")
-                }
-            }
-        } else {
-            complete("User Has No Team or Isn't Leader")
-        }
-    }
-    
-    static func getStaticTemplate(year: Int, complete: @escaping ([String : String]?, _ error: String?) -> ()){
+    static func getStaticTemplate(year: Int, complete: @escaping ([ScoutCell]?, _ error: String?) -> ()){
         if (User.current?.hasTeam)!{
             let scoutTeam = User.current?.scoutTeam
             let ref = Database.database().reference().child("scoutTeams").child(scoutTeam!).child("templates").child(String(year)).child("static")
             ref.observeSingleEvent(of: .value) { (snapshot) in
-                if let dict = snapshot.value as? [String : String]{
-                    complete(dict, nil)
-                } else {
-                    complete(nil, "Snapshot not of correct type")
-                }
+                let cells = snapshot.children.map{ScoutCell(snapshot: $0 as! DataSnapshot)}
+                complete(cells as? [ScoutCell], nil)
             }
         } else {
             complete(nil, "User doesn't have team")

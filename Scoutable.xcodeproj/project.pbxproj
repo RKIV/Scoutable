@@ -35,6 +35,12 @@
 		FAB059822108F34300ABED45 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAB059812108F34300ABED45 /* Assets.xcassets */; };
 		FAB059852108F34300ABED45 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAB059832108F34300ABED45 /* LaunchScreen.storyboard */; };
 		FAB0598F2108F4B800ABED45 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FAB0598E2108F4B800ABED45 /* GoogleService-Info.plist */; };
+		FAD2B672210E4D7600320DFB /* StatictTemplateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD2B671210E4D7500320DFB /* StatictTemplateController.swift */; };
+		FAD2B674210E544900320DFB /* StepperTemplateCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD2B673210E544900320DFB /* StepperTemplateCellView.swift */; };
+		FAD2B676210E54C900320DFB /* SwitchTemplateCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD2B675210E54C900320DFB /* SwitchTemplateCellView.swift */; };
+		FAD2B678210E552D00320DFB /* NoteTemplateCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD2B677210E552D00320DFB /* NoteTemplateCellView.swift */; };
+		FAD2B67C210E59FB00320DFB /* NumpadTemplateCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD2B67B210E59FB00320DFB /* NumpadTemplateCellView.swift */; };
+		FAD2B67E210E691200320DFB /* ScoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD2B67D210E691200320DFB /* ScoutCell.swift */; };
 		FAE11505210907D600BAEFB7 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAE11504210907D600BAEFB7 /* Login.storyboard */; };
 		FAE115072109084700BAEFB7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE115062109084700BAEFB7 /* LoginViewController.swift */; };
 		FAE1343D210CEDFE00CF69BE /* MatchCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE1343C210CEDFE00CF69BE /* MatchCellView.swift */; };
@@ -84,6 +90,12 @@
 		FAB059842108F34300ABED45 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FAB059862108F34400ABED45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FAB0598E2108F4B800ABED45 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		FAD2B671210E4D7500320DFB /* StatictTemplateController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatictTemplateController.swift; sourceTree = "<group>"; };
+		FAD2B673210E544900320DFB /* StepperTemplateCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepperTemplateCellView.swift; sourceTree = "<group>"; };
+		FAD2B675210E54C900320DFB /* SwitchTemplateCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchTemplateCellView.swift; sourceTree = "<group>"; };
+		FAD2B677210E552D00320DFB /* NoteTemplateCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTemplateCellView.swift; sourceTree = "<group>"; };
+		FAD2B67B210E59FB00320DFB /* NumpadTemplateCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumpadTemplateCellView.swift; sourceTree = "<group>"; };
+		FAD2B67D210E691200320DFB /* ScoutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoutCell.swift; sourceTree = "<group>"; };
 		FAE11504210907D600BAEFB7 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		FAE115062109084700BAEFB7 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		FAE1343C210CEDFE00CF69BE /* MatchCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchCellView.swift; sourceTree = "<group>"; };
@@ -156,6 +168,7 @@
 				FA0BC885210A52340089E1C1 /* BAEvent.swift */,
 				FA0BC88F210A85430089E1C1 /* BATeam.swift */,
 				FAE975C7210B9F9300E2A951 /* BADistrict.swift */,
+				FAD2B67D210E691200320DFB /* ScoutCell.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -171,6 +184,7 @@
 		FA64971D210967A6002A40C1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				FAD2B67B210E59FB00320DFB /* NumpadTemplateCellView.swift */,
 				FAE13440210CF0B600CF69BE /* SeperatorCellView.swift */,
 				FAE1343C210CEDFE00CF69BE /* MatchCellView.swift */,
 				FA0BC889210A59470089E1C1 /* EventCellView.swift */,
@@ -179,6 +193,9 @@
 				FAE975BF210B0C6800E2A951 /* ReceivedRequestCellView.swift */,
 				FAE975C5210B9EFA00E2A951 /* DistrictCellView.swift */,
 				FAE1344C210D061400CF69BE /* EventTeamCellView.swift */,
+				FAD2B673210E544900320DFB /* StepperTemplateCellView.swift */,
+				FAD2B675210E54C900320DFB /* SwitchTemplateCellView.swift */,
+				FAD2B677210E552D00320DFB /* NoteTemplateCellView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -294,6 +311,7 @@
 		FAE13449210D004C00CF69BE /* Scouting */ = {
 			isa = PBXGroup;
 			children = (
+				FAD2B671210E4D7500320DFB /* StatictTemplateController.swift */,
 				FA0BC896210ADD160089E1C1 /* StaticScoutingController.swift */,
 				FA17B68521090CA2005FEF30 /* ScoutTeamController.swift */,
 			);
@@ -452,7 +470,10 @@
 				FA0BC88A210A59480089E1C1 /* EventCellView.swift in Sources */,
 				FAE115072109084700BAEFB7 /* LoginViewController.swift in Sources */,
 				FA0BC897210ADD160089E1C1 /* StaticScoutingController.swift in Sources */,
+				FAD2B678210E552D00320DFB /* NoteTemplateCellView.swift in Sources */,
 				FA17B67C2109099C005FEF30 /* UserService.swift in Sources */,
+				FAD2B67C210E59FB00320DFB /* NumpadTemplateCellView.swift in Sources */,
+				FAD2B672210E4D7600320DFB /* StatictTemplateController.swift in Sources */,
 				FA0BC890210A85430089E1C1 /* BATeam.swift in Sources */,
 				FAE975C4210B6FB000E2A951 /* ChangeRoboticsTeamController.swift in Sources */,
 				FAE975D4210BCF3F00E2A951 /* IndividualEventController.swift in Sources */,
@@ -469,6 +490,7 @@
 				FAE975C6210B9EFA00E2A951 /* DistrictCellView.swift in Sources */,
 				FAE1343D210CEDFE00CF69BE /* MatchCellView.swift in Sources */,
 				FAE1344D210D061400CF69BE /* EventTeamCellView.swift in Sources */,
+				FAD2B676210E54C900320DFB /* SwitchTemplateCellView.swift in Sources */,
 				FAE975CC210BA4A000E2A951 /* DistrictsViewController.swift in Sources */,
 				FAB0597A2108F34100ABED45 /* TeamsController.swift in Sources */,
 				FAE975C0210B0C6800E2A951 /* ReceivedRequestCellView.swift in Sources */,
@@ -479,6 +501,8 @@
 				FA649729210A3E6D002A40C1 /* NoPersonalTeamCellView.swift in Sources */,
 				FA17B68221090AA6005FEF30 /* Storyboard+Utility.swift in Sources */,
 				FA0BC892210ACD6E0089E1C1 /* ScoutDataService.swift in Sources */,
+				FAD2B67E210E691200320DFB /* ScoutCell.swift in Sources */,
+				FAD2B674210E544900320DFB /* StepperTemplateCellView.swift in Sources */,
 				FAB059782108F34100ABED45 /* AppDelegate.swift in Sources */,
 				FA17B6882109107D005FEF30 /* UsernameController.swift in Sources */,
 				FA17B68A21093C1B005FEF30 /* TeamCreationController.swift in Sources */,

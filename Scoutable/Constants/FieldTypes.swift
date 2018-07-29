@@ -10,6 +10,7 @@ import Foundation
 
 enum FieldTypes: String{
     case Switch = "Boolean"
-    case TextField = "TextField"
-    case IncrementalNumber = "IncrementalNumber"
+    case TextView = "TextView"
+    case StepperNumber = "StepperNumber"
+    case NumberPad = "NumberPad"
 }
