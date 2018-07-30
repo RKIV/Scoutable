@@ -14,3 +14,7 @@ enum FieldTypes: String{
     case StepperNumber = "StepperNumber"
     case NumberPad = "NumberPad"
 }
+
+struct Constants{
+    static let currentYearConstant = 2018
+}

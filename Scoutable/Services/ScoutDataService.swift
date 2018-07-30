@@ -41,14 +41,13 @@ struct ScoutDataService{
         }
     }
     
-    static func editStaticTemplateCell(from oldFieldName: String,to newFieldName: String, cellID: String, fieldType: FieldTypes, year: Int, complete: @escaping (_ error: String?) -> ()){
+    static func editStaticTemplateCell(to newFieldName: String, cellID: String, year: Int, complete: @escaping (_ error: String?) -> ()){
         if (User.current?.hasTeam)! && (User.current?.isLeader)!{
             let scoutTeam = User.current?.scoutTeam
             let ref = Database.database().reference().child("scoutTeams").child(scoutTeam!).child("templates").child(String(year)).child("static")
             ref.observeSingleEvent(of: .value) { (snapshot) in
                 if snapshot.hasChild(cellID){
-                    ref.child(cellID).child(oldFieldName).removeValue()
-                    ref.child(cellID).child(newFieldName).setValue(fieldType.rawValue)
+                    ref.child(cellID).child("name").setValue(newFieldName)
                     complete(nil)
                 } else {
                     complete("Cell Doesn't Exist")
@@ -59,17 +58,66 @@ struct ScoutDataService{
         }
     }
     
-    static func getStaticTemplate(year: Int, complete: @escaping ([ScoutCell]?, _ error: String?) -> ()){
+    static func getStaticTemplate(year: Int, complete: @escaping ([ScoutTemplateCell]?, _ error: String?) -> ()){
         if (User.current?.hasTeam)!{
             let scoutTeam = User.current?.scoutTeam
             let ref = Database.database().reference().child("scoutTeams").child(scoutTeam!).child("templates").child(String(year)).child("static")
             ref.observeSingleEvent(of: .value) { (snapshot) in
-                let cells = snapshot.children.map{ScoutCell(snapshot: $0 as! DataSnapshot)}
-                complete(cells as? [ScoutCell], nil)
+                
+                let cells = snapshot.children.map{ScoutTemplateCell(snapshot: $0 as! DataSnapshot)}
+                complete(cells as? [ScoutTemplateCell], nil)
             }
         } else {
             complete(nil, "User doesn't have team")
         }
     }
     
+    static func addStaticScoutField(name: String, type: String, cellID: String, value: Any, roboticsTeam: Int, year: Int, scoutTeam: String){
+        let dataRef = Database.database().reference().child("scoutTeams").child(scoutTeam).child("data").child(String(year)).child(String(roboticsTeam)).child("static").child(cellID)
+        dataRef.updateChildValues(["type" : type as Any, "name" : name as Any, "value" : value])
+    }
+    
+    static func getStaticScoutData(forTeam roboticsTeam: Int, andYear year: Int, complete: @escaping (_ regularCells: [ScoutCell], _ ghostCells: [ScoutCell]) -> ()){
+        let dataRef = Database.database().reference().child("scoutTeams").child((User.current?.scoutTeam)!).child("data").child(String(year)).child(String(roboticsTeam)).child("static")
+        let templateRef = Database.database().reference().child("scoutTeams").child((User.current?.scoutTeam)!).child("templates").child(String(year)).child("static")
+        var missingFields = [DataSnapshot]()
+        var ghostFields = [DataSnapshot]()
+        var matchingFields = [DataSnapshot]()
+        var regularCellsToReturn = [ScoutCell]()
+        var ghostCellsToReturn = [ScoutCell]()
+        
+        dataRef.observeSingleEvent(of: .value) { (dataSnapshot) in
+            templateRef.observeSingleEvent(of: .value) { (templateSnapshot) in
+                let dataFieldKeys = (dataSnapshot.children.allObjects as! [DataSnapshot]).map{$0.key}
+                let templateFieldKeys = (templateSnapshot.children.allObjects as! [DataSnapshot]).map{$0.key}
+                if dataSnapshot.hasChildren(){
+                    matchingFields = (templateSnapshot.children.allObjects as! [DataSnapshot]).filter{dataFieldKeys.contains($0.key)}
+                    missingFields = (templateSnapshot.children.allObjects as! [DataSnapshot]).filter{!dataFieldKeys.contains($0.key)}
+                    ghostFields = (dataSnapshot.children.allObjects as! [DataSnapshot]).filter{!templateFieldKeys.contains($0.key)}
+                } else {
+                    missingFields = templateSnapshot.children.allObjects as! [DataSnapshot]
+                }
+                
+                for snapshot in matchingFields{
+                    var scoutCell = ScoutCell(snapshot: snapshot)
+                    let cellID = snapshot.key
+                    let tempDict = templateSnapshot.childSnapshot(forPath: cellID).value as! [String : Any]
+                    if scoutCell?.name != tempDict["name"] as? String{
+                        dataRef.child(cellID).child("name").setValue(templateRef.child(cellID).value(forKey: "name") as! String)
+                        scoutCell?.name = templateRef.child(cellID).value(forKey: "name") as? String
+                    }
+                    regularCellsToReturn.append(scoutCell!)
+                }
+
+                for snapshot in missingFields{
+                    if let scoutCell = ScoutCell(snapshot: snapshot){
+                        regularCellsToReturn.append(scoutCell)
+                    }
+                }
+                ghostCellsToReturn = ghostFields.map{ScoutCell(snapshot: $0)!}
+                complete(regularCellsToReturn, ghostCellsToReturn)
+            }
+
+        }
+    }
 }

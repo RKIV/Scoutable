@@ -29,7 +29,7 @@ class ScoutTeamController: UIViewController {
         guard let scoutTeam = scoutTeamTextField.text,
             !scoutTeam.isEmpty else { return }
         let ref = Database.database().reference()
-        //Put in a request to joing team
+        //Put in a request to join team
         ref.child("scoutTeams").observeSingleEvent(of: .value){ (snapshot) in
             if snapshot.hasChild(scoutTeam){
                 ScoutTeamServices.makeTeamRequest(to: scoutTeam)

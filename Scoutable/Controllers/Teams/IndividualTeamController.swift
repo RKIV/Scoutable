@@ -101,6 +101,11 @@ class IndividualTeamController: UIViewController{
         eventsTableView.refreshControl?.endRefreshing()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destination = segue.destination as! StaticScoutingController
+        destination.teamNumber = self.teamNumber
+    }
+    
 }
 
 extension IndividualTeamController: UITableViewDataSource, UITableViewDelegate{

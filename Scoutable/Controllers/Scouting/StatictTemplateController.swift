@@ -13,26 +13,28 @@ class StaticTemplateController: UITableViewController{
     @IBOutlet var addCellView: UIView!
     @IBOutlet weak var cellTypePicker: UIPickerView!
     @IBOutlet weak var intialTitleTextField: UITextField!
-    var loadedCells: [ScoutCell]?
+    var loadedCells: [ScoutTemplateCell]?
     
     override func viewDidLoad() {
+        super .viewDidLoad()
         cellTypePicker.dataSource = self
         cellTypePicker.delegate = self
         addCellView.layer.cornerRadius = 6
         loadCells{
             self.tableView.reloadData()
         }
-        super .viewDidLoad()
+        tableView.keyboardDismissMode = .onDrag
+        
     }
     
     func loadCells(complete: @escaping () ->()){
-        ScoutDataService.getStaticTemplate(year: 2018) { (cells, error) in
+        ScoutDataService.getStaticTemplate(year: Constants.currentYearConstant) { (cells, error) in
             if let error = error{
                 print(error)
                 return
             }
             self.loadedCells = cells
-            
+            complete()
         }
     }
     
@@ -76,13 +78,19 @@ class StaticTemplateController: UITableViewController{
         default:
             print("Unexpected Row")
         }
-        ScoutDataService.addStaticTemplateCell(intialTitleTextField.text!, fieldType: type!, year: 2018) { (cellID, error) in
-            self.loadedCells?.append(ScoutCell(cellID: cellID!, type: (type?.rawValue)!, name: self.intialTitleTextField.text!))
+        ScoutDataService.addStaticTemplateCell(intialTitleTextField.text!, fieldType: type!, year: Constants.currentYearConstant) { (cellID, error) in
+            self.loadedCells?.append(ScoutTemplateCell(cellID: cellID!, type: (type?.rawValue)!, name: self.intialTitleTextField.text!))
             self.tableView.reloadData()
             self.animateAddCellViewOut()
         }
         
     }
+    
+    @IBAction func saveButtonTapped(_ sender: Any) {
+        
+         _ = navigationController?.popViewController(animated: true)
+    }
+    
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if loadedCells != nil{
@@ -98,27 +106,37 @@ class StaticTemplateController: UITableViewController{
             let cell = tableView.dequeueReusableCell(withIdentifier: "switchTemplateCell") as! SwitchTemplateCellView
             cell.titleTextField.text = loadedCell.name
             cell.CellID = loadedCell.cellID
+            cell.templateSwitch.isUserInteractionEnabled = false
+            cell.titleTextField.delegate = cell
             return cell
         case FieldTypes.NumberPad.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: "numpadTemplateCell") as! NumpadTemplateCellView
             cell.titleTextField.text = loadedCell.name
             cell.CellID = loadedCell.cellID
+            cell.numberTextField.isUserInteractionEnabled = false
+            cell.titleTextField.delegate = cell
             return cell
         case FieldTypes.StepperNumber.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: "stepperTemplateCell") as! StepperTemplateCellView
             cell.titleTextField.text = loadedCell.name
             cell.CellID = loadedCell.cellID
+            cell.stepper.isUserInteractionEnabled = false
+            cell.titleTextField.delegate = cell
             return cell
         case FieldTypes.TextView.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: "noteTemplateCell") as! NoteTemplateCellView
             cell.titleTextField.text = loadedCell.name
             cell.CellID = loadedCell.cellID
+            cell.noteTextView.isUserInteractionEnabled = false
+            cell.titleTextField.delegate = cell
             return cell
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: "switchTemplateCell") as! SwitchTemplateCellView
+            cell.titleTextField.delegate = cell
             return cell
         }
     }
+    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let type = loadedCells![indexPath.row].type
         switch type{
@@ -134,6 +152,7 @@ class StaticTemplateController: UITableViewController{
             return 65
         }
     }
+    
     
 }
 

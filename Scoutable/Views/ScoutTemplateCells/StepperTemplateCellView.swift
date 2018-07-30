@@ -18,4 +18,21 @@ class StepperTemplateCellView: UITableViewCell{
     @IBAction func stepperValueChanged(_ sender: UIStepper) {
         stepperLabel.text = Int(sender.value).description
     }
+    
+    @IBAction func titleTextFieldEditingEnd(_ sender: Any) {
+        ScoutDataService.editStaticTemplateCell(to: titleTextField.text!, cellID: CellID!, year: 2018) { (error) in
+            if let error = error{
+                print(error)
+            }
+        }
+    }
+    
+}
+
+extension StepperTemplateCellView: UITextFieldDelegate{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
 }

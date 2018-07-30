@@ -112,6 +112,7 @@ class TeamsController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print("preparing")
         let indexPath = teamTableView.indexPathForSelectedRow
         teamTableView.deselectRow(at: indexPath!, animated: true)
         var teamNumber: Int = 0
