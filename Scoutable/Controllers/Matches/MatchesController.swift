@@ -142,4 +142,11 @@ class MatchesController: UITableViewController{
     }
     
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destination = segue.destination as! IndividualMatchController
+        destination.eventKey = eventKey
+        destination.matchKey = matches[(tableView.indexPathForSelectedRow?.row)!]["key"].rawString()
+    }
+    
+    
 }

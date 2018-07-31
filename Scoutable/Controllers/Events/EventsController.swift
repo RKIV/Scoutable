@@ -64,6 +64,11 @@ class EventsController: UITableViewController{
         return 75
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destination = segue.destination as! TeamsAtEventController
+        destination.eventKey = eventsArray[(tableView.indexPathForSelectedRow?.row)!]["key"].rawString()
+    }
+    
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let v = UIView(frame: CGRect(x: 0, y:0, width: tableView.frame.width, height: 30))
         v.backgroundColor = .lightGray

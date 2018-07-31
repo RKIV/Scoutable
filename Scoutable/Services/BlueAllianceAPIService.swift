@@ -132,6 +132,14 @@ struct BlueAllianceAPIService{
         }
     }
     
+    static func match(forMatch matchKey: String, done: @escaping (JSON) -> ()){
+        let urlString =  "\(baseURL)/match/\(matchKey)\(authKey)"
+        guard let url = URL(string: urlString) else {return}
+        swiftyJson(forURL: url) { (swiftyData) in
+            done(swiftyData)
+        }
+    }
+    
     
 }
 
@@ -246,6 +254,7 @@ extension BlueAllianceAPIService{
     }
     
     private static func swiftyJson(forURL url: URL, swiftyDone: @escaping (JSON) -> ()){
+        print(url)
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             if error != nil {
                 print(error!.localizedDescription)

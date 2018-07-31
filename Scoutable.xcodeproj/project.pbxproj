@@ -43,6 +43,8 @@
 		FAD2B67E210E691200320DFB /* ScoutTemplateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD2B67D210E691200320DFB /* ScoutTemplateCell.swift */; };
 		FADA6D112110D00F00C78618 /* MatchesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADA6D102110D00F00C78618 /* MatchesController.swift */; };
 		FADA6D152110D93900C78618 /* filter-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = FADA6D142110D93800C78618 /* filter-icon.png */; };
+		FADA6D192110F82400C78618 /* StatCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADA6D182110F82300C78618 /* StatCellView.swift */; };
+		FADA6D1E2110F9E600C78618 /* IndividualMatchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADA6D1D2110F9E600C78618 /* IndividualMatchController.swift */; };
 		FADCDA45210EEA790044E841 /* NoteCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADCDA44210EEA790044E841 /* NoteCellView.swift */; };
 		FADCDA47210EEA880044E841 /* StepperCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADCDA46210EEA880044E841 /* StepperCellView.swift */; };
 		FADCDA49210EEA980044E841 /* SwitchCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADCDA48210EEA980044E841 /* SwitchCellView.swift */; };
@@ -105,6 +107,8 @@
 		FAD2B67D210E691200320DFB /* ScoutTemplateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoutTemplateCell.swift; sourceTree = "<group>"; };
 		FADA6D102110D00F00C78618 /* MatchesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesController.swift; sourceTree = "<group>"; };
 		FADA6D142110D93800C78618 /* filter-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "filter-icon.png"; sourceTree = "<group>"; };
+		FADA6D182110F82300C78618 /* StatCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatCellView.swift; sourceTree = "<group>"; };
+		FADA6D1D2110F9E600C78618 /* IndividualMatchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndividualMatchController.swift; sourceTree = "<group>"; };
 		FADCDA44210EEA790044E841 /* NoteCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteCellView.swift; sourceTree = "<group>"; };
 		FADCDA46210EEA880044E841 /* StepperCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepperCellView.swift; sourceTree = "<group>"; };
 		FADCDA48210EEA980044E841 /* SwitchCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchCellView.swift; sourceTree = "<group>"; };
@@ -177,13 +181,14 @@
 		FA17B67D210909D5005FEF30 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				FADA6D182110F82300C78618 /* StatCellView.swift */,
 				FA17B67E210909E0005FEF30 /* User.swift */,
 				FA64971B210957C0002A40C1 /* BATeamSimple.swift */,
 				FA0BC885210A52340089E1C1 /* BAEvent.swift */,
 				FA0BC88F210A85430089E1C1 /* BATeam.swift */,
+				FADCDA4C210F853E0044E841 /* ScoutCell.swift */,
 				FAE975C7210B9F9300E2A951 /* BADistrict.swift */,
 				FAD2B67D210E691200320DFB /* ScoutTemplateCell.swift */,
-				FADCDA4C210F853E0044E841 /* ScoutCell.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -254,6 +259,7 @@
 		FAB0598C2108F43400ABED45 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				FADA6D1A2110F88700C78618 /* Matches */,
 				FAE13449210D004C00CF69BE /* Scouting */,
 				FAE13448210D003A00CF69BE /* Login */,
 				FAE13447210D001C00CF69BE /* Districts */,
@@ -272,6 +278,15 @@
 				FAE11504210907D600BAEFB7 /* Login.storyboard */,
 			);
 			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		FADA6D1A2110F88700C78618 /* Matches */ = {
+			isa = PBXGroup;
+			children = (
+				FADA6D1D2110F9E600C78618 /* IndividualMatchController.swift */,
+				FADA6D102110D00F00C78618 /* MatchesController.swift */,
+			);
+			path = Matches;
 			sourceTree = "<group>";
 		};
 		FADCDA42210EE9EA0044E841 /* ScoutTemplateCells */ = {
@@ -322,7 +337,6 @@
 				FAE975D1210BC32A00E2A951 /* EventsController.swift */,
 				FAE975CD210BBFC700E2A951 /* YourEventsController.swift */,
 				FAE975D3210BCF3F00E2A951 /* IndividualEventController.swift */,
-				FADA6D102110D00F00C78618 /* MatchesController.swift */,
 			);
 			path = Events;
 			sourceTree = "<group>";
@@ -516,6 +530,7 @@
 				FA0BC890210A85430089E1C1 /* BATeam.swift in Sources */,
 				FADCDA4B210EEAAA0044E841 /* NumpadCellView.swift in Sources */,
 				FAE975C4210B6FB000E2A951 /* ChangeRoboticsTeamController.swift in Sources */,
+				FADA6D192110F82400C78618 /* StatCellView.swift in Sources */,
 				FAE975D4210BCF3F00E2A951 /* IndividualEventController.swift in Sources */,
 				FAE975D2210BC32A00E2A951 /* EventsController.swift in Sources */,
 				FADCDA47210EEA880044E841 /* StepperCellView.swift in Sources */,
@@ -543,6 +558,7 @@
 				FA0BC89D210AEE080089E1C1 /* RequestsReceivedController.swift in Sources */,
 				FA649729210A3E6D002A40C1 /* NoPersonalTeamCellView.swift in Sources */,
 				FA17B68221090AA6005FEF30 /* Storyboard+Utility.swift in Sources */,
+				FADA6D1E2110F9E600C78618 /* IndividualMatchController.swift in Sources */,
 				FADCDA49210EEA980044E841 /* SwitchCellView.swift in Sources */,
 				FA0BC892210ACD6E0089E1C1 /* ScoutDataService.swift in Sources */,
 				FAD2B67E210E691200320DFB /* ScoutTemplateCell.swift in Sources */,
