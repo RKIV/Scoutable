@@ -16,6 +16,7 @@ class IndividualTeamController: UIViewController{
     @IBOutlet weak var eventYearPicker: UIPickerView!
     @IBOutlet weak var eventsTableView: UITableView!
     @IBOutlet weak var tableViewHeightContraint: NSLayoutConstraint!
+    @IBOutlet weak var scoutTeamButton: UIButton!
     
     var finals = [JSON]()
     var semifinals = [JSON]()
@@ -32,6 +33,13 @@ class IndividualTeamController: UIViewController{
     var years = [Int]()
     override func viewDidLoad() {
         super.viewDidLoad()
+        if User.current != nil && User.current?.scoutTeam != nil{
+            scoutTeamButton.isHidden = false
+            scoutTeamButton.isUserInteractionEnabled = true
+        } else {
+            scoutTeamButton.isHidden = true
+            scoutTeamButton.isUserInteractionEnabled = false
+        }
         teamNumberLabel.text = String(teamNumber)
         teamNameLabel.text = teamName
         if #available(iOS 10.0, *) {
@@ -43,10 +51,11 @@ class IndividualTeamController: UIViewController{
         eventsTableView.refreshControl?.addTarget(self, action: #selector(refreshEnd), for: .valueChanged)
         loadTeam {
             DispatchQueue.main.async {
+                self.tableViewHeightContraint.constant = CGFloat(75 * self.eventsArray.filter{$0.year == self.years[self.eventYearPicker.selectedRow(inComponent: 0)]}.count + 60)
                 self.eventYearPicker.reloadAllComponents()
                 self.eventsTableView.reloadData()
                 self.eventsTableView.refreshControl?.endRefreshing()
-                self.tableViewHeightContraint.constant = CGFloat(75 * self.eventsArray.filter{$0.year == self.years[self.eventYearPicker.selectedRow(inComponent: 0)]}.count + 30)
+
             }
         }
         eventYearPicker.delegate = self
@@ -144,7 +153,7 @@ extension IndividualTeamController: UITableViewDataSource, UITableViewDelegate{
             let match = matches[indexPath.row]
             if match["comp_level"].rawString() == "qm"{
                 cell.matchNumberLabel.text = "Q\(match["match_number"])"
-            } else if match["comp_levle"] == "f"{
+            } else if match["comp_level"] == "f"{
                 cell.matchNumberLabel.text = "\(match["comp_level"].rawString()?.uppercased() ?? "Q")\(match["match_number"].rawString() ?? "0")"
             } else {
                 cell.matchNumberLabel.text = "\(match["comp_level"].rawString()?.uppercased() ?? "Q")\(match["set_number"].rawString() ?? "0").\(match["match_number"].rawString() ?? "0")"
@@ -157,37 +166,6 @@ extension IndividualTeamController: UITableViewDataSource, UITableViewDelegate{
             cell.redOneLabel.text = String((redTeams[0].rawString()?.split(separator: "c")[1])!)
             cell.redTwoLabel.text = String((redTeams[1].rawString()?.split(separator: "c")[1])!)
             cell.redThreeLabel.text = String((redTeams[2].rawString()?.split(separator: "c")[1])!)
-            
-//            if (blueTeams.array![0].rawValue as! String) == "frc\(teamNumber)"{
-//                cell.blueOneLabel.layer.backgroundColor = UIColor(red: 196/255.0, green: 196/255.0, blue: 196/255.0, alpha: 1.0).cgColor
-//                cell.blueOneLabel.layer.cornerRadius = 4
-//                cell.blueOneLabel.layer.masksToBounds = true
-//            }
-//            if (blueTeams.array![1].rawValue as! String) == "frc\(teamNumber)"{
-//                cell.blueTwoLabel.layer.backgroundColor = UIColor(red: 196/255.0, green: 196/255.0, blue: 196/255.0, alpha: 1.0).cgColor
-//                cell.blueTwoLabel.layer.cornerRadius = 4
-//                cell.blueTwoLabel.layer.masksToBounds = true
-//            }
-//            if (blueTeams.array![2].rawValue as! String) == "frc\(teamNumber)"{
-//                cell.blueThreeLabel.layer.backgroundColor = UIColor(red: 196/255.0, green: 196/255.0, blue: 196/255.0, alpha: 1.0).cgColor
-//                cell.blueThreeLabel.layer.cornerRadius = 4
-//                cell.blueThreeLabel.layer.masksToBounds = true
-//            }
-//            if (redTeams.array![0].rawValue as! String) == "frc\(teamNumber)"{
-//                cell.redOneLabel.layer.backgroundColor = UIColor(red: 196/255.0, green: 196/255.0, blue: 196/255.0, alpha: 1.0).cgColor
-//                cell.redOneLabel.layer.cornerRadius = 4
-//                cell.redOneLabel.layer.masksToBounds = true
-//            }
-//            if (redTeams.array![1].rawValue as! String) == "frc\(teamNumber)"{
-//                cell.redTwoLabel.layer.backgroundColor = UIColor(red: 196/255.0, green: 196/255.0, blue: 196/255.0, alpha: 1.0).cgColor
-//                cell.redTwoLabel.layer.cornerRadius = 4
-//                cell.redTwoLabel.layer.masksToBounds = true
-//            }
-//            if (redTeams.array![2].rawValue as! String) == "frc\(teamNumber)"{
-//                cell.redThreeLabel.layer.backgroundColor = UIColor(red: 196/255.0, green: 196/255.0, blue: 196/255.0, alpha: 1.0).cgColor
-//                cell.redThreeLabel.layer.cornerRadius = 4
-//                cell.redThreeLabel.layer.masksToBounds = true
-//            }
             
             
             

@@ -41,6 +41,8 @@
 		FAD2B678210E552D00320DFB /* NoteTemplateCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD2B677210E552D00320DFB /* NoteTemplateCellView.swift */; };
 		FAD2B67C210E59FB00320DFB /* NumpadTemplateCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD2B67B210E59FB00320DFB /* NumpadTemplateCellView.swift */; };
 		FAD2B67E210E691200320DFB /* ScoutTemplateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD2B67D210E691200320DFB /* ScoutTemplateCell.swift */; };
+		FADA6D112110D00F00C78618 /* MatchesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADA6D102110D00F00C78618 /* MatchesController.swift */; };
+		FADA6D152110D93900C78618 /* filter-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = FADA6D142110D93800C78618 /* filter-icon.png */; };
 		FADCDA45210EEA790044E841 /* NoteCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADCDA44210EEA790044E841 /* NoteCellView.swift */; };
 		FADCDA47210EEA880044E841 /* StepperCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADCDA46210EEA880044E841 /* StepperCellView.swift */; };
 		FADCDA49210EEA980044E841 /* SwitchCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADCDA48210EEA980044E841 /* SwitchCellView.swift */; };
@@ -101,6 +103,8 @@
 		FAD2B677210E552D00320DFB /* NoteTemplateCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTemplateCellView.swift; sourceTree = "<group>"; };
 		FAD2B67B210E59FB00320DFB /* NumpadTemplateCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumpadTemplateCellView.swift; sourceTree = "<group>"; };
 		FAD2B67D210E691200320DFB /* ScoutTemplateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoutTemplateCell.swift; sourceTree = "<group>"; };
+		FADA6D102110D00F00C78618 /* MatchesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesController.swift; sourceTree = "<group>"; };
+		FADA6D142110D93800C78618 /* filter-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "filter-icon.png"; sourceTree = "<group>"; };
 		FADCDA44210EEA790044E841 /* NoteCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteCellView.swift; sourceTree = "<group>"; };
 		FADCDA46210EEA880044E841 /* StepperCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepperCellView.swift; sourceTree = "<group>"; };
 		FADCDA48210EEA980044E841 /* SwitchCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchCellView.swift; sourceTree = "<group>"; };
@@ -240,6 +244,7 @@
 				FAB0598C2108F43400ABED45 /* Controllers */,
 				FAB059862108F34400ABED45 /* Info.plist */,
 				FAB059812108F34300ABED45 /* Assets.xcassets */,
+				FADA6D142110D93800C78618 /* filter-icon.png */,
 				FAB0598E2108F4B800ABED45 /* GoogleService-Info.plist */,
 				FAB0597E2108F34100ABED45 /* Scoutable.xcdatamodeld */,
 			);
@@ -317,6 +322,7 @@
 				FAE975D1210BC32A00E2A951 /* EventsController.swift */,
 				FAE975CD210BBFC700E2A951 /* YourEventsController.swift */,
 				FAE975D3210BCF3F00E2A951 /* IndividualEventController.swift */,
+				FADA6D102110D00F00C78618 /* MatchesController.swift */,
 			);
 			path = Events;
 			sourceTree = "<group>";
@@ -417,6 +423,7 @@
 			files = (
 				FAB059852108F34300ABED45 /* LaunchScreen.storyboard in Resources */,
 				FAB0598F2108F4B800ABED45 /* GoogleService-Info.plist in Resources */,
+				FADA6D152110D93900C78618 /* filter-icon.png in Resources */,
 				FAB059822108F34300ABED45 /* Assets.xcassets in Resources */,
 				FAE11505210907D600BAEFB7 /* Login.storyboard in Resources */,
 				FAB0597D2108F34100ABED45 /* Main.storyboard in Resources */,
@@ -522,6 +529,7 @@
 				FAE975C8210B9F9300E2A951 /* BADistrict.swift in Sources */,
 				FAB059802108F34100ABED45 /* Scoutable.xcdatamodeld in Sources */,
 				FA17B68E21093F1F005FEF30 /* ScoutTeamService.swift in Sources */,
+				FADA6D112110D00F00C78618 /* MatchesController.swift in Sources */,
 				FAE975C6210B9EFA00E2A951 /* DistrictCellView.swift in Sources */,
 				FAE1343D210CEDFE00CF69BE /* MatchCellView.swift in Sources */,
 				FAE1344D210D061400CF69BE /* EventTeamCellView.swift in Sources */,

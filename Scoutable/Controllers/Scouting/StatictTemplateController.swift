@@ -153,7 +153,47 @@ class StaticTemplateController: UITableViewController{
         }
     }
     
-    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            // Declare Alert message
+            let dialogMessage = UIAlertController(title: "Confirm", message: "Are you sure you want to delete this?", preferredStyle: .alert)
+            
+            let ghost = UIAlertAction(title: "Ghost", style: .default, handler: { (action) -> Void in
+                print("Ghost button tapped")
+                ScoutDataService.ghostStaticTemplateCell(cellID: self.loadedCells![indexPath.row].cellID, year: 2018, complete: { (error) in
+                    if let error = error{
+                        print(error)
+                    }
+                    DispatchQueue.main.async {
+                        tableView.reloadData()
+                    }
+                })
+            })
+            
+            let delete = UIAlertAction(title: "Delete", style: .destructive) { (action) -> Void in
+                print("Delete button tapped")
+                ScoutDataService.deleteStaticCells(cellID: self.loadedCells![indexPath.row].cellID, year: Constants.currentYearConstant, complete: { (error) in
+                    if let error = error{
+                        print(error)
+                    }
+                    DispatchQueue.main.async {
+                        tableView.reloadData()
+                    }
+                })
+            }
+            
+            let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
+                print("Cancel button tapped")
+            }
+            
+            dialogMessage.addAction(ghost)
+            dialogMessage.addAction(cancel)
+            dialogMessage.addAction(delete)
+            
+            // Present dialog message to user
+            self.present(dialogMessage, animated: true, completion: nil)
+        }
+    }
 }
 
 

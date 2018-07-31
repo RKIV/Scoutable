@@ -14,9 +14,18 @@ class StaticScoutingController: UIViewController{
     var regularCells: [ScoutCell]?
     var ghostCells: [ScoutCell]?
     @IBOutlet weak var scoutingTableView: UITableView!
+    @IBOutlet weak var editTemplateButton: UIButton!
+    
     
     override func viewDidLoad() {
         super .viewDidLoad()
+        if User.current != nil && (User.current?.isLeader)!{
+            editTemplateButton.isHidden = false
+            editTemplateButton.isUserInteractionEnabled = true
+        } else {
+            editTemplateButton.isHidden = true
+            editTemplateButton.isUserInteractionEnabled = false
+        }
         scoutingTableView.dataSource = self
         scoutingTableView.delegate = self
         ScoutDataService.getStaticScoutData(forTeam: teamNumber!, andYear: Constants.currentYearConstant) { (regularCells, ghostCells) in
@@ -28,6 +37,16 @@ class StaticScoutingController: UIViewController{
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super . viewWillAppear(animated)
+        ScoutDataService.getStaticScoutData(forTeam: teamNumber!, andYear: Constants.currentYearConstant) { (regularCells, ghostCells) in
+            self.regularCells = regularCells
+            self.ghostCells = ghostCells
+            DispatchQueue.main.async {
+                self.scoutingTableView.reloadData()
+            }
+        }
+    }
     
 }
 
@@ -138,6 +157,20 @@ extension StaticScoutingController: UITableViewDelegate, UITableViewDataSource{
         default:
             return 65
         }
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let v = UIView(frame: CGRect(x: 0, y:0, width: tableView.frame.width, height: 30))
+        v.backgroundColor = .lightGray
+        let label = UILabel(frame: CGRect(x: 8.0, y: 4.0, width: v.bounds.size.width - 16.0, height: v.bounds.size.height - 8.0))
+        label.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        if section == 0{
+            label.text = "Template Fields"
+        } else {
+            label.text = "Ghosted Fields"
+        }
+        v.addSubview(label)
+        return v
     }
     
     

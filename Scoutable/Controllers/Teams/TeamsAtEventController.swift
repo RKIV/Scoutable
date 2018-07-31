@@ -62,6 +62,11 @@ class TeamsAtEventController: UIViewController {
 
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destination = segue.destination as! MatchesController
+        destination.eventKey = eventKey
+    }
+    
 }
 
 extension TeamsAtEventController: UITableViewDataSource{

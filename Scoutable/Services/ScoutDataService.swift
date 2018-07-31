@@ -15,7 +15,7 @@ struct ScoutDataService{
     static func addStaticTemplateCell(_ fieldName: String, fieldType : FieldTypes, year: Int, complete: @escaping (_ cellID: String?, _ error: String?) -> ()){
         if (User.current?.hasTeam)! && (User.current?.isLeader)!{
             let scoutTeam = User.current?.scoutTeam
-            let ref = Database.database().reference().child("scoutTeams").child(scoutTeam!).child("templates").child(String(year)).child("static").childByAutoId()
+            let ref = Database.database().reference().child("scoutTeams").child(scoutTeam!).child("templates").child(String(year)).child("static").child("activeCells").childByAutoId()
             ref.updateChildValues(["name" : fieldName, "type" : fieldType.rawValue])
             complete(ref.key, nil)
         } else {
@@ -24,13 +24,16 @@ struct ScoutDataService{
     }
     
     
-    static func removeStaticTemplateCell(cellID: String, year: Int, complete: @escaping (_ error: String?) -> ()){
+    static func ghostStaticTemplateCell(cellID: String, year: Int, complete: @escaping (_ error: String?) -> ()){
         if (User.current?.hasTeam)! && (User.current?.isLeader)!{
             let scoutTeam = User.current?.scoutTeam
-            let ref = Database.database().reference().child("scoutTeams").child(scoutTeam!).child("templates").child(String(year)).child("static")
+            let ref = Database.database().reference().child("scoutTeams").child(scoutTeam!).child("templates").child(String(year)).child("static").child("activeCells")
+            let ghostRef = Database.database().reference().child("scoutTeams").child(scoutTeam!).child("templates").child(String(year)).child("ghostedCells")
             ref.observeSingleEvent(of: .value) { (snapshot) in
                 if snapshot.hasChild(cellID){
+                    let templateCell = ScoutTemplateCell(snapshot: snapshot.childSnapshot(forPath: cellID))
                     ref.child(cellID).removeValue()
+                    ghostRef.child(cellID).updateChildValues(["name" : templateCell?.name, "type" : templateCell?.type])
                     complete(nil)
                 } else {
                     complete("Cell Doesn't Exist")
@@ -41,10 +44,37 @@ struct ScoutDataService{
         }
     }
     
+    static func deleteStaticCells(cellID: String, year: Int, complete: @escaping (_ error: String?) -> ()){
+        if (User.current?.hasTeam)! && (User.current?.isLeader)!{
+            let scoutTeam = User.current?.scoutTeam
+            let dataReference = Database.database().reference().child("scoutTeams").child(scoutTeam!).child("data").child(String(year))
+            let templateReference = Database.database().reference().child("scoutTeams").child(scoutTeam!).child("templates").child(String(year)).child("static").child("activeCells")
+            templateReference.observe(.value) { (templateSnapshot) in
+                if templateSnapshot.hasChild(cellID){
+                    templateReference.child(cellID).removeValue()
+                    dataReference.observeSingleEvent(of: .value, with: { (dataSnapshot) in
+                        for roboticsTeam in dataSnapshot.children.allObjects as! [DataSnapshot]{
+                            let cells = roboticsTeam.childSnapshot(forPath: "static").value as! [String : Any]
+                            for cell in cells{
+                                if cell.key == cellID{
+                                    dataReference.child("static").child(cell.key).removeValue()
+                                }
+                            }
+                            complete(nil)
+                        }
+                    })
+                    
+                } else {
+                    complete("Cell doesn't exist")
+                }
+            }
+        }
+    }
+    
     static func editStaticTemplateCell(to newFieldName: String, cellID: String, year: Int, complete: @escaping (_ error: String?) -> ()){
         if (User.current?.hasTeam)! && (User.current?.isLeader)!{
             let scoutTeam = User.current?.scoutTeam
-            let ref = Database.database().reference().child("scoutTeams").child(scoutTeam!).child("templates").child(String(year)).child("static")
+            let ref = Database.database().reference().child("scoutTeams").child(scoutTeam!).child("templates").child(String(year)).child("static").child("activeCells")
             ref.observeSingleEvent(of: .value) { (snapshot) in
                 if snapshot.hasChild(cellID){
                     ref.child(cellID).child("name").setValue(newFieldName)
@@ -61,7 +91,7 @@ struct ScoutDataService{
     static func getStaticTemplate(year: Int, complete: @escaping ([ScoutTemplateCell]?, _ error: String?) -> ()){
         if (User.current?.hasTeam)!{
             let scoutTeam = User.current?.scoutTeam
-            let ref = Database.database().reference().child("scoutTeams").child(scoutTeam!).child("templates").child(String(year)).child("static")
+            let ref = Database.database().reference().child("scoutTeams").child(scoutTeam!).child("templates").child(String(year)).child("static").child("activeCells")
             ref.observeSingleEvent(of: .value) { (snapshot) in
                 
                 let cells = snapshot.children.map{ScoutTemplateCell(snapshot: $0 as! DataSnapshot)}
@@ -77,9 +107,10 @@ struct ScoutDataService{
         dataRef.updateChildValues(["type" : type as Any, "name" : name as Any, "value" : value])
     }
     
+    
     static func getStaticScoutData(forTeam roboticsTeam: Int, andYear year: Int, complete: @escaping (_ regularCells: [ScoutCell], _ ghostCells: [ScoutCell]) -> ()){
         let dataRef = Database.database().reference().child("scoutTeams").child((User.current?.scoutTeam)!).child("data").child(String(year)).child(String(roboticsTeam)).child("static")
-        let templateRef = Database.database().reference().child("scoutTeams").child((User.current?.scoutTeam)!).child("templates").child(String(year)).child("static")
+        let templateRef = Database.database().reference().child("scoutTeams").child((User.current?.scoutTeam)!).child("templates").child(String(year)).child("static").child("activeCells")
         var missingFields = [DataSnapshot]()
         var ghostFields = [DataSnapshot]()
         var matchingFields = [DataSnapshot]()
@@ -91,7 +122,7 @@ struct ScoutDataService{
                 let dataFieldKeys = (dataSnapshot.children.allObjects as! [DataSnapshot]).map{$0.key}
                 let templateFieldKeys = (templateSnapshot.children.allObjects as! [DataSnapshot]).map{$0.key}
                 if dataSnapshot.hasChildren(){
-                    matchingFields = (templateSnapshot.children.allObjects as! [DataSnapshot]).filter{dataFieldKeys.contains($0.key)}
+                    matchingFields = (dataSnapshot.children.allObjects as! [DataSnapshot]).filter{templateFieldKeys.contains($0.key)}
                     missingFields = (templateSnapshot.children.allObjects as! [DataSnapshot]).filter{!dataFieldKeys.contains($0.key)}
                     ghostFields = (dataSnapshot.children.allObjects as! [DataSnapshot]).filter{!templateFieldKeys.contains($0.key)}
                 } else {
