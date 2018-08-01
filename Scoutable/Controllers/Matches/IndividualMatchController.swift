@@ -16,11 +16,23 @@ class IndividualMatchController: UIViewController{
     var eventKey: String?
     @IBOutlet weak var matchNameLabel: UILabel!
     @IBOutlet weak var eventNameLabel: UILabel!
-    @IBOutlet weak var teamsStackView: UIStackView!
     @IBOutlet weak var redScoreLabel: UILabel!
     @IBOutlet weak var blueScoreLabel: UILabel!
     @IBOutlet weak var statsTableView: UITableView!
     @IBOutlet weak var statsTableViewHeight: NSLayoutConstraint!
+    
+    @IBOutlet weak var redOneLabel: UILabel!
+    @IBOutlet weak var redTwoLabel: UILabel!
+    @IBOutlet weak var redThreeLabel: UILabel!
+    @IBOutlet weak var redOneRankLabel: UILabel!
+    @IBOutlet weak var redTwoRankLabel: UILabel!
+    @IBOutlet weak var redThreeRankLabel: UILabel!
+    @IBOutlet weak var blueOneLabel: UILabel!
+    @IBOutlet weak var blueTwoLabel: UILabel!
+    @IBOutlet weak var blueThreeLabel: UILabel!
+    @IBOutlet weak var blueOneRankLabel: UILabel!
+    @IBOutlet weak var blueTwoRankLabel: UILabel!
+    @IBOutlet weak var blueThreeRankLabel: UILabel!
     
     override func viewDidLoad() {
         super .viewDidLoad()
@@ -35,38 +47,41 @@ class IndividualMatchController: UIViewController{
                 self.statsTableView.reloadData()
                 self.statsTableViewHeight.constant = CGFloat(self.match!["score_breakdown"]["blue"].count * 88 + 120)
             }
-            var stackViewCount = 0
             BlueAllianceAPIService.rankings(forEvent: self.eventKey!) { (data) in
                 let teams = data["rankings"].array
+                let redTeamKeys = self.match!["alliances"]["red"]["team_keys"]
+                let blueTeamKeys = self.match!["alliances"]["blue"]["team_keys"]
                 DispatchQueue.main.async {
-                    for stackView in self.teamsStackView.subviews as [UIView] {
-                        if let stackView = stackView as? UIStackView{
-                            var labelCount = 0
-                            for label in stackView.subviews as [UIView]{
-                                if let label = label as? UILabel{
-                                    if labelCount == 0{
-                                        if stackViewCount < 3{
-                                            DispatchQueue.main.async {
-                                                label.text = self.match!["alliances"]["red"][stackViewCount].rawString()
-                                            }
-                                        } else {
-                                            DispatchQueue.main.async {
-                                                label.text = self.match!["alliances"]["blue"][stackViewCount - 3].rawString()
-                                            }
-                                        }
-                                    } else {
-                                        DispatchQueue.main.async {
-                                            label.text = String(teams?.filter{$0["team_key"].rawString() == self.match!["alliances"][stackViewCount < 3 ? "red" : "blue"]["team_keys"].array![0].rawString()}[0]["rank"].rawValue as! Int)
-                                        }
-                                    }
-                                }
-                                labelCount += 1
-                            }
-                        }
-                        stackViewCount += 1
+                    self.redOneLabel.text = String((redTeamKeys[0].rawString()?.split(separator: "c")[1])!)
+                    self.redTwoLabel.text = String((redTeamKeys[1].rawString()?.split(separator: "c")[1])!)
+                    self.redThreeLabel.text = String((redTeamKeys[2].rawString()?.split(separator: "c")[1])!)
+                    self.blueOneLabel.text = String((blueTeamKeys[0].rawString()?.split(separator: "c")[1])!)
+                    self.blueTwoLabel.text = String((blueTeamKeys[1].rawString()?.split(separator: "c")[1])!)
+                    self.blueThreeLabel.text = String((blueTeamKeys[2].rawString()?.split(separator: "c")[1])!)
+                    self.redOneRankLabel.text = String(teams?.filter{$0["team_key"].rawString() == redTeamKeys[0].rawString()}[0]["rank"].rawValue as! Int)
+                    self.redTwoRankLabel.text = String(teams?.filter{$0["team_key"].rawString() == redTeamKeys[1].rawString()}[0]["rank"].rawValue as! Int)
+                    self.redThreeRankLabel.text = String(teams?.filter{$0["team_key"].rawString() == redTeamKeys[2].rawString()}[0]["rank"].rawValue as! Int)
+                    self.blueOneRankLabel.text = String(teams?.filter{$0["team_key"].rawString() == blueTeamKeys[0].rawString()}[0]["rank"].rawValue as! Int)
+                    self.blueTwoRankLabel.text = String(teams?.filter{$0["team_key"].rawString() == blueTeamKeys[1].rawString()}[0]["rank"].rawValue as! Int)
+                    self.blueThreeRankLabel.text = String(teams?.filter{$0["team_key"].rawString() == blueTeamKeys[2].rawString()}[0]["rank"].rawValue as! Int)
+                    self.redScoreLabel.text = self.match!["alliances"]["red"]["score"].rawString()
+                    self.blueScoreLabel.text = self.match!["alliances"]["blue"]["score"].rawString()
+                    if self.match!["comp_level"].rawString() == "f"{
+                        self.matchNameLabel.text = "Final \(self.match!["match_number"])"
+                    } else if self.match!["comp_level"].rawString() == "sf"{
+                        self.matchNameLabel.text = "Semifinal \(self.match!["match_number"]).\(self.match!["set_number"])"
+                    } else if self.match!["comp_level"].rawString() == "qf"{
+                        self.matchNameLabel.text = "Semifinal \(self.match!["match_number"]).\(self.match!["set_number"])"
+                    } else {
+                        self.matchNameLabel.text = "Qualifier \(self.match!["match_number"])"
                     }
                 }
             }
+            BlueAllianceAPIService.event(forEventKey: self.eventKey!, done: { (data) in
+                DispatchQueue.main.async {
+                    self.eventNameLabel.text = "\(data["short_name"].rawString() ?? "Event") -- \(data["district"]["display_name"].rawString() ?? "District")"
+                }
+            })
         }
     }
 }

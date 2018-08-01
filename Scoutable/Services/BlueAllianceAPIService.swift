@@ -87,6 +87,14 @@ struct BlueAllianceAPIService{
         }
     }
     
+    static func event(forEventKey eventKey: String, done: @escaping (JSON) -> ()){
+        let urlString = "\(baseURL)/event/\(eventKey)\(authKey)"
+        guard let url = URL(string: urlString) else {return}
+        swiftyJson(forURL: url) { (swiftyData) in
+            done(swiftyData)
+        }
+    }
+    
     // MARK: Get Districts
     static func districtsList(forYear year: Int, done: @escaping ([JSON]) -> ()){
         let now = Date()
