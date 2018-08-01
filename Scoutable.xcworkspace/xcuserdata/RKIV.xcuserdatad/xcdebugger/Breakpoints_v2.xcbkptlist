@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Scoutable/Models/ScoutCell.swift"
-            timestampString = "554775071.838861"
+            timestampString = "554777097.428142"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "21"
@@ -25,13 +25,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Scoutable/Services/ScoutDataService.swift"
-            timestampString = "554775071.839457"
+            filePath = "Scoutable/Controllers/Teams/TeamsAtEventController.swift"
+            timestampString = "554777097.429278"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "133"
-            endingLineNumber = "133"
-            landmarkName = "getStaticScoutData(forTeam:andYear:complete:)"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
+            landmarkName = "loadTeams(complete:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -41,30 +41,142 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Scoutable/Controllers/Scouting/StatictTemplateController.swift"
-            timestampString = "554775071.8398089"
+            filePath = "Scoutable/Services/ScoutDataService.swift"
+            timestampString = "554842546.071195"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "176"
-            endingLineNumber = "176"
-            landmarkName = "tableView(_:commit:forRowAt:)"
+            startingLineNumber = "300"
+            endingLineNumber = "300"
+            landmarkName = "getDynamicScoutData(forTeam:andMatch:complete:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (__ObjC.DataSnapshot) -&gt; () in closure #1 (__ObjC.DataSnapshot) -&gt; () in static Scoutable.ScoutDataService.getDynamicScoutData(forTeam: Swift.Int, andMatch: Swift.String, complete: (Swift.Array&lt;Scoutable.ScoutCell&gt;, Swift.Array&lt;Scoutable.ScoutCell&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Scoutable"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/RKIV/Documents/Projects/Xcode/Scoutable/Scoutable/Services/ScoutDataService.swift"
+                  timestampString = "554840394.97323"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "292"
+                  endingLineNumber = "292"
+                  offsetFromSymbolStart = "8222">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #6 (__ObjC.DataSnapshot) -&gt; Scoutable.ScoutCell in closure #1 (__ObjC.DataSnapshot) -&gt; () in closure #1 (__ObjC.DataSnapshot) -&gt; () in static Scoutable.ScoutDataService.getDynamicScoutData(forTeam: Swift.Int, andMatch: Swift.String, complete: (Swift.Array&lt;Scoutable.ScoutCell&gt;, Swift.Array&lt;Scoutable.ScoutCell&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Scoutable"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/RKIV/Documents/Projects/Xcode/Scoutable/Scoutable/Services/ScoutDataService.swift"
+                  timestampString = "554840394.97526"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "292"
+                  endingLineNumber = "292"
+                  offsetFromSymbolStart = "27">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Scoutable/Controllers/Teams/TeamsAtEventController.swift"
-            timestampString = "554775071.840139"
+            filePath = "Scoutable/Services/ScoutDataService.swift"
+            timestampString = "554842546.071846"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "55"
-            endingLineNumber = "55"
-            landmarkName = "loadTeams(complete:)"
+            startingLineNumber = "274"
+            endingLineNumber = "274"
+            landmarkName = "getDynamicScoutData(forTeam:andMatch:complete:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (__ObjC.DataSnapshot) -&gt; () in closure #1 (__ObjC.DataSnapshot) -&gt; () in static Scoutable.ScoutDataService.getDynamicScoutData(forTeam: Swift.Int, andMatch: Swift.String, complete: (Swift.Array&lt;Scoutable.ScoutCell&gt;, Swift.Array&lt;Scoutable.ScoutCell&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Scoutable"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/RKIV/Documents/Projects/Xcode/Scoutable/Scoutable/Services/ScoutDataService.swift"
+                  timestampString = "554840506.7663"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "266"
+                  endingLineNumber = "266"
+                  offsetFromSymbolStart = "133">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (__ObjC.DataSnapshot) -&gt; Swift.String in closure #1 (__ObjC.DataSnapshot) -&gt; () in closure #1 (__ObjC.DataSnapshot) -&gt; () in static Scoutable.ScoutDataService.getDynamicScoutData(forTeam: Swift.Int, andMatch: Swift.String, complete: (Swift.Array&lt;Scoutable.ScoutCell&gt;, Swift.Array&lt;Scoutable.ScoutCell&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Scoutable"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/RKIV/Documents/Projects/Xcode/Scoutable/Scoutable/Services/ScoutDataService.swift"
+                  timestampString = "554840506.769241"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "266"
+                  endingLineNumber = "266"
+                  offsetFromSymbolStart = "12">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Scoutable/Services/ScoutDataService.swift"
+            timestampString = "554842546.072132"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "273"
+            endingLineNumber = "273"
+            landmarkName = "getDynamicScoutData(forTeam:andMatch:complete:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (__ObjC.DataSnapshot) -&gt; () in static Scoutable.ScoutDataService.getDynamicScoutData(forTeam: Swift.Int, andMatch: Swift.String, complete: (Swift.Array&lt;Scoutable.ScoutCell&gt;, Swift.Array&lt;Scoutable.ScoutCell&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Scoutable"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/RKIV/Documents/Projects/Xcode/Scoutable/Scoutable/Services/ScoutDataService.swift"
+                  timestampString = "554840601.512097"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "265"
+                  endingLineNumber = "265"
+                  offsetFromSymbolStart = "109">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (__ObjC.DataSnapshot) -&gt; () in closure #1 (__ObjC.DataSnapshot) -&gt; () in static Scoutable.ScoutDataService.getDynamicScoutData(forTeam: Swift.Int, andMatch: Swift.String, complete: (Swift.Array&lt;Scoutable.ScoutCell&gt;, Swift.Array&lt;Scoutable.ScoutCell&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Scoutable"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/RKIV/Documents/Projects/Xcode/Scoutable/Scoutable/Services/ScoutDataService.swift"
+                  timestampString = "554840601.515541"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "260"
+                  endingLineNumber = "260"
+                  offsetFromSymbolStart = "57">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

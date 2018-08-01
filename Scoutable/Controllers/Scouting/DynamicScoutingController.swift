@@ -1,21 +1,22 @@
 //
-//  StaticScoutingController.swift
+//  DynamicScoutingController.swift
 //  Scoutable
 //
-//  Created by Robert Keller on 7/26/18.
+//  Created by Robert Keller on 7/31/18.
 //  Copyright © 2018 RKIV. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-class StaticScoutingController: UIViewController{
-    var teamNumber: Int?
-    var regularCells: [ScoutCell]?
-    var ghostCells: [ScoutCell]?
+class DynamicScoutingController: UIViewController{
+    
     @IBOutlet weak var scoutingTableView: UITableView!
     @IBOutlet weak var editTemplateButton: UIButton!
-    
+    var teamNumber: Int?
+    var matchID: String?
+    var regularCells: [ScoutCell]?
+    var ghostCells: [ScoutCell]?
     
     override func viewDidLoad() {
         super .viewDidLoad()
@@ -28,18 +29,19 @@ class StaticScoutingController: UIViewController{
         }
         scoutingTableView.dataSource = self
         scoutingTableView.delegate = self
-        ScoutDataService.getStaticScoutData(forTeam: teamNumber!, andYear: Constants.currentYearConstant) { (regularCells, ghostCells) in
+        ScoutDataService.getDynamicScoutData(forTeam: teamNumber!, andMatch: matchID!) { (regularCells, ghostCells) in
             self.regularCells = regularCells
             self.ghostCells = ghostCells
             DispatchQueue.main.async {
                 self.scoutingTableView.reloadData()
             }
         }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super . viewWillAppear(animated)
-        ScoutDataService.getStaticScoutData(forTeam: teamNumber!, andYear: Constants.currentYearConstant) { (regularCells, ghostCells) in
+        ScoutDataService.getDynamicScoutData(forTeam: teamNumber!, andMatch: matchID!) { (regularCells, ghostCells) in
             self.regularCells = regularCells
             self.ghostCells = ghostCells
             DispatchQueue.main.async {
@@ -48,9 +50,15 @@ class StaticScoutingController: UIViewController{
         }
     }
     
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destination = segue.destination as! DynamicTemplateController
+        destination.matchID = matchID
+    }
+    
 }
 
-extension StaticScoutingController: UITableViewDelegate, UITableViewDataSource{
+extension DynamicScoutingController: UITableViewDataSource,  UITableViewDelegate{
     func numberOfSections(in tableView: UITableView) -> Int {
         if ghostCells != nil && ghostCells?.count != 0{
             return 2
@@ -73,7 +81,7 @@ extension StaticScoutingController: UITableViewDelegate, UITableViewDataSource{
             return 0
         }
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var theCell: ScoutCell?
         switch indexPath.section{
@@ -95,11 +103,15 @@ extension StaticScoutingController: UITableViewDelegate, UITableViewDataSource{
                 cell.switchBool.isOn = switchIsOn
             }
             cell.cellID = theCell!.cellID
+            cell.dynamic = true
+            cell.matchID = matchID
             return cell
         case FieldTypes.NumberPad.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: "numpadCell") as! NumpadCellView
             cell.titleLabel.text = theCell!.name
             cell.cellID = theCell!.cellID
+            cell.dynamic = true
+            cell.matchID = matchID
             cell.roboticsTeam = teamNumber
             if let numData = theCell!.numberData{
                 cell.numpadeTextField.text = String(numData)
@@ -109,6 +121,8 @@ extension StaticScoutingController: UITableViewDelegate, UITableViewDataSource{
             let cell = tableView.dequeueReusableCell(withIdentifier: "stepperCell") as! StepperCellView
             cell.titleLabel.text = theCell!.name
             cell.cellID = theCell!.cellID
+            cell.dynamic = true
+            cell.matchID = matchID
             cell.roboticsTeam = teamNumber
             if let numData = theCell!.numberData{
                 cell.stepperLabel.text = String(numData)
@@ -123,6 +137,8 @@ extension StaticScoutingController: UITableViewDelegate, UITableViewDataSource{
             cell.titleLabel.text = theCell!.name
             cell.noteTextView.delegate = cell
             cell.cellID = theCell!.cellID
+            cell.dynamic = true
+            cell.matchID = matchID
             cell.roboticsTeam = teamNumber
             if let textData = theCell!.textViewData{
                 cell.noteTextView.text = textData
@@ -171,6 +187,6 @@ extension StaticScoutingController: UITableViewDelegate, UITableViewDataSource{
         v.addSubview(label)
         return v
     }
-    
-    
+
+
 }

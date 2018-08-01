@@ -1,21 +1,23 @@
 //
-//  StatictTemplateController.swift
+//  DynamicTemplateController.swift
 //  Scoutable
 //
-//  Created by Robert Keller on 7/29/18.
+//  Created by Robert Keller on 8/1/18.
 //  Copyright © 2018 RKIV. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-class StaticTemplateController: UITableViewController{
+class DynamicTemplateController: UITableViewController{
     @IBOutlet var addCellView: UIView!
     @IBOutlet weak var cellTypePicker: UIPickerView!
     @IBOutlet weak var intialTitleTextField: UITextField!
     var loadedCells: [ScoutTemplateCell]?
+    var matchID: String?
     
     override func viewDidLoad() {
+        super .viewDidLoad()
         super .viewDidLoad()
         cellTypePicker.dataSource = self
         cellTypePicker.delegate = self
@@ -24,11 +26,10 @@ class StaticTemplateController: UITableViewController{
             self.tableView.reloadData()
         }
         tableView.keyboardDismissMode = .onDrag
-        
     }
     
     func loadCells(complete: @escaping () ->()){
-        ScoutDataService.getStaticTemplate(year: Constants.currentYearConstant) { (cells, error) in
+        ScoutDataService.getDynamicTemplate(year: Int((matchID?.prefix(4))!)!) { (cells, error) in
             if let error = error{
                 print(error)
                 return
@@ -50,6 +51,7 @@ class StaticTemplateController: UITableViewController{
             self.addCellView.transform = CGAffineTransform.identity
         }
     }
+    
     func animateAddCellViewOut(){
         UIView.animate(withDuration: 0.3, animations: {
             self.addCellView.transform = CGAffineTransform.init(scaleX: 1.3, y: 1.3)
@@ -59,6 +61,7 @@ class StaticTemplateController: UITableViewController{
             self.addCellView.removeFromSuperview()
         }
     }
+    
     @IBAction func addCellButtonTapped(_ sender: Any) {
         animateAddCellViewIn()
     }
@@ -78,7 +81,7 @@ class StaticTemplateController: UITableViewController{
         default:
             print("Unexpected Row")
         }
-        ScoutDataService.addStaticTemplateCell(intialTitleTextField.text!, fieldType: type!, year: Constants.currentYearConstant) { (cellID, error) in
+        ScoutDataService.addDynamicTemplateCell(intialTitleTextField.text!, fieldType: type!, year: Int((matchID?.prefix(4))!)!) { (cellID, error) in
             self.loadedCells?.append(ScoutTemplateCell(cellID: cellID!, type: (type?.rawValue)!, name: self.intialTitleTextField.text!))
             self.tableView.reloadData()
             self.animateAddCellViewOut()
@@ -88,9 +91,8 @@ class StaticTemplateController: UITableViewController{
     
     @IBAction func saveButtonTapped(_ sender: Any) {
         
-         _ = navigationController?.popViewController(animated: true)
+        _ = navigationController?.popViewController(animated: true)
     }
-    
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if loadedCells != nil{
@@ -160,7 +162,7 @@ class StaticTemplateController: UITableViewController{
             
             let ghost = UIAlertAction(title: "Ghost", style: .default, handler: { (action) -> Void in
                 print("Ghost button tapped")
-                ScoutDataService.ghostStaticTemplateCell(cellID: self.loadedCells![indexPath.row].cellID, year: Constants.currentYearConstant, complete: { (error) in
+                ScoutDataService.ghostDynamicTemplateCell(cellID: self.loadedCells![indexPath.row].cellID, year: Int((self.matchID?.prefix(4))!)!, complete: { (error) in
                     if let error = error{
                         print(error)
                     }
@@ -174,7 +176,7 @@ class StaticTemplateController: UITableViewController{
             
             let delete = UIAlertAction(title: "Delete", style: .destructive) { (action) -> Void in
                 print("Delete button tapped")
-                ScoutDataService.deleteStaticCells(cellID: self.loadedCells![indexPath.row].cellID, year: Constants.currentYearConstant, complete: { (error) in
+                ScoutDataService.deleteDynamicCells(cellID: self.loadedCells![indexPath.row].cellID, matchID: self.matchID!, complete: { (error) in
                     if let error = error{
                         print(error)
                     }
@@ -183,7 +185,6 @@ class StaticTemplateController: UITableViewController{
                             tableView.reloadData()
                         }
                     }
-                    
                 })
             }
             
@@ -202,7 +203,7 @@ class StaticTemplateController: UITableViewController{
 }
 
 
-extension StaticTemplateController: UIPickerViewDataSource, UIPickerViewDelegate{
+extension DynamicTemplateController: UIPickerViewDataSource, UIPickerViewDelegate{
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -224,6 +225,6 @@ extension StaticTemplateController: UIPickerViewDataSource, UIPickerViewDelegate
             return "Unexpected Row"
         }
     }
-
+    
     
 }

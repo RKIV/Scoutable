@@ -84,6 +84,13 @@ class IndividualMatchController: UIViewController{
             })
         }
     }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destination = segue.destination as! ChooseScoutingTeamController
+        destination.match = match
+        destination.matchKey = matchKey
+    }
+
 }
 
 extension IndividualMatchController: UITableViewDelegate, UITableViewDataSource{
