@@ -58,7 +58,7 @@ struct ScoutDataService{
                             let cells = roboticsTeam.value as! [String : Any]
                             for cell in cells{
                                 if cell.key == cellID{
-                                    dataReference.child(cell.key).removeValue()
+                                    dataReference.child(roboticsTeam.key).child(cell.key).removeValue()
                                 }
                             }
                             complete(nil)
@@ -89,17 +89,20 @@ struct ScoutDataService{
         }
     }
     
-    static func getStaticTemplate(year: Int, complete: @escaping ([ScoutTemplateCell]?, _ error: String?) -> ()){
+    static func getStaticTemplate(year: Int, complete: @escaping (_ activeCells: [ScoutTemplateCell]?,_ ghostedCells: [ScoutTemplateCell]?, _ error: String?) -> ()){
         if (User.current?.hasTeam)!{
             let scoutTeam = User.current?.scoutTeam
-            let ref = Database.database().reference().child("scoutTeams").child(scoutTeam!).child("templates").child("static").child(String(year)).child("activeCells")
-            ref.observeSingleEvent(of: .value) { (snapshot) in
-                
-                let cells = snapshot.children.map{ScoutTemplateCell(snapshot: $0 as! DataSnapshot)}
-                complete(cells as? [ScoutTemplateCell], nil)
+            let activeRef = Database.database().reference().child("scoutTeams").child(scoutTeam!).child("templates").child("static").child(String(year)).child("activeCells")
+            let ghostedRef = Database.database().reference().child("scoutTeams").child(scoutTeam!).child("templates").child("static").child(String(year)).child("ghostedCells")
+            activeRef.observeSingleEvent(of: .value) { (activeSnapshot) in
+                ghostedRef.observeSingleEvent(of: .value, with: { (ghostedSnapshot) in
+                    let activeCells = activeSnapshot.children.map{ScoutTemplateCell(snapshot: $0 as! DataSnapshot)}
+                    let ghostedCells = ghostedSnapshot.children.map{ScoutTemplateCell(snapshot: $0 as! DataSnapshot)}
+                    complete(activeCells as? [ScoutTemplateCell], ghostedCells as? [ScoutTemplateCell], nil)
+                })
             }
         } else {
-            complete(nil, "User doesn't have team")
+            complete(nil, nil, "User doesn't have team")
         }
     }
     
@@ -154,19 +157,50 @@ struct ScoutDataService{
         }
     }
     
+    static func deleteStaticGhostedCell(cellID: String, year: Int, complete: @escaping (_ error: String?) -> ()){
+        if (User.current?.hasTeam)! && (User.current?.isLeader)!{
+            let scoutTeam = User.current?.scoutTeam
+            let dataReference = Database.database().reference().child("scoutTeams").child(scoutTeam!).child("data").child("static").child(String(year))
+            let templateReference = Database.database().reference().child("scoutTeams").child(scoutTeam!).child("templates").child("static").child(String(year)).child("ghostedCells")
+            templateReference.observe(.value) { (templateSnapshot) in
+                if templateSnapshot.hasChild(cellID){
+                    templateReference.child(cellID).removeValue()
+                    dataReference.observeSingleEvent(of: .value, with: { (dataSnapshot) in
+                        for roboticsTeam in dataSnapshot.children.allObjects as! [DataSnapshot]{
+                            let cells = roboticsTeam.value as! [String : Any]
+                            for cell in cells{
+                                if cell.key == cellID{
+                                    dataReference.child(roboticsTeam.key).child(cell.key).removeValue()
+                                }
+                            }
+                            complete(nil)
+                        }
+                    })
+                    
+                } else {
+                    complete("Cell doesn't exist")
+                }
+            }
+        }
+    
+    }
     //MARK: Dynamic
 
-    static func getDynamicTemplate(year: Int, complete: @escaping ([ScoutTemplateCell]?, _ error: String?) -> ()){
+    static func getDynamicTemplate(year: Int, complete: @escaping (_ activeCells: [ScoutTemplateCell]?, _ ghostedCells: [ScoutTemplateCell]?, _ error: String?) -> ()){
         if (User.current?.hasTeam)!{
             let scoutTeam = User.current?.scoutTeam
-            let ref = Database.database().reference().child("scoutTeams").child(scoutTeam!).child("templates").child("dynamic").child(String(year)).child("activeCells")
-            ref.observeSingleEvent(of: .value) { (snapshot) in
+            let activeRef = Database.database().reference().child("scoutTeams").child(scoutTeam!).child("templates").child("dynamic").child(String(year)).child("activeCells")
+            let ghostedRef = Database.database().reference().child("scoutTeams").child(scoutTeam!).child("templates").child("dynamic").child(String(year)).child("ghostedCells")
+            activeRef.observeSingleEvent(of: .value) { (activeSnapshot) in
+                ghostedRef.observeSingleEvent(of: .value) { (ghostedSnapshot) in
+                    let activeCells = activeSnapshot.children.map{ScoutTemplateCell(snapshot: $0 as! DataSnapshot)}
+                    let ghostedCells = ghostedSnapshot.children.map{ScoutTemplateCell(snapshot: $0 as! DataSnapshot)}
+                    complete(activeCells as? [ScoutTemplateCell], ghostedCells as? [ScoutTemplateCell], nil)
                 
-                let cells = snapshot.children.map{ScoutTemplateCell(snapshot: $0 as! DataSnapshot)}
-                complete(cells as? [ScoutTemplateCell], nil)
+                }
             }
         } else {
-            complete(nil, "User doesn't have team")
+            complete(nil, nil, "User doesn't have team")
         }
     }
     
@@ -216,7 +250,7 @@ struct ScoutDataService{
                                     let cells = match.value as! [String : Any]
                                     for cell in cells{
                                         if cell.key == cellID{
-                                            dataReference.child(roboticsTeam.key).child(match.key).child(cell.key).removeValue()
+                                            dataReference.child(roboticsTeam.key).child(match.key).child(roboticsTeam.key).child(cell.key).removeValue()
                                         }
                                     }
                                 }
@@ -304,6 +338,42 @@ struct ScoutDataService{
         }
     }
 
+    static func deleteDynamicGhostedCell(cellID: String, matchID: String, complete: @escaping (_ error: String?) -> ()){
+        if (User.current?.hasTeam)! && (User.current?.isLeader)!{
+            let scoutTeam = User.current?.scoutTeam
+            let dataReference = Database.database().reference().child("scoutTeams").child(scoutTeam!).child("data").child("dynamic")
+            let templateReference = Database.database().reference().child("scoutTeams").child(scoutTeam!).child("templates").child("dynamic").child(String(matchID.prefix(4))).child("ghostedCells")
+            templateReference.observe(.value) { (templateSnapshot) in
+                if templateSnapshot.hasChild(cellID){
+                    templateReference.child(cellID).removeValue()
+                    dataReference.observeSingleEvent(of: .value, with: { (dataSnapshot) in
+                        for roboticsTeam in dataSnapshot.children.allObjects as! [DataSnapshot]{
+                            for match in roboticsTeam.children.allObjects as! [DataSnapshot]{
+                                if match.key.prefix(4) == matchID.prefix(4){
+                                    let cells = match.value as! [String : Any]
+                                    for cell in cells{
+                                        if cell.key == cellID{
+                                            dataReference.child(roboticsTeam.key).child(match.key).child(cell.key).removeValue()
+                                        }
+                                    }
+                                }
+                                let cells = match.value as! [String : Any]
+                                for cell in cells{
+                                    if cell.key == cellID{
+                                        dataReference.child(cell.key).removeValue()
+                                    }
+                                }
+                            }
+                            complete(nil)
+                        }
+                    })
+                    
+                } else {
+                    complete("Cell doesn't exist")
+                }
+            }
+        }
+    }
 }
 
 

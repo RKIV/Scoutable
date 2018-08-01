@@ -13,12 +13,15 @@ class StaticTemplateController: UITableViewController{
     @IBOutlet var addCellView: UIView!
     @IBOutlet weak var cellTypePicker: UIPickerView!
     @IBOutlet weak var intialTitleTextField: UITextField!
-    var loadedCells: [ScoutTemplateCell]?
+    var loadedActiveCells: [ScoutTemplateCell]?
+    var loadedGhostedCells: [ScoutTemplateCell]?
+    
     
     override func viewDidLoad() {
         super .viewDidLoad()
         cellTypePicker.dataSource = self
         cellTypePicker.delegate = self
+        intialTitleTextField.delegate = self
         addCellView.layer.cornerRadius = 6
         loadCells{
             self.tableView.reloadData()
@@ -28,19 +31,21 @@ class StaticTemplateController: UITableViewController{
     }
     
     func loadCells(complete: @escaping () ->()){
-        ScoutDataService.getStaticTemplate(year: Constants.currentYearConstant) { (cells, error) in
+        ScoutDataService.getStaticTemplate(year: Constants.currentYearConstant) { (activeCells, ghostedCells, error) in
             if let error = error{
                 print(error)
                 return
             }
-            self.loadedCells = cells
+            self.loadedActiveCells = activeCells
+            self.loadedGhostedCells = ghostedCells
             complete()
         }
     }
     
     func animateAddCellViewIn(){
         self.view.addSubview(addCellView)
-        addCellView.center = self.view.center
+        addCellView.center.y = self.view.center.y - 100
+        addCellView.center.x = self.view.center.x
         addCellView.transform = CGAffineTransform.init(scaleX: 1.3, y: 1.3)
         addCellView.alpha = 0
         
@@ -79,7 +84,7 @@ class StaticTemplateController: UITableViewController{
             print("Unexpected Row")
         }
         ScoutDataService.addStaticTemplateCell(intialTitleTextField.text!, fieldType: type!, year: Constants.currentYearConstant) { (cellID, error) in
-            self.loadedCells?.append(ScoutTemplateCell(cellID: cellID!, type: (type?.rawValue)!, name: self.intialTitleTextField.text!))
+            self.loadedActiveCells?.append(ScoutTemplateCell(cellID: cellID!, type: (type?.rawValue)!, name: self.intialTitleTextField.text!))
             self.tableView.reloadData()
             self.animateAddCellViewOut()
         }
@@ -91,42 +96,57 @@ class StaticTemplateController: UITableViewController{
          _ = navigationController?.popViewController(animated: true)
     }
     
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if loadedCells != nil{
-            return (loadedCells?.count)!
+        if section == 0{
+            if loadedActiveCells != nil{
+                return (loadedActiveCells?.count)!
+            }
+            return 0
+        } else {
+            if loadedGhostedCells != nil{
+                return (loadedGhostedCells?.count)!
+            }
+            return 0
         }
-        return 0
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let loadedCell = loadedCells![indexPath.row]
-        switch loadedCell.type{
+        let loadedCell: ScoutTemplateCell?
+        if indexPath.section == 0{
+            loadedCell = loadedActiveCells![indexPath.row]
+        } else{
+            loadedCell = loadedGhostedCells![indexPath.row]
+        }
+        switch loadedCell?.type{
         case FieldTypes.Switch.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: "switchTemplateCell") as! SwitchTemplateCellView
-            cell.titleTextField.text = loadedCell.name
-            cell.CellID = loadedCell.cellID
+            cell.titleTextField.text = loadedCell?.name
+            cell.CellID = loadedCell?.cellID
             cell.templateSwitch.isUserInteractionEnabled = false
             cell.titleTextField.delegate = cell
             return cell
         case FieldTypes.NumberPad.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: "numpadTemplateCell") as! NumpadTemplateCellView
-            cell.titleTextField.text = loadedCell.name
-            cell.CellID = loadedCell.cellID
+            cell.titleTextField.text = loadedCell?.name
+            cell.CellID = loadedCell?.cellID
             cell.numberTextField.isUserInteractionEnabled = false
             cell.titleTextField.delegate = cell
             return cell
         case FieldTypes.StepperNumber.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: "stepperTemplateCell") as! StepperTemplateCellView
-            cell.titleTextField.text = loadedCell.name
-            cell.CellID = loadedCell.cellID
+            cell.titleTextField.text = loadedCell?.name
+            cell.CellID = loadedCell?.cellID
             cell.stepper.isUserInteractionEnabled = false
             cell.titleTextField.delegate = cell
             return cell
         case FieldTypes.TextView.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: "noteTemplateCell") as! NoteTemplateCellView
-            cell.titleTextField.text = loadedCell.name
-            cell.CellID = loadedCell.cellID
+            cell.titleTextField.text = loadedCell?.name
+            cell.CellID = loadedCell?.cellID
             cell.noteTextView.isUserInteractionEnabled = false
             cell.titleTextField.delegate = cell
             return cell
@@ -138,7 +158,13 @@ class StaticTemplateController: UITableViewController{
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let type = loadedCells![indexPath.row].type
+        let type: String?
+        if indexPath.section == 0{
+            type = loadedActiveCells![indexPath.row].type
+        } else {
+            type = loadedGhostedCells![indexPath.row].type
+        }
+        
         switch type{
         case FieldTypes.Switch.rawValue:
             return 65
@@ -156,48 +182,84 @@ class StaticTemplateController: UITableViewController{
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Declare Alert message
-            let dialogMessage = UIAlertController(title: "Confirm", message: "Are you sure you want to delete this?", preferredStyle: .alert)
             
-            let ghost = UIAlertAction(title: "Ghost", style: .default, handler: { (action) -> Void in
-                print("Ghost button tapped")
-                ScoutDataService.ghostStaticTemplateCell(cellID: self.loadedCells![indexPath.row].cellID, year: Constants.currentYearConstant, complete: { (error) in
-                    if let error = error{
-                        print(error)
-                    }
-                    self.loadCells {
-                        DispatchQueue.main.async {
-                            tableView.reloadData()
+            if indexPath.section == 0{
+                let dialogMessage = UIAlertController(title: "Confirm", message: "How do you want to delete this?", preferredStyle: .alert)
+                
+                let ghost = UIAlertAction(title: "Ghost", style: .default, handler: { (action) -> Void in
+                    print("Ghost button tapped")
+                    ScoutDataService.ghostStaticTemplateCell(cellID: self.loadedActiveCells![indexPath.row].cellID, year: Constants.currentYearConstant, complete: { (error) in
+                        if let error = error{
+                            print(error)
                         }
-                    }
-                })
-            })
-            
-            let delete = UIAlertAction(title: "Delete", style: .destructive) { (action) -> Void in
-                print("Delete button tapped")
-                ScoutDataService.deleteStaticCells(cellID: self.loadedCells![indexPath.row].cellID, year: Constants.currentYearConstant, complete: { (error) in
-                    if let error = error{
-                        print(error)
-                    }
-                    self.loadCells {
-                        DispatchQueue.main.async {
-                            tableView.reloadData()
+                        self.loadCells {
+                            DispatchQueue.main.async {
+                                tableView.reloadData()
+                            }
                         }
-                    }
-                    
+                    })
                 })
+                
+                let delete = UIAlertAction(title: "Delete", style: .destructive) { (action) -> Void in
+                    print("Delete button tapped")
+                    ScoutDataService.deleteStaticCells(cellID: self.loadedActiveCells![indexPath.row].cellID, year: Constants.currentYearConstant, complete: { (error) in
+                        if let error = error{
+                            print(error)
+                        }
+                        self.loadCells {
+                            DispatchQueue.main.async {
+                                tableView.reloadData()
+                            }
+                        }
+                    })
+                }
+                let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
+                    print("Cancel button tapped")
+                }
+                
+                dialogMessage.addAction(ghost)
+                dialogMessage.addAction(cancel)
+                dialogMessage.addAction(delete)
+                
+                // Present dialog message to user
+                self.present(dialogMessage, animated: true, completion: nil)
+            } else {
+                let dialogMessage = UIAlertController(title: "Confirm", message: "Are you sure you want to delete this?", preferredStyle: .alert)
+                
+                let delete = UIAlertAction(title: "Delete", style: .destructive) { (action) -> Void in
+                    ScoutDataService.deleteStaticGhostedCell(cellID: self.loadedGhostedCells![indexPath.row].cellID, year: Constants.currentYearConstant, complete: { (error) in
+                        if let error = error{
+                            print(error)
+                        }
+                        self.loadCells {
+                            DispatchQueue.main.async {
+                                tableView.reloadData()
+                            }
+                        }
+                    })
+                }
+                
+                let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
+                    print("Cancel button tapped")
+                }
+                
+                dialogMessage.addAction(cancel)
+                dialogMessage.addAction(delete)
+                
+                // Present dialog message to user
+                self.present(dialogMessage, animated: true, completion: nil)
             }
-            
-            let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
-                print("Cancel button tapped")
-            }
-            
-            dialogMessage.addAction(ghost)
-            dialogMessage.addAction(cancel)
-            dialogMessage.addAction(delete)
-            
-            // Present dialog message to user
-            self.present(dialogMessage, animated: true, completion: nil)
         }
+    }
+
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let v = UIView(frame: CGRect(x: 0, y:0, width: tableView.frame.width, height: 30))
+        v.backgroundColor = .lightGray
+        let label = UILabel(frame: CGRect(x: 8.0, y: 4.0, width: v.bounds.size.width - 16.0, height: v.bounds.size.height - 8.0))
+        label.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        label.text = section == 0 ? "Active Cells" : "Ghosted Cells"
+        v.addSubview(label)
+        return v
     }
 }
 
@@ -224,6 +286,11 @@ extension StaticTemplateController: UIPickerViewDataSource, UIPickerViewDelegate
             return "Unexpected Row"
         }
     }
+}
 
-    
+extension StaticTemplateController: UITextFieldDelegate{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return true
+    }
 }
