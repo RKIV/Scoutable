@@ -262,7 +262,7 @@ class DynamicTemplateController: UITableViewController{
         v.backgroundColor = .lightGray
         let label = UILabel(frame: CGRect(x: 8.0, y: 4.0, width: v.bounds.size.width - 16.0, height: v.bounds.size.height - 8.0))
         label.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        label.text = section == 0 ? "Active Cells" : "Ghosted Cells"
+        label.text = section == 0 ? "Active Fields" : "Ghosted Fields"
         v.addSubview(label)
         return v
     }

@@ -35,6 +35,8 @@ class StaticScoutingController: UIViewController{
                 self.scoutingTableView.reloadData()
             }
         }
+        scoutingTableView.keyboardDismissMode = .onDrag
+        scoutingTableView.allowsSelection = false
     }
     
     override func viewWillAppear(_ animated: Bool) {
