@@ -33,11 +33,18 @@ class IndividualMatchController: UIViewController{
     @IBOutlet weak var blueOneRankLabel: UILabel!
     @IBOutlet weak var blueTwoRankLabel: UILabel!
     @IBOutlet weak var blueThreeRankLabel: UILabel!
+    @IBOutlet weak var scoutMatchButton: UIButton!
+    
     
     override func viewDidLoad() {
         super .viewDidLoad()
         statsTableView.delegate = self
         statsTableView.dataSource = self
+        if User.current != nil && User.current?.scoutTeam != nil{
+            scoutMatchButton.isEnabled = true
+        } else {
+            scoutMatchButton.isEnabled = false
+        }
         BlueAllianceAPIService.match(forMatch: matchKey!) { (data) in
             self.match = data
             DispatchQueue.main.async {
@@ -85,6 +92,17 @@ class IndividualMatchController: UIViewController{
         }
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super .viewWillAppear(animated)
+        if let currentUser = User.current{
+            UserService.show(forUID: currentUser.uid) { (user) in
+                if let user = user{
+                    User.setCurrent(user, writeToUserDefaults: true)
+                }
+            }
+        }
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destination = segue.destination as! ChooseScoutingTeamController
         destination.match = match

@@ -21,11 +21,9 @@ class DynamicScoutingController: UIViewController{
     override func viewDidLoad() {
         super .viewDidLoad()
         if User.current != nil && (User.current?.isLeader)!{
-            editTemplateButton.isHidden = false
-            editTemplateButton.isUserInteractionEnabled = true
+            editTemplateButton.isEnabled = true
         } else {
-            editTemplateButton.isHidden = true
-            editTemplateButton.isUserInteractionEnabled = false
+            editTemplateButton.isEnabled = false
         }
         scoutingTableView.dataSource = self
         scoutingTableView.delegate = self
@@ -42,6 +40,13 @@ class DynamicScoutingController: UIViewController{
     
     override func viewWillAppear(_ animated: Bool) {
         super . viewWillAppear(animated)
+        if let currentUser = User.current{
+            UserService.show(forUID: currentUser.uid) { (user) in
+                if let user = user{
+                    User.setCurrent(user, writeToUserDefaults: true)
+                }
+            }
+        }
         ScoutDataService.getDynamicScoutData(forTeam: teamNumber!, andMatch: matchID!) { (regularCells, ghostCells) in
             self.regularCells = regularCells
             self.ghostCells = ghostCells

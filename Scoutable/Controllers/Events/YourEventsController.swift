@@ -71,13 +71,7 @@ class YourEventsController: UIViewController{
         
     }
     
-    @IBAction func logButtonPressed(_ sender: Any) {
-        User.logOut()
-        let initialViewController = UIStoryboard.initialViewController(for: .login)
-        self.view.window?.rootViewController = initialViewController
-        self.view.window?.makeKeyAndVisible()
-        
-    }
+    
     
     @IBAction func allEventsButtonTapped(_ sender: Any) {
         performSegue(withIdentifier: "toDistrictList", sender: self)
@@ -86,7 +80,15 @@ class YourEventsController: UIViewController{
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toEventSpecifics"{
             let destination = segue.destination as! TeamsAtEventController
-            destination.eventKey = eventsArray[(eventsTableView.indexPathForSelectedRow?.row)!].key
+            var counter = 0
+            for index in 0..<(eventsTableView.indexPathForSelectedRow?.section)!{
+                let eventsInYear = eventsArray.filter{$0.year == years[index]}
+                for _ in eventsInYear{
+                    counter += 1
+                }
+            }
+            
+            destination.eventKey = eventsArray[counter].key
         }
     }
     
@@ -121,9 +123,6 @@ extension YourEventsController: UITableViewDelegate{
     func numberOfSections(in tableView: UITableView) -> Int {
         return years.count
     }
-//    func sectionIndexTitles(for tableView: UITableView) -> [String]? {
-//        return years.map{String($0)}
-//    }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let v = UIView(frame: CGRect(x: 0, y:0, width: tableView.frame.width, height: 30))
         v.backgroundColor = .lightGray

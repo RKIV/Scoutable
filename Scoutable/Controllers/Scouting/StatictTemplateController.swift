@@ -22,12 +22,31 @@ class StaticTemplateController: UITableViewController{
         cellTypePicker.dataSource = self
         cellTypePicker.delegate = self
         intialTitleTextField.delegate = self
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl?.beginRefreshing()
+        self.refreshControl?.addTarget(self, action: #selector(refreshEnd), for: .valueChanged)
         addCellView.layer.cornerRadius = 6
         loadCells{
             self.tableView.reloadData()
         }
         tableView.keyboardDismissMode = .onDrag
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super .viewWillAppear(animated)
+        if let currentUser = User.current{
+            UserService.show(forUID: currentUser.uid) { (user) in
+                if let user = user{
+                    User.setCurrent(user, writeToUserDefaults: true)
+                }
+            }
+        }
+    }
+    
+    @objc func refreshEnd(){
+        tableView.reloadData()
+        self.refreshControl?.endRefreshing()
     }
     
     func loadCells(complete: @escaping () ->()){

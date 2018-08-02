@@ -20,14 +20,34 @@ class DynamicTemplateController: UITableViewController{
     override func viewDidLoad() {
         super .viewDidLoad()
         super .viewDidLoad()
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl?.beginRefreshing()
+        self.refreshControl?.addTarget(self, action: #selector(refreshEnd), for: .valueChanged)
         cellTypePicker.dataSource = self
         cellTypePicker.delegate = self
         intialTitleTextField.delegate = self
         addCellView.layer.cornerRadius = 6
         loadCells{
             self.tableView.reloadData()
+            self.refreshControl?.endRefreshing()
         }
         tableView.keyboardDismissMode = .onDrag
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super .viewWillAppear(animated)
+        if let currentUser = User.current{
+            UserService.show(forUID: currentUser.uid) { (user) in
+                if let user = user{
+                    User.setCurrent(user, writeToUserDefaults: true)
+                }
+            }
+        }
+    }
+    
+    @objc func refreshEnd(){
+        tableView.reloadData()
+        self.refreshControl?.endRefreshing()
     }
     
     func loadCells(complete: @escaping () ->()){
@@ -85,7 +105,7 @@ class DynamicTemplateController: UITableViewController{
         default:
             print("Unexpected Row")
         }
-        ScoutDataService.addDynamicTemplateCell(intialTitleTextField.text!, fieldType: type!, year: Int((matchID?.prefix(4))!)!) { (cellID, error) in
+        ScoutDataService.addDynamicTemplateCell(intialTitleTextField.text!, fieldType: type!, matchID: matchID!) { (cellID, error) in
             self.loadedActiveCells?.append(ScoutTemplateCell(cellID: cellID!, type: (type?.rawValue)!, name: self.intialTitleTextField.text!))
             self.tableView.reloadData()
             self.animateAddCellViewOut()

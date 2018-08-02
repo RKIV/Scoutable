@@ -11,7 +11,6 @@ import SwiftyJSON
 
 class TeamsController: UIViewController {
     
-    @IBOutlet weak var logButton: UIBarButtonItem!
     @IBOutlet weak var teamTableView: UITableView!
     
     private let refreshControl = UIRefreshControl()
@@ -21,7 +20,6 @@ class TeamsController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        logButton.title = User.current == nil ? "Log In" : "Log Out"
         if #available(iOS 10.0, *) {
             teamTableView.refreshControl = refreshControl
         } else {
@@ -54,7 +52,6 @@ class TeamsController: UIViewController {
                 }
             }
         }
-        
     }
     
     @objc func refreshEnd(){
@@ -102,13 +99,6 @@ class TeamsController: UIViewController {
                 }
             }
         }
-    }
-    
-    @IBAction func logButtonTapped(_ sender: Any) {
-        User.logOut()
-        let initialViewController = UIStoryboard.initialViewController(for: .login)
-        self.view.window?.rootViewController = initialViewController
-        self.view.window?.makeKeyAndVisible()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

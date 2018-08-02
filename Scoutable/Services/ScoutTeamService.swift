@@ -67,22 +67,50 @@ struct ScoutTeamServices{
         let userRef = Database.database().reference().child("users").child(uid).child("requests").child(scoutTeam!)
         let scoutTeamRef = Database.database().reference().child("scoutTeams").child(scoutTeam!).child("requests").child(uid)
         userRef.setValue(true)
+        Database.database().reference().child("scoutTeams").child(scoutTeam!).child("users").child(uid).child("isLeader").setValue(false)
         scoutTeamRef.removeValue()
         complete(nil)
     }
     
-    static func getUsers(complete: @escaping ([String]?, _ error: String?) -> ()){
-        guard (User.current?.hasTeam)! && (User.current?.isLeader)! else { return complete(nil, "User doesn't have team or is not leader") }
+    static func getUsers(complete: @escaping ([String], _ error: String?) -> ()){
+        guard (User.current?.hasTeam)! && (User.current?.isLeader)! else { return complete([], "User doesn't have team or is not leader") }
         let scoutTeam = User.current?.scoutTeam
-        let ref = Database.database().reference().child("scoutTeams").child(scoutTeam!).child("Users")
+        let ref = Database.database().reference().child("scoutTeams").child(scoutTeam!).child("users")
         ref.observeSingleEvent(of: .value) { (snapshot) in
-            let dict = snapshot.value as? [String : Any]
-            var uidArray = [String]()
-            for item in dict!{
-                uidArray.append(item.key)
+            if let dict = snapshot.value as? [String : Any]{
+                var uidArray = [String]()
+                for item in dict{
+                    uidArray.append(item.key)
+                }
+                complete(uidArray, nil)
+            } else {
+                complete([], "No users")
             }
-            complete(uidArray, nil)
         }
+    }
+    
+    static func getRequestsSent(forUser uid: String, complete: @escaping ([String : Bool]) -> ()){
+        let ref = Database.database().reference().child("users").child(uid).child("requests")
+        ref.observeSingleEvent(of: .value) { (snapshot) in
+            if let value = snapshot.value as? [String : Bool]{
+                let requests = value
+                complete(requests)
+            } else {
+                complete([:])
+                
+            }
+
+        }
+    }
+    
+    static func leaveScoutTeam(forUser uid: String){
+        Database.database().reference().child("users").child(uid).child("scoutTeam").removeValue()
+        User.current?.scoutTeam = nil
+    }
+    
+    static func joinScoutTeam(forUser uid: String, scoutTeam: String){
+        Database.database().reference().child("users").child(uid).child("scoutTeam").setValue(scoutTeam)
+        User.current?.scoutTeam = scoutTeam
     }
     
 }

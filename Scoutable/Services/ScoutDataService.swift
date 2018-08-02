@@ -204,10 +204,10 @@ struct ScoutDataService{
         }
     }
     
-    static func addDynamicTemplateCell(_ fieldName: String, fieldType : FieldTypes, year: Int, complete: @escaping (_ cellID: String?, _ error: String?) -> ()){
+    static func addDynamicTemplateCell(_ fieldName: String, fieldType : FieldTypes, matchID: String, complete: @escaping (_ cellID: String?, _ error: String?) -> ()){
         if (User.current?.hasTeam)! && (User.current?.isLeader)!{
             let scoutTeam = User.current?.scoutTeam
-            let ref = Database.database().reference().child("scoutTeams").child(scoutTeam!).child("templates").child("dynamic").child(String(year)).child("activeCells").childByAutoId()
+            let ref = Database.database().reference().child("scoutTeams").child(scoutTeam!).child("templates").child("dynamic").child(String(matchID.prefix(4))).child("activeCells").childByAutoId()
             ref.updateChildValues(["name" : fieldName, "type" : fieldType.rawValue])
             complete(ref.key, nil)
         } else {

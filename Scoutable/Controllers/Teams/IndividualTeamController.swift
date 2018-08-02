@@ -24,6 +24,7 @@ class IndividualTeamController: UIViewController{
     var qualifiers = [JSON]()
     var displayTeamNumber: Int?
     
+    // Add this to the VC you want to use it in
     private let refreshControl = UIRefreshControl()
     var teamNumber = 0
     var teamName = ""
@@ -34,11 +35,9 @@ class IndividualTeamController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         if User.current != nil && User.current?.scoutTeam != nil{
-            scoutTeamButton.isHidden = false
-            scoutTeamButton.isUserInteractionEnabled = true
+            scoutTeamButton.isEnabled = true
         } else {
-            scoutTeamButton.isHidden = true
-            scoutTeamButton.isUserInteractionEnabled = false
+            scoutTeamButton.isEnabled = false
         }
         teamNumberLabel.text = String(teamNumber)
         teamNameLabel.text = teamName
@@ -62,6 +61,17 @@ class IndividualTeamController: UIViewController{
         eventYearPicker.dataSource = self
         eventsTableView.dataSource = self
         eventsTableView.delegate = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super .viewWillAppear(animated)
+        if let currentUser = User.current{
+            UserService.show(forUID: currentUser.uid) { (user) in
+                if let user = user{
+                    User.setCurrent(user, writeToUserDefaults: true)
+                }
+            }
+        }
     }
     
     func loadTeam(complete: @escaping () -> ()){

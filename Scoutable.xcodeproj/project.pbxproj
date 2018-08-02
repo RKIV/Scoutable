@@ -26,6 +26,12 @@
 		FA17B6882109107D005FEF30 /* UsernameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA17B6872109107D005FEF30 /* UsernameController.swift */; };
 		FA17B68A21093C1B005FEF30 /* TeamCreationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA17B68921093C1B005FEF30 /* TeamCreationController.swift */; };
 		FA17B68E21093F1F005FEF30 /* ScoutTeamService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA17B68D21093F1F005FEF30 /* ScoutTeamService.swift */; };
+		FA41D73621126F2800BE50EE /* ScoutTeamRequestCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA41D73521126F2800BE50EE /* ScoutTeamRequestCellView.swift */; };
+		FA41D73821126F8E00BE50EE /* RequestsSentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA41D73721126F8E00BE50EE /* RequestsSentController.swift */; };
+		FA41D73A211270A300BE50EE /* UsersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA41D739211270A300BE50EE /* UsersController.swift */; };
+		FA41D73E2112724700BE50EE /* UserCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA41D73D2112724600BE50EE /* UserCellView.swift */; };
+		FA41D7422112785900BE50EE /* CurrentScoutTeamCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA41D7412112785800BE50EE /* CurrentScoutTeamCell.swift */; };
+		FA41D7462112926F00BE50EE /* MakeRequestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA41D7452112926F00BE50EE /* MakeRequestController.swift */; };
 		FA64971A21095758002A40C1 /* BlueAllianceAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA64971921095758002A40C1 /* BlueAllianceAPIService.swift */; };
 		FA64971C210957C0002A40C1 /* BATeamSimple.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA64971B210957C0002A40C1 /* BATeamSimple.swift */; };
 		FA64972121096813002A40C1 /* TeamCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA64972021096813002A40C1 /* TeamCellView.swift */; };
@@ -92,6 +98,12 @@
 		FA17B6872109107D005FEF30 /* UsernameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsernameController.swift; sourceTree = "<group>"; };
 		FA17B68921093C1B005FEF30 /* TeamCreationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamCreationController.swift; sourceTree = "<group>"; };
 		FA17B68D21093F1F005FEF30 /* ScoutTeamService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoutTeamService.swift; sourceTree = "<group>"; };
+		FA41D73521126F2800BE50EE /* ScoutTeamRequestCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoutTeamRequestCellView.swift; sourceTree = "<group>"; };
+		FA41D73721126F8E00BE50EE /* RequestsSentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestsSentController.swift; sourceTree = "<group>"; };
+		FA41D739211270A300BE50EE /* UsersController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersController.swift; sourceTree = "<group>"; };
+		FA41D73D2112724600BE50EE /* UserCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCellView.swift; sourceTree = "<group>"; };
+		FA41D7412112785800BE50EE /* CurrentScoutTeamCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentScoutTeamCell.swift; sourceTree = "<group>"; };
+		FA41D7452112926F00BE50EE /* MakeRequestController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MakeRequestController.swift; sourceTree = "<group>"; };
 		FA64971921095758002A40C1 /* BlueAllianceAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlueAllianceAPIService.swift; sourceTree = "<group>"; };
 		FA64971B210957C0002A40C1 /* BATeamSimple.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BATeamSimple.swift; sourceTree = "<group>"; };
 		FA64972021096813002A40C1 /* TeamCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamCellView.swift; sourceTree = "<group>"; };
@@ -212,6 +224,9 @@
 		FA64971D210967A6002A40C1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				FA41D7412112785800BE50EE /* CurrentScoutTeamCell.swift */,
+				FA41D73D2112724600BE50EE /* UserCellView.swift */,
+				FA41D73521126F2800BE50EE /* ScoutTeamRequestCellView.swift */,
 				FADCDA43210EE9FE0044E841 /* ScoutCells */,
 				FADCDA42210EE9EA0044E841 /* ScoutTemplateCells */,
 				FAE13440210CF0B600CF69BE /* SeperatorCellView.swift */,
@@ -333,9 +348,12 @@
 		FAE13445210D001200CF69BE /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				FA41D7452112926F00BE50EE /* MakeRequestController.swift */,
 				FA0BC89A210AE6030089E1C1 /* SettingsController.swift */,
 				FA0BC89C210AEE080089E1C1 /* RequestsReceivedController.swift */,
 				FAE975C3210B6FB000E2A951 /* ChangeRoboticsTeamController.swift */,
+				FA41D73721126F8E00BE50EE /* RequestsSentController.swift */,
+				FA41D739211270A300BE50EE /* UsersController.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -530,12 +548,16 @@
 			files = (
 				FA0BC89B210AE6030089E1C1 /* SettingsController.swift in Sources */,
 				FA035A59211225780040B10D /* DynamicTemplateController.swift in Sources */,
+				FA41D73621126F2800BE50EE /* ScoutTeamRequestCellView.swift in Sources */,
 				FA64971C210957C0002A40C1 /* BATeamSimple.swift in Sources */,
 				FADCDA4D210F853E0044E841 /* ScoutCell.swift in Sources */,
+				FA41D7462112926F00BE50EE /* MakeRequestController.swift in Sources */,
 				FA0BC88E210A811F0089E1C1 /* IndividualTeamController.swift in Sources */,
 				FA0BC88A210A59480089E1C1 /* EventCellView.swift in Sources */,
+				FA41D73E2112724700BE50EE /* UserCellView.swift in Sources */,
 				FAE115072109084700BAEFB7 /* LoginViewController.swift in Sources */,
 				FA0BC897210ADD160089E1C1 /* StaticScoutingController.swift in Sources */,
+				FA41D73821126F8E00BE50EE /* RequestsSentController.swift in Sources */,
 				FAD2B678210E552D00320DFB /* NoteTemplateCellView.swift in Sources */,
 				FA17B67C2109099C005FEF30 /* UserService.swift in Sources */,
 				FAD2B67C210E59FB00320DFB /* NumpadTemplateCellView.swift in Sources */,
@@ -558,6 +580,7 @@
 				FAE975C8210B9F9300E2A951 /* BADistrict.swift in Sources */,
 				FAB059802108F34100ABED45 /* Scoutable.xcdatamodeld in Sources */,
 				FA17B68E21093F1F005FEF30 /* ScoutTeamService.swift in Sources */,
+				FA41D73A211270A300BE50EE /* UsersController.swift in Sources */,
 				FADA6D112110D00F00C78618 /* MatchesController.swift in Sources */,
 				FAE975C6210B9EFA00E2A951 /* DistrictCellView.swift in Sources */,
 				FAE1343D210CEDFE00CF69BE /* MatchCellView.swift in Sources */,
@@ -567,6 +590,7 @@
 				FAB0597A2108F34100ABED45 /* TeamsController.swift in Sources */,
 				FA035A5521118E3F0040B10D /* DynamicScoutingController.swift in Sources */,
 				FAE975C0210B0C6800E2A951 /* ReceivedRequestCellView.swift in Sources */,
+				FA41D7422112785900BE50EE /* CurrentScoutTeamCell.swift in Sources */,
 				FADA6D202111726300C78618 /* ChooseTeamCellView.swift in Sources */,
 				FA17B68621090CA3005FEF30 /* ScoutTeamController.swift in Sources */,
 				FA0BC895210AD3090089E1C1 /* Constants.swift in Sources */,

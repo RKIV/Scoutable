@@ -18,9 +18,14 @@ class MatchesController: UITableViewController{
     var allMatches = [JSON]()
     var isFilteringByTeamNumber = false
     
+    
+    
     override func viewDidLoad() {
         super .viewDidLoad()
         filterButton.isEnabled = false
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl?.beginRefreshing()
+        self.refreshControl?.addTarget(self, action: #selector(refreshEnd), for: .valueChanged)
         if User.current != nil && User.current?.roboticsTeamNumber != nil{
             BlueAllianceAPIService.teams(forEvent: eventKey!) { (data) in
                 let swiftyArray = data.arrayValue.map{$0["team_number"].rawValue as! Int}
@@ -32,16 +37,38 @@ class MatchesController: UITableViewController{
             }
         }
         loadMatches(eventKey: eventKey!) {
-            self.loadTeamMatches(eventKey: self.eventKey!, teamNumber: (User.current?.roboticsTeamNumber)!) {
-                DispatchQueue.main.async {
-                    self.matches = self.allMatches
-                    self.tableView.reloadData()
+            if User.current != nil && User.current?.roboticsTeamNumber != nil{
+                self.loadTeamMatches(eventKey: self.eventKey!, teamNumber: (User.current?.roboticsTeamNumber)!) {
+                    DispatchQueue.main.async {
+                        self.matches = self.allMatches
+                        self.tableView.reloadData()
+                        self.refreshControl?.endRefreshing()
+                    }
+                }
+            } else {
+                self.matches = self.allMatches
+                self.tableView.reloadData()
+                self.refreshControl?.endRefreshing()
+            }
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super .viewWillAppear(animated)
+        if let currentUser = User.current{
+            UserService.show(forUID: currentUser.uid) { (user) in
+                if let user = user{
+                    User.setCurrent(user, writeToUserDefaults: true)
                 }
             }
-
         }
-
     }
+    
+    @objc func refreshEnd(){
+        tableView.reloadData()
+        self.refreshControl?.endRefreshing()
+    }
+    
     func loadMatches(eventKey: String, complete: @escaping () ->()){
         BlueAllianceAPIService.matchesSimple(eventKey: eventKey) { (data) in
             let dict = ["qm" : 0, "qf" : 1, "sf" : 2, "f" : 3]

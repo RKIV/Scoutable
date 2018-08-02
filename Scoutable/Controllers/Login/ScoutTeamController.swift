@@ -20,6 +20,7 @@ class ScoutTeamController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        scoutTeamTextField.delegate = self
         requestButton.layer.cornerRadius = 6
         dneLabel.isHidden = true
     }
@@ -53,8 +54,17 @@ class ScoutTeamController: UIViewController {
         self.performSegue(withIdentifier: "toTeamCreation", sender: self)
     }
     
-    
-    
-    
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        self.view.endEditing(true)
+    }
+}
+
+extension ScoutTeamController: UITextFieldDelegate{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        textField.resignFirstResponder()
+        //or
+        self.view.endEditing(true)
+        return true
+    }
 }
