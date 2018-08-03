@@ -36,10 +36,12 @@ class TeamsController: UIViewController {
         }
         teamTableView.dataSource = self
         teamTableView.delegate = self
+        
         // Do any additional setup after loading the view, typically from a nib.
     }
     override func viewWillAppear(_ animated: Bool) {
         super .viewWillAppear(animated)
+        self.view.endEditing(true)
         if let currentUser = User.current{
             UserService.show(forUID: currentUser.uid) { (user) in
                 if let user = user{

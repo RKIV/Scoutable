@@ -33,6 +33,7 @@ class TeamCreationController: UIViewController {
                 self.alreadyExistsLabel.isHidden = false
             } else {
                 ScoutTeamServices.create(scoutTeam)
+                self.view.endEditing(true)
                 let initialViewController = UIStoryboard.initialViewController(for: .main)
                 self.view.window?.rootViewController = initialViewController
                 self.view.window?.makeKeyAndVisible()

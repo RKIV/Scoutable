@@ -36,7 +36,7 @@ class UsernameViewController: UIViewController {
                 }
 
             }
-
+            self.view.endEditing(true)
             self.performSegue(withIdentifier: "toTeamSelection", sender: self)
         })
     }
