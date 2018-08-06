@@ -206,7 +206,6 @@ class StaticTemplateController: UITableViewController{
                 let dialogMessage = UIAlertController(title: "Confirm", message: "How do you want to delete this?", preferredStyle: .alert)
                 
                 let ghost = UIAlertAction(title: "Ghost", style: .default, handler: { (action) -> Void in
-                    print("Ghost button tapped")
                     ScoutDataService.ghostStaticTemplateCell(cellID: self.loadedActiveCells![indexPath.row].cellID, year: Constants.currentYearConstant, complete: { (error) in
                         if let error = error{
                             print(error)
@@ -220,7 +219,6 @@ class StaticTemplateController: UITableViewController{
                 })
                 
                 let delete = UIAlertAction(title: "Delete", style: .destructive) { (action) -> Void in
-                    print("Delete button tapped")
                     ScoutDataService.deleteStaticCells(cellID: self.loadedActiveCells![indexPath.row].cellID, year: Constants.currentYearConstant, complete: { (error) in
                         if let error = error{
                             print(error)
@@ -232,9 +230,7 @@ class StaticTemplateController: UITableViewController{
                         }
                     })
                 }
-                let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
-                    print("Cancel button tapped")
-                }
+                let cancel = UIAlertAction(title: "Cancel", style: .cancel)
                 
                 dialogMessage.addAction(ghost)
                 dialogMessage.addAction(cancel)
@@ -258,9 +254,7 @@ class StaticTemplateController: UITableViewController{
                     })
                 }
                 
-                let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
-                    print("Cancel button tapped")
-                }
+                let cancel = UIAlertAction(title: "Cancel", style: .cancel)
                 
                 dialogMessage.addAction(cancel)
                 dialogMessage.addAction(delete)

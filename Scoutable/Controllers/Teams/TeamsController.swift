@@ -9,35 +9,38 @@
 import UIKit
 import SwiftyJSON
 
-class TeamsController: UIViewController {
-    
-    @IBOutlet weak var teamTableView: UITableView!
-    
-    private let refreshControl = UIRefreshControl()
+class TeamsController: UITableViewController {
     private var currentPage = 0
+    private var updating = false
+    let searchController = UISearchController(searchResultsController: nil)
+    var doneLoadingTeams = false
     var teamsArray: [BATeamSimple] = []
+    var filteredTeams = [BATeamSimple]()
     var personalTeam: BATeamSimple?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if #available(iOS 10.0, *) {
-            teamTableView.refreshControl = refreshControl
-        } else {
-            teamTableView.addSubview(refreshControl)
-        }
-        teamTableView.refreshControl?.beginRefreshing()
-        teamTableView.refreshControl?.addTarget(self, action: #selector(refreshEnd), for: .valueChanged)
+        tableView.refreshControl = UIRefreshControl()
+        tableView.refreshControl?.addTarget(self, action: #selector(refreshEnd), for: .valueChanged)
+        searchController.searchBar.scopeButtonTitles = ["By Team Number", "By Team Name"]
+        searchController.searchBar.delegate = self
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search Teams"
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
         loadTeams{
-            print("complete called")
             DispatchQueue.main.async {
-                self.teamTableView.reloadData()
-                self.teamTableView.refreshControl?.endRefreshing()
+                self.tableView.reloadData()
+                self.updating = false
+            }
+            self.loadTeamsLoop {
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
             }
         }
-        teamTableView.dataSource = self
-        teamTableView.delegate = self
-        
-        // Do any additional setup after loading the view, typically from a nib.
     }
     override func viewWillAppear(_ animated: Bool) {
         super .viewWillAppear(animated)
@@ -48,7 +51,7 @@ class TeamsController: UIViewController {
                     User.setCurrent(user, writeToUserDefaults: true)
                     self.loadPersonalTeam {
                         DispatchQueue.main.async {
-                            self.teamTableView.reloadData()
+                            self.tableView.reloadData()
                         }
                     }
                 }
@@ -57,13 +60,27 @@ class TeamsController: UIViewController {
     }
     
     @objc func refreshEnd(){
-        teamTableView.reloadData()
-        teamTableView.refreshControl?.endRefreshing()
+        tableView.reloadData()
+        self.refreshControl?.endRefreshing()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    }
+    
+    func loadTeamsLoop(complete: @escaping () -> ()){
+        loadTeams {
+            if !self.doneLoadingTeams{
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+                self.loadTeamsLoop {
+                    complete()
+                }
+            } else {
+                complete()
+            }
+        }
     }
     
     func loadPersonalTeam(complete: @escaping () -> ()){
@@ -72,44 +89,76 @@ class TeamsController: UIViewController {
                 self.personalTeam = teamData
                 complete()
             }
+        } else{
+            if (User.current?.uid) != nil{
+                UserService.show(forUID: (User.current?.uid)!, completion: { (user) in
+                    if let teamNumber = user?.roboticsTeamNumber{
+                        BlueAllianceAPIService.teamSimple(forNumber: teamNumber) { (teamData) in
+                            self.personalTeam = teamData
+                            complete()
+                        }
+                    } else {
+                        complete()
+                    }
+                })
+            } else{
+                complete()
+            }
         }
     }
     
     func loadTeams(complete: @escaping () -> ()) {
         BlueAllianceAPIService.teamList(page: currentPage) { (data) in
-            self.teamsArray += data
-            self.currentPage += 1
-            if let teamNumber = User.current?.roboticsTeamNumber{
-                BlueAllianceAPIService.teamSimple(forNumber: teamNumber) { (teamData) in
-                    self.personalTeam = teamData
-                     complete()
-                }
-            } else{
-                if (User.current?.uid) != nil{
-                    UserService.show(forUID: (User.current?.uid)!, completion: { (user) in
-                        if let teamNumber = user?.roboticsTeamNumber{
-                            BlueAllianceAPIService.teamSimple(forNumber: teamNumber) { (teamData) in
-                                self.personalTeam = teamData
-                                complete()
-                            }
-                        } else {
-                            complete()
-                        }
-                    })
-                } else{
-                    complete()
-                }
+            if data.count != 0{
+                self.teamsArray += data
+                self.currentPage += 1
+                complete()
+            } else {
+                self.doneLoadingTeams = true
+                complete()
             }
         }
     }
     
+    func searchBarIsEmpty() -> Bool {
+        // Returns true if the text is empty or nil
+        return searchController.searchBar.text?.isEmpty ?? true
+    }
+    
+    func filterContentForSearchText(_ searchText: String, scope: String = "By Team Number") {
+        filteredTeams = teamsArray.filter({( team : BATeamSimple) -> Bool in
+            if scope == "By Team Number"{
+                return String(team.team_number).contains(searchText)
+            } else {
+                return team.nickname.lowercased().contains(searchText.lowercased())
+            }
+        })
+        
+        tableView.reloadData()
+    }
+    
+    func isFiltering() -> Bool {
+        return searchController.isActive && !searchBarIsEmpty()
+    }
+    
+    @IBAction func topButtonTapped(_ sender: Any) {
+        let top = IndexPath.init(row: 0, section: 0)
+        tableView.scrollToRow(at: top, at: .top, animated: true)
+    }
+    
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print("preparing")
-        let indexPath = teamTableView.indexPathForSelectedRow
-        teamTableView.deselectRow(at: indexPath!, animated: true)
+        let indexPath = tableView.indexPathForSelectedRow
+        tableView.deselectRow(at: indexPath!, animated: true)
         var teamNumber: Int = 0
         var teamName: String = ""
-        let teamSimple = teamsArray[(indexPath?.row)!]
+        var teamSimple: BATeamSimple
+        if isFiltering() {
+            teamSimple = filteredTeams[(indexPath?.row)!]
+        } else {
+            teamSimple = teamsArray[(indexPath?.row)!]
+        }
+        
         switch indexPath?.section{
         case 0:
             teamNumber = (personalTeam?.team_number)!
@@ -125,26 +174,30 @@ class TeamsController: UIViewController {
         destination.teamName = teamName
         
     }
+    
 
 }
 
-extension TeamsController: UITableViewDataSource{
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+extension TeamsController{
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section{
         case 0:
             return 1
         case 1:
+            if isFiltering() {
+                return filteredTeams.count
+            }
             return teamsArray.count
         default:
             return 0
         }
     }
     
-    func numberOfSections(in tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         switch indexPath.section{
         case 0:
@@ -160,31 +213,58 @@ extension TeamsController: UITableViewDataSource{
             }
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "teamCell") as! TeamCellView
-            cell.teamName.text = teamsArray[indexPath.row].nickname
-            cell.teamNumber.text = String(teamsArray[indexPath.row].team_number)
-            cell.teamLocation.text = "\(teamsArray[indexPath.row].city!) \(teamsArray[indexPath.row].state_prov!) \(teamsArray[indexPath.row].country!)"
+            var team: BATeamSimple
+            if isFiltering(){
+                team = filteredTeams[indexPath.row]
+            } else {
+                team = teamsArray[indexPath.row]
+            }
+            cell.teamName.text = team.nickname
+            cell.teamNumber.text = String(team.team_number)
+            cell.teamLocation.text = "\(team.city!) \(team.state_prov!) \(team.country!)"
             return cell
         default:
             print("Unexected section")
             let defaultCell = tableView.dequeueReusableCell(withIdentifier: "teamCell") as! TeamCellView
             return defaultCell
         }
-        
     }
     
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let lastIndex = teamsArray.count - 1
-        if indexPath.row == lastIndex {
-            loadTeams{
-                self.teamTableView.reloadData()
-            }
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 75
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let v = UIView(frame: CGRect(x: 0, y:0, width: tableView.frame.width, height: 30))
+        v.backgroundColor = .lightGray
+        let label = UILabel(frame: CGRect(x: 8.0, y: 4.0, width: v.bounds.size.width - 16.0, height: v.bounds.size.height - 8.0))
+        label.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        if section == 0 {
+            label.text = "Your Team"
+        } else {
+            label.text = "All Teams"
         }
+        
+        v.addSubview(label)
+        return v
     }
 }
 
-extension TeamsController: UITableViewDelegate{
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 75
+extension TeamsController: UISearchResultsUpdating{
+    func updateSearchResults(for searchController: UISearchController) {
+        let searchBar = searchController.searchBar
+        let scope = searchBar.scopeButtonTitles![searchBar.selectedScopeButtonIndex]
+        filterContentForSearchText(searchController.searchBar.text!, scope: scope)
+    }
+    
+    
+}
+
+extension TeamsController: UISearchBarDelegate {
+    // MARK: - UISearchBar Delegate
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        filterContentForSearchText(searchBar.text!, scope: searchBar.scopeButtonTitles![selectedScope])
     }
 }
+
 

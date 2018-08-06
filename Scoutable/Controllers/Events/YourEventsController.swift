@@ -29,7 +29,6 @@ class YourEventsController: UIViewController{
         eventsTableView.refreshControl?.beginRefreshing()
         eventsTableView.refreshControl?.addTarget(self, action: #selector(refreshEnd), for: .valueChanged)
         loadEvents{
-            print("complete called")
             DispatchQueue.main.async {
                 self.eventsTableView.reloadData()
                 self.eventsTableView.refreshControl?.endRefreshing()

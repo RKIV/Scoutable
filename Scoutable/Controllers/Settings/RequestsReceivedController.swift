@@ -17,7 +17,6 @@ class RequestsReceivedController: UITableViewController{
             if let error = error{ print(error)}
             else{
                 self.uidArray = data!
-                print(self.uidArray.count)
                 for uid in self.uidArray{
                     UserService.show(forUID: uid) { (user) in
                         self.userArray.append(user!)

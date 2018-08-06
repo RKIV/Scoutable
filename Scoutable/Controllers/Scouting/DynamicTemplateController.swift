@@ -262,9 +262,7 @@ class DynamicTemplateController: UITableViewController{
                     })
                 }
                 
-                let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
-                    print("Cancel button tapped")
-                }
+                let cancel = UIAlertAction(title: "Cancel", style: .cancel)
                 
                 dialogMessage.addAction(cancel)
                 dialogMessage.addAction(delete)

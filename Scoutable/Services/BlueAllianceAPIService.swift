@@ -79,6 +79,14 @@ struct BlueAllianceAPIService{
         }
     }
     
+    static func eventsList(forYear year: Int, done: @escaping ([BAEvent]) -> ()){
+        let urlString = "\(baseURL)/events/\(year)/simple\(authKey)"
+        guard let url = URL(string: urlString) else {return}
+        decodeEventsSimple(for: url) { (data) in
+            done(data)
+        }
+    }
+    
     static func eventsList(forDistrict district: String, done: @escaping (JSON) -> ()){
         let urlString = "\(baseURL)/district/\(district)/events\(authKey)"
         guard let url = URL(string: urlString) else {return}

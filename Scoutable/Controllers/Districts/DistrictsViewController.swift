@@ -65,7 +65,6 @@ class DistrictsViewController: UIViewController{
         yearPicker.delegate = self
         yearPicker.dataSource = self
         districtsTableView.dataSource = self
-        print(years)
     }
     
     func loadDistricts(forYear year: Int, complete: @escaping () -> ()){
