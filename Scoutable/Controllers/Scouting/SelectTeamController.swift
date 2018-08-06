@@ -108,7 +108,8 @@ class SelectTeamsController: UITableViewController {
     
     
     @IBAction func topButtonTapped(_ sender: Any) {
-        tableView.setContentOffset(.zero, animated:true)
+        let top = IndexPath.init(row: 0, section: 0)
+        tableView.scrollToRow(at: top, at: .top, animated: true)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

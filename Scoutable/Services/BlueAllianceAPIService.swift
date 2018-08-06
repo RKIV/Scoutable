@@ -178,7 +178,6 @@ extension BlueAllianceAPIService{
                     return true
                 })
                 //                print(filteredData)
-                print("Decodng Teams Done")
                 decodingDone(filteredData)
                 //Get back to the main queue
             } catch let jsonError {

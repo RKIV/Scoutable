@@ -19,7 +19,6 @@ class IndividualMatchController: UIViewController{
     @IBOutlet weak var redScoreLabel: UILabel!
     @IBOutlet weak var blueScoreLabel: UILabel!
     @IBOutlet weak var statsTableView: UITableView!
-    @IBOutlet weak var statsTableViewHeight: NSLayoutConstraint!
     
     @IBOutlet weak var redOneLabel: UILabel!
     @IBOutlet weak var redTwoLabel: UILabel!
@@ -49,10 +48,8 @@ class IndividualMatchController: UIViewController{
             self.match = data
             DispatchQueue.main.async {
                 if self.match!["score_breakdown"] == JSON.null{
-                    self.statsTableViewHeight.constant = CGFloat(208)
                 }
                 self.statsTableView.reloadData()
-                self.statsTableViewHeight.constant = CGFloat(self.match!["score_breakdown"]["blue"].count * 88 + 120)
             }
             BlueAllianceAPIService.rankings(forEvent: self.eventKey!) { (data) in
                 let teams = data["rankings"].array

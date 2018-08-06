@@ -15,7 +15,6 @@ class IndividualTeamController: UIViewController{
     @IBOutlet weak var teamNameLabel: UILabel!
     @IBOutlet weak var eventYearPicker: UIPickerView!
     @IBOutlet weak var eventsTableView: UITableView!
-    @IBOutlet weak var tableViewHeightContraint: NSLayoutConstraint!
     @IBOutlet weak var scoutTeamButton: UIButton!
     
     var finals = [JSON]()
@@ -50,7 +49,6 @@ class IndividualTeamController: UIViewController{
         eventsTableView.refreshControl?.addTarget(self, action: #selector(refreshEnd), for: .valueChanged)
         loadTeam {
             DispatchQueue.main.async {
-                self.tableViewHeightContraint.constant = CGFloat(75 * self.eventsArray.filter{$0.year == self.years[self.eventYearPicker.selectedRow(inComponent: 0)]}.count + 60)
                 self.eventYearPicker.reloadAllComponents()
                 self.eventsTableView.reloadData()
                 self.eventsTableView.refreshControl?.endRefreshing()
@@ -95,7 +93,7 @@ class IndividualTeamController: UIViewController{
         BlueAllianceAPIService.matches(forEvent: eventKey, teamKey: "frc\(teamNumber)") { (data) in
             let dict = ["qm" : 0, "qf" : 1, "sf" : 2, "f" : 3]
             self.matches = (data.array?.sorted{ (first, second) -> Bool in
-                if dict[first["comp_level"].rawString()!]! == dict[second["comp_level"].rawString()!]!{
+                if dict[first["comp_level"].rawString()!] ?? 0 == dict[second["comp_level"].rawString()!] ?? 0{
                     if (first["set_number"].rawValue as! Int) == (second["set_number"].rawValue as! Int){
                         if (first["match_number"].rawValue as! Int) < (second["match_number"].rawValue as! Int){
                             return true
@@ -170,12 +168,12 @@ extension IndividualTeamController: UITableViewDataSource, UITableViewDelegate{
             }
             let blueTeams = match["alliances"]["blue"]["team_keys"]
             let redTeams = match["alliances"]["red"]["team_keys"]
-            cell.blueOneLabel.text = String((blueTeams[0].rawString()?.split(separator: "c")[1])!)
-            cell.blueTwoLabel.text = String((blueTeams[1].rawString()?.split(separator: "c")[1])!)
-            cell.blueThreeLabel.text = String((blueTeams[2].rawString()?.split(separator: "c")[1])!)
-            cell.redOneLabel.text = String((redTeams[0].rawString()?.split(separator: "c")[1])!)
-            cell.redTwoLabel.text = String((redTeams[1].rawString()?.split(separator: "c")[1])!)
-            cell.redThreeLabel.text = String((redTeams[2].rawString()?.split(separator: "c")[1])!)
+            cell.blueOneLabel.text = String((blueTeams[0].rawString()?.split(separator: "c")[1]) ?? "No Team")
+            cell.blueTwoLabel.text = String((blueTeams[1].rawString()?.split(separator: "c")[1]) ?? "No Team")
+            cell.blueThreeLabel.text = String((blueTeams[2].rawString()?.split(separator: "c")[1]) ?? "No Team")
+            cell.redOneLabel.text = String((redTeams[0].rawString()?.split(separator: "c")[1]) ?? "No Team")
+            cell.redTwoLabel.text = String((redTeams[1].rawString()?.split(separator: "c")[1]) ?? "No Team")
+            cell.redThreeLabel.text = String((redTeams[2].rawString()?.split(separator: "c")[1]) ?? "No Team")
             
             
             
@@ -204,9 +202,11 @@ extension IndividualTeamController: UITableViewDataSource, UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0{
-            loadMatches(eventKey: eventsArray[indexPath.row].key) {
+            print(years[eventYearPicker.selectedRow(inComponent: 0)])
+            let eventsInYear = eventsArray.filter{$0.year == years[eventYearPicker.selectedRow(inComponent: 0)]}
+            loadMatches(eventKey: eventsInYear[indexPath.row].key) {
+                print(eventsInYear[indexPath.row].name)
                 DispatchQueue.main.async {
-                    self.tableViewHeightContraint.constant = CGFloat(75 * (self.eventsArray.filter{$0.year == self.years[self.eventYearPicker.selectedRow(inComponent: 0)]}.count + self.matches.count) + 60)
                     self.eventsTableView.reloadData()
                 }
             }
@@ -246,6 +246,9 @@ extension IndividualTeamController: UIPickerViewDelegate{
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         eventsTableView.refreshControl?.beginRefreshing()
+        loadTeam {
+            return
+        }
         refreshEnd()
     }
 }
