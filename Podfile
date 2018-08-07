@@ -12,5 +12,7 @@ target 'Scoutable' do
   pod 'FirebaseUI/Auth'
   pod 'Firebase/Database'
   pod 'SwiftyJSON', '~> 4.0'
+  pod 'GoogleSignIn'
+  pod 'FirebaseUI/Google'
 
 end

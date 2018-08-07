@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import Firebase
+import FirebaseUI
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -106,7 +107,7 @@ extension AppDelegate {
             User.setCurrent(user)
             
             initialViewController = UIStoryboard.initialViewController(for: .main)
-        }else if let guestData = defaults.object(forKey: "isGuestUser") as? Data{
+        }else if (defaults.object(forKey: "isGuestUser") as? Data) != nil{
             initialViewController = UIStoryboard.initialViewController(for: .main)
         } else {
             initialViewController = UIStoryboard.initialViewController(for: .login)
@@ -115,6 +116,17 @@ extension AppDelegate {
         window?.rootViewController = initialViewController
         window?.makeKeyAndVisible()
         
+    }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        let sourceApplication = options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String?
+        if FUIAuth.defaultAuthUI()?.handleOpen(url, sourceApplication: sourceApplication) ?? false {
+            return true
+        }
+        
+        // other URL handling goes here
+        
+        return false
     }
 }
 

@@ -30,8 +30,10 @@ class LoginViewController: UIViewController {
         
         authUI.delegate = self
         
-        let authViewController = authUI.authViewController()
+        let providers: [FUIAuthProvider] = [FUIGoogleAuth()]
+        authUI.providers = providers
         
+        let authViewController = authUI.authViewController()
         present(authViewController, animated: true)
     }
     // TODO: Add Skip button functionality
