@@ -14,5 +14,6 @@ target 'Scoutable' do
   pod 'SwiftyJSON', '~> 4.0'
   pod 'GoogleSignIn'
   pod 'FirebaseUI/Google'
+  pod 'GoogleAPIClientForREST/Sheets'
 
 end

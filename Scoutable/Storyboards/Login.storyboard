@@ -18,17 +18,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FCm-bg-5ja">
-                                <rect key="frame" x="35" y="321" width="305" height="34"/>
-                                <color key="backgroundColor" red="0.91764705882352937" green="0.13333333333333333" blue="0.1764705882352941" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
-                                <state key="normal" title="Register or Login"/>
-                                <connections>
-                                    <action selector="loginButtonTapped:" destination="AoB-wI-F9Z" eventType="touchUpInside" id="SFq-S5-rIM"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dZ3-gr-0gt">
-                                <rect key="frame" x="172.5" y="405" width="30" height="30"/>
+                                <rect key="frame" x="172.5" y="401" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="6wu-Sb-eqm"/>
                                 </constraints>
@@ -70,22 +61,29 @@
                                     <constraint firstItem="Pig-lm-fAO" firstAttribute="centerX" secondItem="1YZ-P8-eWE" secondAttribute="centerX" id="eoy-DZ-zCJ"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QWL-mb-ggW" customClass="GIDSignInButton">
+                                <rect key="frame" x="90" y="321" width="195" height="50"/>
+                                <color key="backgroundColor" red="0.098039215690000001" green="0.61568627450000002" blue="0.83529411760000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="9tX-1o-ehE"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="FCm-bg-5ja" firstAttribute="top" secondItem="1YZ-P8-eWE" secondAttribute="bottom" constant="20" id="6tU-na-KNP"/>
+                            <constraint firstItem="dZ3-gr-0gt" firstAttribute="top" secondItem="QWL-mb-ggW" secondAttribute="bottom" constant="30" id="0gj-zP-R9V"/>
+                            <constraint firstItem="KsQ-ob-c0j" firstAttribute="trailing" secondItem="QWL-mb-ggW" secondAttribute="trailing" constant="90" id="7vu-WU-eDu"/>
                             <constraint firstItem="1YZ-P8-eWE" firstAttribute="leading" secondItem="KsQ-ob-c0j" secondAttribute="leading" id="EnT-tD-FIt"/>
+                            <constraint firstItem="QWL-mb-ggW" firstAttribute="centerX" secondItem="ymg-rq-wJH" secondAttribute="centerX" id="ISa-5K-UeS"/>
                             <constraint firstItem="1YZ-P8-eWE" firstAttribute="trailing" secondItem="KsQ-ob-c0j" secondAttribute="trailing" id="L2A-SW-Mb4"/>
-                            <constraint firstItem="KsQ-ob-c0j" firstAttribute="trailing" secondItem="FCm-bg-5ja" secondAttribute="trailing" constant="35" id="aUa-Bz-U5z"/>
+                            <constraint firstItem="QWL-mb-ggW" firstAttribute="leading" secondItem="KsQ-ob-c0j" secondAttribute="leading" constant="90" id="PUf-L6-Fer"/>
                             <constraint firstItem="dZ3-gr-0gt" firstAttribute="centerX" secondItem="ymg-rq-wJH" secondAttribute="centerX" id="aXg-8C-HhI"/>
-                            <constraint firstItem="dZ3-gr-0gt" firstAttribute="top" secondItem="FCm-bg-5ja" secondAttribute="bottom" constant="50" id="gi0-oP-jRN"/>
                             <constraint firstItem="1YZ-P8-eWE" firstAttribute="top" secondItem="KsQ-ob-c0j" secondAttribute="top" constant="79" id="guh-B6-P5V"/>
-                            <constraint firstItem="FCm-bg-5ja" firstAttribute="leading" secondItem="KsQ-ob-c0j" secondAttribute="leading" constant="35" id="tsg-Nj-kvA"/>
+                            <constraint firstItem="QWL-mb-ggW" firstAttribute="top" secondItem="1YZ-P8-eWE" secondAttribute="bottom" constant="20" id="p7e-zt-g97"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="KsQ-ob-c0j"/>
                     </view>
                     <connections>
-                        <outlet property="loginButton" destination="FCm-bg-5ja" id="eVU-y6-OoN"/>
                         <segue destination="a3S-W7-DPg" kind="show" identifier="toCreateUsername" id="LSR-rm-bfw"/>
                     </connections>
                 </viewController>

@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 import Firebase
 import FirebaseUI
+import GoogleSignIn
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -97,6 +98,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 extension AppDelegate {
+    
     func configureInitialRootController(for window: UIWindow?){
         let defaults = UserDefaults.standard
         let initialViewController: UIViewController
@@ -121,6 +123,8 @@ extension AppDelegate {
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
         let sourceApplication = options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String?
         if FUIAuth.defaultAuthUI()?.handleOpen(url, sourceApplication: sourceApplication) ?? false {
+            return true
+        } else if GIDSignIn.sharedInstance().handle(url as URL?, sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String, annotation: options[UIApplicationOpenURLOptionsKey.annotation]) {
             return true
         }
         

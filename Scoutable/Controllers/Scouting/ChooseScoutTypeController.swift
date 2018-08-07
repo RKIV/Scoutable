@@ -8,10 +8,18 @@
 
 import Foundation
 import UIKit
+import GoogleAPIClientForREST
+import GoogleSignIn
 
-class ChooseScoutTypeController: UITableViewController{
+
+class ChooseScoutTypeController: UITableViewController, GIDSignInUIDelegate{
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 2{
+            
+        }
+        
+        
         tableView.deselectRow(at: indexPath, animated: true)
     }
     

@@ -17,6 +17,7 @@ class User: Codable {
     var hasTeam: Bool = false
     var isLeader: Bool = false
     var roboticsTeamNumber: Int?
+    var accessToken: String?
     
     private static var _current: User?
     
@@ -46,19 +47,22 @@ class User: Codable {
     }
     
     
-    init(uid: String, username: String){
+    init(uid: String, username: String, accessToken: String){
         self.uid = uid
         self.username = username
         self.isLeader = false
+        self.accessToken = accessToken
 //        super.init()
     }
     
     init?(snapshot: DataSnapshot){
         guard let dict = snapshot.value as? [String : Any],
-            let username = dict["username"] as? String
+            let username = dict["username"] as? String,
+            let accessToken = dict["accessToken"] as? String
             else { return nil }
         self.uid = snapshot.key
         self.username = username
+        self.accessToken = accessToken
         if let scoutTeam = dict["scoutTeam"] as? String {
             self.scoutTeam = scoutTeam
             hasTeam = true
@@ -78,11 +82,13 @@ class User: Codable {
     
     required init?(coder aDecoder: NSCoder) {
         guard let uid = aDecoder.decodeObject(forKey: "uid") as? String,
-            let username = aDecoder.decodeObject(forKey: "username") as? String
+            let username = aDecoder.decodeObject(forKey: "username") as? String,
+            let accessToken = aDecoder.decodeObject(forKey: "accessToken") as? String
             else { return nil }
         
         self.uid = uid
         self.username = username
+        self.accessToken = accessToken
     }
 }
 

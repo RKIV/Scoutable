@@ -78,6 +78,8 @@
 		FAE975CE210BBFC700E2A951 /* YourEventsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE975CD210BBFC700E2A951 /* YourEventsController.swift */; };
 		FAE975D2210BC32A00E2A951 /* EventsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE975D1210BC32A00E2A951 /* EventsController.swift */; };
 		FAE975D4210BCF3F00E2A951 /* IndividualEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE975D3210BCF3F00E2A951 /* IndividualEventController.swift */; };
+		FAF5B410211A4644005A748B /* DataExport.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAF5B40F211A4644005A748B /* DataExport.storyboard */; };
+		FAF5B413211A46B9005A748B /* ExportSignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF5B412211A46B9005A748B /* ExportSignInController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -156,6 +158,8 @@
 		FAE975CD210BBFC700E2A951 /* YourEventsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YourEventsController.swift; sourceTree = "<group>"; };
 		FAE975D1210BC32A00E2A951 /* EventsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsController.swift; sourceTree = "<group>"; };
 		FAE975D3210BCF3F00E2A951 /* IndividualEventController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndividualEventController.swift; sourceTree = "<group>"; };
+		FAF5B40F211A4644005A748B /* DataExport.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DataExport.storyboard; sourceTree = "<group>"; };
+		FAF5B412211A46B9005A748B /* ExportSignInController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportSignInController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -291,6 +295,7 @@
 		FAB0598C2108F43400ABED45 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				FAF5B411211A4695005A748B /* Data Export */,
 				FADA6D1A2110F88700C78618 /* Matches */,
 				FAE13449210D004C00CF69BE /* Scouting */,
 				FAE13448210D003A00CF69BE /* Login */,
@@ -308,6 +313,7 @@
 				FAB059832108F34300ABED45 /* LaunchScreen.storyboard */,
 				FAB0597B2108F34100ABED45 /* Main.storyboard */,
 				FAE11504210907D600BAEFB7 /* Login.storyboard */,
+				FAF5B40F211A4644005A748B /* DataExport.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -403,12 +409,20 @@
 				FA035A5421118E3E0040B10D /* DynamicScoutingController.swift */,
 				FAD2B671210E4D7500320DFB /* StatictTemplateController.swift */,
 				FA0BC896210ADD160089E1C1 /* StaticScoutingController.swift */,
-				FADA6D212111743B00C78618 /* ChooseScoutingTeamController.swift */,
 				FA289AEF2118CAB400237375 /* SelectTeamController.swift */,
+				FADA6D212111743B00C78618 /* ChooseScoutingTeamController.swift */,
 				FA289AF72118EA9700237375 /* SelectEvent.swift */,
 				FA289AFB2118F67300237375 /* ChooseScoutTypeController.swift */,
 			);
 			path = Scouting;
+			sourceTree = "<group>";
+		};
+		FAF5B411211A4695005A748B /* Data Export */ = {
+			isa = PBXGroup;
+			children = (
+				FAF5B412211A46B9005A748B /* ExportSignInController.swift */,
+			);
+			path = "Data Export";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -477,6 +491,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAF5B410211A4644005A748B /* DataExport.storyboard in Resources */,
 				FAB059852108F34300ABED45 /* LaunchScreen.storyboard in Resources */,
 				FAB0598F2108F4B800ABED45 /* GoogleService-Info.plist in Resources */,
 				FAB059822108F34300ABED45 /* Assets.xcassets in Resources */,
@@ -497,6 +512,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-Scoutable/Pods-Scoutable-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleAPIClientForREST/GoogleAPIClientForREST.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
@@ -507,6 +523,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleAPIClientForREST.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
@@ -626,6 +643,7 @@
 				FA0BC892210ACD6E0089E1C1 /* ScoutDataService.swift in Sources */,
 				FA289AFC2118F67300237375 /* ChooseScoutTypeController.swift in Sources */,
 				FAD2B67E210E691200320DFB /* ScoutTemplateCell.swift in Sources */,
+				FAF5B413211A46B9005A748B /* ExportSignInController.swift in Sources */,
 				FAD2B674210E544900320DFB /* StepperTemplateCellView.swift in Sources */,
 				FAB059782108F34100ABED45 /* AppDelegate.swift in Sources */,
 				FA17B6882109107D005FEF30 /* UsernameController.swift in Sources */,

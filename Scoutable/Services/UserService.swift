@@ -7,16 +7,16 @@
 //
 
 import Foundation
-import FirebaseAuth.FIRUser
 import FirebaseDatabase
+import GoogleSignIn
 
 struct UserService{
     //Create a user on the databse
-    static func create(_ firUser: FIRUser, username: String, completion: @escaping (User?) -> Void){
+    static func create(_ gidUser: GIDGoogleUser, username: String, accessToken: String, completion: @escaping (User?) -> Void){
         //Make the dict to be added to the JSON
-        let userAttrs = ["username" : username, "hasTeam" : false, "isLeader" : false] as [String : Any]
+        let userAttrs = ["username" : username, "hasTeam" : false, "isLeader" : false, "accessToken" : accessToken] as [String : Any]
         //Make reference to server side user
-        let ref = Database.database().reference().child("users").child(firUser.uid)
+        let ref = Database.database().reference().child("users").child(gidUser.userID)
         //At reference add the dict
         ref.setValue(userAttrs){ (error, ref) in
             if let error = error{

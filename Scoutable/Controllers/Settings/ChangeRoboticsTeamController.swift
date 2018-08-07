@@ -19,6 +19,7 @@ class ChangeRoboticsTeamController: UIViewController{
             if teamNumber < max{
                 UserService.setRoboticsTeamNumber(as: Int(team)!)
                 User.current?.roboticsTeamNumber = teamNumber
+                print("set team number")
             }
         }
     }

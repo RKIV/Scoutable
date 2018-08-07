@@ -7,35 +7,27 @@
 //
 
 import UIKit
-import FirebaseAuth
-import FirebaseUI
 import FirebaseDatabase
-
-typealias FIRUser = FirebaseAuth.User
+import GoogleSignIn
 
 class LoginViewController: UIViewController {
     
-    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var loginButton: GIDSignInButton!
+    var user: GIDGoogleUser?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        GIDSignIn.sharedInstance().clientID = "258126374348-qv2f2p775k1oih4e1jmecl8srmih80mc.apps.googleusercontent.com"
+        GIDSignIn.sharedInstance().delegate = self
+        GIDSignIn.sharedInstance().uiDelegate = self
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    //On login tap check for access to Firebase AuthUI, set tis controller to the Authorization delegate, and show the Authorization UI
-    @IBAction func loginButtonTapped(_ sender: Any) {
-        guard let authUI = FUIAuth.defaultAuthUI() else { return }
-        
-        authUI.delegate = self
-        
-        let providers: [FUIAuthProvider] = [FUIGoogleAuth()]
-        authUI.providers = providers
-        
-        let authViewController = authUI.authViewController()
-        present(authViewController, animated: true)
-    }
+    
+    
+    
     // TODO: Add Skip button functionality
     @IBAction func skipButtonTapped(_ sender: Any) {
         let data = NSKeyedArchiver.archivedData(withRootObject: true)
@@ -46,31 +38,47 @@ class LoginViewController: UIViewController {
 
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let destination = segue.destination as? UsernameViewController else { return }
+        
+        destination.user = user
+    }
+    
 }
 
-extension LoginViewController: FUIAuthDelegate{
-    func authUI(_ authUI: FUIAuth, didSignInWith user: FIRUser?, error: Error?) {
-        //Check if there's an err0r
-        if let error = error{
-            assertionFailure("Error signing in: \(error.localizedDescription)")
+
+extension LoginViewController: GIDSignInDelegate, GIDSignInUIDelegate{
+    
+    
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        if let error = error {
+            print("Error signing in: \(error.localizedDescription)")
             return
         }
-        //Check for client side user
-        guard let user = user else { return }
-        //Check if user exists
-        UserService.show(forUID: user.uid) { (user) in
-            //If the user already has an account set the current user and send to main storyboard
-            if let user = user{
-                print("Setting current for user Team#: \(user.roboticsTeamNumber)")
+        
+        guard let gidUser = user else { return }
+        
+        UserService.show(forUID: gidUser.userID) { (user) in
+            if let user = user {
                 User.setCurrent(user, writeToUserDefaults: true)
-                
                 let initialViewController = UIStoryboard.initialViewController(for: .main)
                 self.view.window?.rootViewController = initialViewController
                 self.view.window?.makeKeyAndVisible()
-                //If it's a new user send to create username view controller
-            }else {
+            } else {
+                self.user = gidUser
                 self.performSegue(withIdentifier: "toCreateUsername", sender: self)
             }
         }
+    }
+    
+    func sign(_ signIn: GIDSignIn!,
+              present viewController: UIViewController!) {
+        self.present(viewController, animated: true, completion: nil)
+    }
+    
+    // Dismiss the "Sign in with Google" view
+    func sign(_ signIn: GIDSignIn!,
+              dismiss viewController: UIViewController!) {
+        self.dismiss(animated: true, completion: nil)
     }
 }
