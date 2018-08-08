@@ -70,7 +70,7 @@ extension LoginViewController: GIDSignInDelegate, GIDSignInUIDelegate{
         guard let gidUser = user else { return }
         UserService.show(forUID: gidUser.userID) { (user) in
             if let user = user {
-                User.setCurrent(user, writeToUserDefaults: true)
+                User.setCurrent(user)
                 let initialViewController = UIStoryboard.initialViewController(for: .main)
                 self.view.window?.rootViewController = initialViewController
                 self.view.window?.makeKeyAndVisible()

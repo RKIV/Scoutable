@@ -32,13 +32,9 @@ class User: Codable {
     }
     
     
-    static func setCurrent(_ user: User, writeToUserDefaults: Bool = false){
-        if writeToUserDefaults{
-            let data = try! JSONEncoder().encode(user)
-            UserDefaults.standard.set(data, forKey: "currentUser")
-            let guestData = NSKeyedArchiver.archivedData(withRootObject: false)
-            UserDefaults.standard.set(guestData, forKey: "isGuestUser")
-        }
+    static func setCurrent(_ user: User){
+        let guestData = NSKeyedArchiver.archivedData(withRootObject: false)
+        UserDefaults.standard.set(guestData, forKey: "isGuestUser")
         _current = user
     }
     

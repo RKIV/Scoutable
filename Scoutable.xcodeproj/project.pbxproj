@@ -217,8 +217,8 @@
 		FA17B67D210909D5005FEF30 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				FADA6D182110F82300C78618 /* StatCellView.swift */,
 				FA17B67E210909E0005FEF30 /* User.swift */,
+				FADA6D182110F82300C78618 /* StatCellView.swift */,
 				FA64971B210957C0002A40C1 /* BATeamSimple.swift */,
 				FA0BC885210A52340089E1C1 /* BAEvent.swift */,
 				FA0BC88F210A85430089E1C1 /* BATeam.swift */,

@@ -32,7 +32,7 @@ class UsernameViewController: UIViewController {
         UserService.create(gidUser, username: username, accessToken: gidUser.authentication.accessToken, completion: {(user) in
             guard let user = user else { return }
             //Set current user
-            User.setCurrent(user, writeToUserDefaults: true)
+            User.setCurrent(user)
             if let teamNumber = self.teamNumberTextField.text{
                 if teamNumber != "" {
                     UserService.setRoboticsTeamNumber(as: Int(teamNumber)!)

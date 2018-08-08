@@ -122,7 +122,7 @@ extension AppDelegate: GIDSignInDelegate {
         
         UserService.show(forUID: gidUser.userID) { (user) in
             if let user = user {
-                User.setCurrent(user, writeToUserDefaults: true)
+                User.setCurrent(user)
                 let initialViewController = UIStoryboard.initialViewController(for: .main)
                 self.window?.rootViewController = initialViewController
                 self.window?.makeKeyAndVisible()

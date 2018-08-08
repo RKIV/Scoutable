@@ -67,7 +67,7 @@ class IndividualTeamController: UIViewController{
         if let currentUser = User.current{
             UserService.show(forUID: currentUser.uid) { (user) in
                 if let user = user{
-                    User.setCurrent(user, writeToUserDefaults: true)
+                    User.setCurrent(user)
                 }
             }
         }
