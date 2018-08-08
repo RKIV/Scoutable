@@ -94,7 +94,7 @@
         <!--Username View Controller-->
         <scene sceneID="eqC-eq-xNZ">
             <objects>
-                <viewController id="a3S-W7-DPg" customClass="UsernameViewController" customModule="Scoutable" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UsernameVC" id="a3S-W7-DPg" customClass="UsernameViewController" customModule="Scoutable" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NAE-Ox-uCH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -14,7 +14,6 @@ import GTMSessionFetcher
 
 class LoginViewController: UIViewController {
     
-    fileprivate let service = GTLRSheetsService()
     @IBOutlet weak var loginButton: GIDSignInButton!
     var user: GIDGoogleUser?
     
@@ -52,10 +51,9 @@ class LoginViewController: UIViewController {
 }
 
 
-extension LoginViewController: GIDSignInDelegate, GIDSignInUIDelegate{
-    
-    
+extension LoginViewController: GIDSignInDelegate, GIDSignInUIDelegate{    
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        let service = GTLRSheetsService()
         if let error = error {
             print("Error signing in: \(error.localizedDescription)")
             service.authorizer = nil
@@ -64,9 +62,11 @@ extension LoginViewController: GIDSignInDelegate, GIDSignInUIDelegate{
              service.authorizer = user.authentication.fetcherAuthorizer()
         }
         GTLRSheetsHelper.service = service
-        
+        signedIn(user: user)
+    }
+    
+    func signedIn(user: GIDGoogleUser!){
         guard let gidUser = user else { return }
-        
         UserService.show(forUID: gidUser.userID) { (user) in
             if let user = user {
                 User.setCurrent(user, writeToUserDefaults: true)

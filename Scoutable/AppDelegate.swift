@@ -12,6 +12,7 @@ import Firebase
 import FirebaseUI
 import GoogleSignIn
 import GTMSessionFetcher
+import GoogleAPIClientForREST
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -23,8 +24,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         GIDSignIn.sharedInstance().clientID = "258126374348-qv2f2p775k1oih4e1jmecl8srmih80mc.apps.googleusercontent.com"
+        GIDSignIn.sharedInstance()?.delegate = self
+        GIDSignIn.sharedInstance()?.scopes = [kGTLRAuthScopeSheetsSpreadsheets]
+        GIDSignIn.sharedInstance()?.signInSilently()
         FirebaseApp.configure()
-        configureInitialRootController(for: window)
         return true
     }
 
@@ -99,26 +102,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
-extension AppDelegate {
+extension AppDelegate: GIDSignInDelegate {
+    
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        let service = GTLRSheetsService()
+        if let error = error {
+            print("Error signing in: \(error.localizedDescription)")
+            configureInitialRootController(for: window)
+            return
+        } else {
+            service.authorizer = user.authentication.fetcherAuthorizer()
+        }
+        GTLRSheetsHelper.service = service
+        
+        guard let gidUser = user else { return }
+        
+        UserService.show(forUID: gidUser.userID) { (user) in
+            if let user = user {
+                User.setCurrent(user, writeToUserDefaults: true)
+                let initialViewController = UIStoryboard.initialViewController(for: .main)
+                self.window?.rootViewController = initialViewController
+                self.window?.makeKeyAndVisible()
+            } else {
+                let initialViewController = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(withIdentifier: "UsernameVC") as! UsernameViewController
+                initialViewController.user = gidUser
+                self.window?.rootViewController = initialViewController
+                self.window?.makeKeyAndVisible()
+            }
+        }
+    }
+    
     
     func configureInitialRootController(for window: UIWindow?){
-        let defaults = UserDefaults.standard
-        let initialViewController: UIViewController
-        
-//        if Auth.auth().currentUser != nil,
-//            let userData = defaults.object(forKey: "currentUser") as? Data,
-//            let user = try? JSONDecoder().decode(User.self, from: userData) {
-//            User.setCurrent(user)
-//            
-//            initialViewController = UIStoryboard.initialViewController(for: .main)
-//        }else if (defaults.object(forKey: "isGuestUser") as? Data) != nil{
-//            initialViewController = UIStoryboard.initialViewController(for: .main)
-//        } else {
-//            initialViewController = UIStoryboard.initialViewController(for: .login)
-//        }
-        
-        initialViewController = UIStoryboard.initialViewController(for: .login)
-        
+        let initialViewController = UIStoryboard.initialViewController(for: .login) as! LoginViewController
         window?.rootViewController = initialViewController
         window?.makeKeyAndVisible()
         

@@ -15,5 +15,6 @@ target 'Scoutable' do
   pod 'GoogleSignIn'
   pod 'FirebaseUI/Google'
   pod 'GoogleAPIClientForREST/Sheets'
+  pod 'GoogleAPIClientForREST/Drive'
 
 end
