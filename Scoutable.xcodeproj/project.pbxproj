@@ -41,6 +41,7 @@
 		FA64971C210957C0002A40C1 /* BATeamSimple.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA64971B210957C0002A40C1 /* BATeamSimple.swift */; };
 		FA64972121096813002A40C1 /* TeamCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA64972021096813002A40C1 /* TeamCellView.swift */; };
 		FA649729210A3E6D002A40C1 /* NoPersonalTeamCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA649728210A3E6D002A40C1 /* NoPersonalTeamCellView.swift */; };
+		FA9DD8DD211B683D0099541E /* GTLRDriveHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9DD8DC211B683D0099541E /* GTLRDriveHelper.swift */; };
 		FAB059782108F34100ABED45 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB059772108F34100ABED45 /* AppDelegate.swift */; };
 		FAB0597A2108F34100ABED45 /* TeamsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB059792108F34100ABED45 /* TeamsController.swift */; };
 		FAB0597D2108F34100ABED45 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAB0597B2108F34100ABED45 /* Main.storyboard */; };
@@ -120,6 +121,7 @@
 		FA64971B210957C0002A40C1 /* BATeamSimple.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BATeamSimple.swift; sourceTree = "<group>"; };
 		FA64972021096813002A40C1 /* TeamCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamCellView.swift; sourceTree = "<group>"; };
 		FA649728210A3E6D002A40C1 /* NoPersonalTeamCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoPersonalTeamCellView.swift; sourceTree = "<group>"; };
+		FA9DD8DC211B683D0099541E /* GTLRDriveHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GTLRDriveHelper.swift; sourceTree = "<group>"; };
 		FAB059742108F34100ABED45 /* Scoutable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scoutable.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAB059772108F34100ABED45 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAB059792108F34100ABED45 /* TeamsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsController.swift; sourceTree = "<group>"; };
@@ -432,6 +434,7 @@
 			isa = PBXGroup;
 			children = (
 				FAF5B416211A7F2F005A748B /* GTLRSheetsHelper.swift */,
+				FA9DD8DC211B683D0099541E /* GTLRDriveHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -648,6 +651,7 @@
 				FA0BC895210AD3090089E1C1 /* Constants.swift in Sources */,
 				FA0BC886210A52340089E1C1 /* BAEvent.swift in Sources */,
 				FA0BC89D210AEE080089E1C1 /* RequestsReceivedController.swift in Sources */,
+				FA9DD8DD211B683D0099541E /* GTLRDriveHelper.swift in Sources */,
 				FA649729210A3E6D002A40C1 /* NoPersonalTeamCellView.swift in Sources */,
 				FA17B68221090AA6005FEF30 /* Storyboard+Utility.swift in Sources */,
 				FADA6D1E2110F9E600C78618 /* IndividualMatchController.swift in Sources */,

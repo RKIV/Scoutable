@@ -22,7 +22,6 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         GIDSignIn.sharedInstance().delegate = self
         GIDSignIn.sharedInstance().uiDelegate = self
-        GIDSignIn.sharedInstance().scopes = [kGTLRAuthScopeSheetsSpreadsheets]
         GIDSignIn.sharedInstance().signInSilently()
     }
     
@@ -53,15 +52,17 @@ class LoginViewController: UIViewController {
 
 extension LoginViewController: GIDSignInDelegate, GIDSignInUIDelegate{    
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-        let service = GTLRSheetsService()
+        let sheetsService = GTLRSheetsService()
+        let driveService = GTLRDriveService()
         if let error = error {
             print("Error signing in: \(error.localizedDescription)")
-            service.authorizer = nil
             return
         } else {
-             service.authorizer = user.authentication.fetcherAuthorizer()
+            sheetsService.authorizer = user.authentication.fetcherAuthorizer()
+            driveService.authorizer = user.authentication.fetcherAuthorizer()
         }
-        GTLRSheetsHelper.service = service
+        GTLRSheetsHelper.service = sheetsService
+        GTLRDriveHelper.service = driveService
         signedIn(user: user)
     }
     

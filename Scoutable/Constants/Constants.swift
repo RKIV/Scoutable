@@ -15,6 +15,11 @@ enum FieldTypes: String{
     case NumberPad = "NumberPad"
 }
 
+enum MimeTypes: String{
+    case Folder = "application/vnd.google-apps.folder"
+    case Spreadsheet = "application/vnd.google-apps.spreadsheet"
+}
+
 struct Constants{
     static let currentYearConstant = 2018
 }

@@ -40,6 +40,9 @@ PODS:
     - GoogleSignIn (~> 4.0)
   - GoogleAPIClientForREST/Core (1.3.5):
     - GTMSessionFetcher (>= 1.1.7)
+  - GoogleAPIClientForREST/Drive (1.3.5):
+    - GoogleAPIClientForREST/Core
+    - GTMSessionFetcher (>= 1.1.7)
   - GoogleAPIClientForREST/Sheets (1.3.5):
     - GoogleAPIClientForREST/Core
     - GTMSessionFetcher (>= 1.1.7)
@@ -99,6 +102,7 @@ DEPENDENCIES:
   - Firebase/Database
   - FirebaseUI/Auth
   - FirebaseUI/Google
+  - GoogleAPIClientForREST/Drive
   - GoogleAPIClientForREST/Sheets
   - GoogleSignIn
   - SwiftyJSON (~> 4.0)
@@ -144,6 +148,6 @@ SPEC CHECKSUMS:
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
 
-PODFILE CHECKSUM: c73f9410cc3831ead6c5e6fe0eba342ea140c075
+PODFILE CHECKSUM: 6729d7c03a080a202bb1377dd1fbead38fd4a149
 
 COCOAPODS: 1.5.3

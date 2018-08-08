@@ -19,7 +19,30 @@ class ExportSignInController: UIViewController{
     
     
     @IBAction func buttonTapped(_ sender: Any) {
-        GTLRSheetsHelper.createSheet(title: "Spreadsheet Test")
+        GTLRDriveHelper.findSpreadsheet(fileName: "Robotics SS") { (spreadsheet) in
+            if let spreadsheet = spreadsheet{
+                print("Found spreadsheet")
+                GTLRDriveHelper.findFolder(folderName: "Robotics", complete: { (folder) in
+                    print(folder ?? "No folder")
+                    guard let folder = folder else { return }
+                    GTLRDriveHelper.moveFile(fileID: spreadsheet.identifier!, folderID: folder.identifier!, complete: { (movedSpreadsheet) in
+                        print(movedSpreadsheet?.parents ?? "No parents")
+                    })
+                })
+            } else {
+                GTLRSheetsHelper.createSpreadsheet(title: "Robotics SS") { (spreadsheet) in
+                    guard let spreadsheet = spreadsheet else { return }
+                    print(spreadsheet)
+                    GTLRDriveHelper.findFolder(folderName: "Robotics", complete: { (folder) in
+                        print(folder ?? "No folder")
+                        guard let folder = folder else { return }
+                        GTLRDriveHelper.moveFile(fileID: spreadsheet.spreadsheetId!, folderID: folder.identifier!, complete: { (movedSpreadsheet) in
+                            print(movedSpreadsheet?.parents ?? "No parents")
+                        })
+                    })
+                }
+            }
+        }
     }
     
 

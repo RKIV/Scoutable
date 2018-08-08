@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         GIDSignIn.sharedInstance().clientID = "258126374348-qv2f2p775k1oih4e1jmecl8srmih80mc.apps.googleusercontent.com"
         GIDSignIn.sharedInstance()?.delegate = self
-        GIDSignIn.sharedInstance()?.scopes = [kGTLRAuthScopeSheetsSpreadsheets]
+        GIDSignIn.sharedInstance()?.scopes = [kGTLRAuthScopeSheetsSpreadsheets, kGTLRAuthScopeDrive]
         GIDSignIn.sharedInstance()?.signInSilently()
         FirebaseApp.configure()
         return true
@@ -105,15 +105,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 extension AppDelegate: GIDSignInDelegate {
     
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-        let service = GTLRSheetsService()
+        let sheetsService = GTLRSheetsService()
+        let driveService = GTLRDriveService()
         if let error = error {
             print("Error signing in: \(error.localizedDescription)")
             configureInitialRootController(for: window)
             return
         } else {
-            service.authorizer = user.authentication.fetcherAuthorizer()
+            sheetsService.authorizer = user.authentication.fetcherAuthorizer()
+            driveService.authorizer = user.authentication.fetcherAuthorizer()
         }
-        GTLRSheetsHelper.service = service
+        GTLRSheetsHelper.service = sheetsService
+        GTLRDriveHelper.service = driveService
         
         guard let gidUser = user else { return }
         
