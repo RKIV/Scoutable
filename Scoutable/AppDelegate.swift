@@ -11,6 +11,7 @@ import CoreData
 import Firebase
 import FirebaseUI
 import GoogleSignIn
+import GTMSessionFetcher
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -21,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        GIDSignIn.sharedInstance().clientID = "258126374348-qv2f2p775k1oih4e1jmecl8srmih80mc.apps.googleusercontent.com"
         FirebaseApp.configure()
         configureInitialRootController(for: window)
         return true
@@ -103,34 +105,34 @@ extension AppDelegate {
         let defaults = UserDefaults.standard
         let initialViewController: UIViewController
         
-        if Auth.auth().currentUser != nil,
-            let userData = defaults.object(forKey: "currentUser") as? Data,
-            let user = try? JSONDecoder().decode(User.self, from: userData) {
-            User.setCurrent(user)
-            
-            initialViewController = UIStoryboard.initialViewController(for: .main)
-        }else if (defaults.object(forKey: "isGuestUser") as? Data) != nil{
-            initialViewController = UIStoryboard.initialViewController(for: .main)
-        } else {
-            initialViewController = UIStoryboard.initialViewController(for: .login)
-        }
+//        if Auth.auth().currentUser != nil,
+//            let userData = defaults.object(forKey: "currentUser") as? Data,
+//            let user = try? JSONDecoder().decode(User.self, from: userData) {
+//            User.setCurrent(user)
+//            
+//            initialViewController = UIStoryboard.initialViewController(for: .main)
+//        }else if (defaults.object(forKey: "isGuestUser") as? Data) != nil{
+//            initialViewController = UIStoryboard.initialViewController(for: .main)
+//        } else {
+//            initialViewController = UIStoryboard.initialViewController(for: .login)
+//        }
+        
+        initialViewController = UIStoryboard.initialViewController(for: .login)
         
         window?.rootViewController = initialViewController
         window?.makeKeyAndVisible()
         
     }
     
-    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
-        let sourceApplication = options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String?
-        if FUIAuth.defaultAuthUI()?.handleOpen(url, sourceApplication: sourceApplication) ?? false {
-            return true
-        } else if GIDSignIn.sharedInstance().handle(url as URL?, sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String, annotation: options[UIApplicationOpenURLOptionsKey.annotation]) {
-            return true
-        }
-        
-        // other URL handling goes here
-        
-        return false
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        return GIDSignIn.sharedInstance().handle(url, sourceApplication: sourceApplication, annotation: annotation)
     }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        let sourceApplication = options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String
+        let annotation = options[UIApplicationOpenURLOptionsKey.annotation]
+        return GIDSignIn.sharedInstance().handle(url, sourceApplication: sourceApplication, annotation: annotation)
+    }
+    
 }
 

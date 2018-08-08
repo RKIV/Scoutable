@@ -80,6 +80,7 @@
 		FAE975D4210BCF3F00E2A951 /* IndividualEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE975D3210BCF3F00E2A951 /* IndividualEventController.swift */; };
 		FAF5B410211A4644005A748B /* DataExport.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAF5B40F211A4644005A748B /* DataExport.storyboard */; };
 		FAF5B413211A46B9005A748B /* ExportSignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF5B412211A46B9005A748B /* ExportSignInController.swift */; };
+		FAF5B417211A7F2F005A748B /* GTLRSheetsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF5B416211A7F2F005A748B /* GTLRSheetsHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -160,6 +161,7 @@
 		FAE975D3210BCF3F00E2A951 /* IndividualEventController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndividualEventController.swift; sourceTree = "<group>"; };
 		FAF5B40F211A4644005A748B /* DataExport.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DataExport.storyboard; sourceTree = "<group>"; };
 		FAF5B412211A46B9005A748B /* ExportSignInController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportSignInController.swift; sourceTree = "<group>"; };
+		FAF5B416211A7F2F005A748B /* GTLRSheetsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GTLRSheetsHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -281,6 +283,7 @@
 				FA64971D210967A6002A40C1 /* Views */,
 				FA17B68021090A93005FEF30 /* Extensions */,
 				FA17B67D210909D5005FEF30 /* Models */,
+				FAF5B418211A8058005A748B /* Helpers */,
 				FA17B67A2109096B005FEF30 /* Services */,
 				FAB0598D2108F43A00ABED45 /* Storyboards */,
 				FAB0598C2108F43400ABED45 /* Controllers */,
@@ -423,6 +426,14 @@
 				FAF5B412211A46B9005A748B /* ExportSignInController.swift */,
 			);
 			path = "Data Export";
+			sourceTree = "<group>";
+		};
+		FAF5B418211A8058005A748B /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				FAF5B416211A7F2F005A748B /* GTLRSheetsHelper.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -615,6 +626,7 @@
 				FA64972121096813002A40C1 /* TeamCellView.swift in Sources */,
 				FAE1344B210D023C00CF69BE /* TeamsAtEventController.swift in Sources */,
 				FA289AF82118EA9700237375 /* SelectEvent.swift in Sources */,
+				FAF5B417211A7F2F005A748B /* GTLRSheetsHelper.swift in Sources */,
 				FA289AFA2118ECA200237375 /* NSDate+isBetween.swift in Sources */,
 				FAE975C8210B9F9300E2A951 /* BADistrict.swift in Sources */,
 				FAB059802108F34100ABED45 /* Scoutable.xcdatamodeld in Sources */,

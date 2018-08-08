@@ -8,6 +8,7 @@
 
 import Foundation
 import FirebaseDatabase.FIRDataSnapshot
+import GoogleAPIClientForREST
 
 class User: Codable {
     
@@ -18,6 +19,7 @@ class User: Codable {
     var isLeader: Bool = false
     var roboticsTeamNumber: Int?
     var accessToken: String?
+    
     
     private static var _current: User?
     

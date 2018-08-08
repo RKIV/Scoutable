@@ -9,11 +9,17 @@
 import Foundation
 import UIKit
 import GoogleSignIn
+import GoogleAPIClientForREST
 
-class ExportSignInController: UIViewController, GIDSignInUIDelegate{
+
+class ExportSignInController: UIViewController{
     override func viewDidLoad() {
         super .viewDidLoad()
-        
+    }
+    
+    
+    @IBAction func buttonTapped(_ sender: Any) {
+        GTLRSheetsHelper.createSheet(title: "Spreadsheet Test")
     }
     
 

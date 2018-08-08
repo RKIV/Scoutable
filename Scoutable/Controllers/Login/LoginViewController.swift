@@ -9,17 +9,22 @@
 import UIKit
 import FirebaseDatabase
 import GoogleSignIn
+import GoogleAPIClientForREST
+import GTMSessionFetcher
 
 class LoginViewController: UIViewController {
     
+    fileprivate let service = GTLRSheetsService()
     @IBOutlet weak var loginButton: GIDSignInButton!
     var user: GIDGoogleUser?
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        GIDSignIn.sharedInstance().clientID = "258126374348-qv2f2p775k1oih4e1jmecl8srmih80mc.apps.googleusercontent.com"
         GIDSignIn.sharedInstance().delegate = self
         GIDSignIn.sharedInstance().uiDelegate = self
+        GIDSignIn.sharedInstance().scopes = [kGTLRAuthScopeSheetsSpreadsheets]
+        GIDSignIn.sharedInstance().signInSilently()
     }
     
     override func didReceiveMemoryWarning() {
@@ -53,8 +58,12 @@ extension LoginViewController: GIDSignInDelegate, GIDSignInUIDelegate{
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if let error = error {
             print("Error signing in: \(error.localizedDescription)")
+            service.authorizer = nil
             return
+        } else {
+             service.authorizer = user.authentication.fetcherAuthorizer()
         }
+        GTLRSheetsHelper.service = service
         
         guard let gidUser = user else { return }
         
