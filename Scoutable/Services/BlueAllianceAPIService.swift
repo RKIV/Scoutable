@@ -71,7 +71,7 @@ struct BlueAllianceAPIService{
         }
     }
     // MARK: Get Events
-    static func eventsList(forTeamNumber teamNumber: Int, done: @escaping ([BAEvent]) -> ()){
+    static func events(forTeamNumber teamNumber: Int, done: @escaping ([BAEvent]) -> ()){
         let urlString = "\(baseURL)/team/frc\(teamNumber)/events\(authKey)"
         guard let url = URL(string: urlString) else {return}
         decodeEventsSimple(for: url) { (data) in
@@ -79,7 +79,7 @@ struct BlueAllianceAPIService{
         }
     }
     
-    static func eventsList(forYear year: Int, done: @escaping ([BAEvent]) -> ()){
+    static func events(forYear year: Int, done: @escaping ([BAEvent]) -> ()){
         let urlString = "\(baseURL)/events/\(year)/simple\(authKey)"
         guard let url = URL(string: urlString) else {return}
         decodeEventsSimple(for: url) { (data) in
@@ -87,7 +87,7 @@ struct BlueAllianceAPIService{
         }
     }
     
-    static func eventsList(forDistrict district: String, done: @escaping (JSON) -> ()){
+    static func events(forDistrict district: String, done: @escaping (JSON) -> ()){
         let urlString = "\(baseURL)/district/\(district)/events\(authKey)"
         guard let url = URL(string: urlString) else {return}
         swiftyJson(forURL: url) { (swiftyData) in
@@ -134,6 +134,16 @@ struct BlueAllianceAPIService{
     
     static func matchesSimple(eventKey: String, done: @escaping (JSON) -> ()){
         let urlString = "\(baseURL)/event/\(eventKey)/matches/simple\(authKey)"
+        guard let url = URL(string: urlString) else {return}
+        swiftyJson(forURL: url) {swiftyData in
+            done(swiftyData)
+        }
+    }
+    
+    //MARK: Get Matches
+    
+    static func matches(forTeamNumber teamNumber: Int, done: @escaping (JSON) -> ()){
+        let urlString = "\(baseURL)/team/frc\(teamNumber)/matches/\(Constants.currentYearConstant)\(authKey)"
         guard let url = URL(string: urlString) else {return}
         swiftyJson(forURL: url) {swiftyData in
             done(swiftyData)

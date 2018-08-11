@@ -77,7 +77,7 @@ class IndividualTeamController: UIViewController{
         BlueAllianceAPIService.team(forNumber: teamNumber) { (team) in
             self.team = team
         }
-        BlueAllianceAPIService.eventsList(forTeamNumber: teamNumber) { (events) in
+        BlueAllianceAPIService.events(forTeamNumber: teamNumber) { (events) in
             self.eventsArray = events.reversed()
             for event in self.eventsArray{
                 if !self.years.contains(event.year){

@@ -36,7 +36,7 @@ class CurrentEventsController: UITableViewController{
     }
     
     func loadEvents(complete: @escaping () -> ()){
-        BlueAllianceAPIService.eventsList(forYear: Constants.currentYearConstant) { (eventsData) in
+        BlueAllianceAPIService.events(forYear: Constants.currentYearConstant) { (eventsData) in
             let unfilteredEventsArray = eventsData.reversed()
             self.eventsArray = unfilteredEventsArray.filter({ (event) -> Bool in
                 

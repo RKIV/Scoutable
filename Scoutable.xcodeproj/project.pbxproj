@@ -26,6 +26,7 @@
 		FA17B6882109107D005FEF30 /* UsernameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA17B6872109107D005FEF30 /* UsernameController.swift */; };
 		FA17B68A21093C1B005FEF30 /* TeamCreationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA17B68921093C1B005FEF30 /* TeamCreationController.swift */; };
 		FA17B68E21093F1F005FEF30 /* ScoutTeamService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA17B68D21093F1F005FEF30 /* ScoutTeamService.swift */; };
+		FA2360C3211E46A80032462A /* DAFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2360C2211E46A80032462A /* DAFieldCell.swift */; };
 		FA289AF02118CAB400237375 /* SelectTeamController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA289AEF2118CAB400237375 /* SelectTeamController.swift */; };
 		FA289AF62118DFEB00237375 /* SelectMatchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA289AF52118DFEB00237375 /* SelectMatchController.swift */; };
 		FA289AF82118EA9700237375 /* SelectEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA289AF72118EA9700237375 /* SelectEvent.swift */; };
@@ -49,6 +50,9 @@
 		FAB059822108F34300ABED45 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAB059812108F34300ABED45 /* Assets.xcassets */; };
 		FAB059852108F34300ABED45 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAB059832108F34300ABED45 /* LaunchScreen.storyboard */; };
 		FAB0598F2108F4B800ABED45 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FAB0598E2108F4B800ABED45 /* GoogleService-Info.plist */; };
+		FACCAB71211CCD9A0049BEDB /* DataAnalysisListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACCAB70211CCD9A0049BEDB /* DataAnalysisListController.swift */; };
+		FACCAB73211CDE2C0049BEDB /* ScoutDataAnalysisService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACCAB72211CDE2C0049BEDB /* ScoutDataAnalysisService.swift */; };
+		FACCAB78211D16700049BEDB /* DATemplateFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACCAB77211D16700049BEDB /* DATemplateFieldCell.swift */; };
 		FAD2B672210E4D7600320DFB /* StatictTemplateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD2B671210E4D7500320DFB /* StatictTemplateController.swift */; };
 		FAD2B674210E544900320DFB /* StepperTemplateCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD2B673210E544900320DFB /* StepperTemplateCellView.swift */; };
 		FAD2B676210E54C900320DFB /* SwitchTemplateCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD2B675210E54C900320DFB /* SwitchTemplateCellView.swift */; };
@@ -80,7 +84,7 @@
 		FAE975D2210BC32A00E2A951 /* EventsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE975D1210BC32A00E2A951 /* EventsController.swift */; };
 		FAE975D4210BCF3F00E2A951 /* IndividualEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE975D3210BCF3F00E2A951 /* IndividualEventController.swift */; };
 		FAF5B410211A4644005A748B /* DataExport.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAF5B40F211A4644005A748B /* DataExport.storyboard */; };
-		FAF5B413211A46B9005A748B /* ExportSignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF5B412211A46B9005A748B /* ExportSignInController.swift */; };
+		FAF5B413211A46B9005A748B /* SingleDataAnalysisController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF5B412211A46B9005A748B /* SingleDataAnalysisController.swift */; };
 		FAF5B417211A7F2F005A748B /* GTLRSheetsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF5B416211A7F2F005A748B /* GTLRSheetsHelper.swift */; };
 /* End PBXBuildFile section */
 
@@ -106,6 +110,7 @@
 		FA17B6872109107D005FEF30 /* UsernameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsernameController.swift; sourceTree = "<group>"; };
 		FA17B68921093C1B005FEF30 /* TeamCreationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamCreationController.swift; sourceTree = "<group>"; };
 		FA17B68D21093F1F005FEF30 /* ScoutTeamService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoutTeamService.swift; sourceTree = "<group>"; };
+		FA2360C2211E46A80032462A /* DAFieldCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DAFieldCell.swift; sourceTree = "<group>"; };
 		FA289AEF2118CAB400237375 /* SelectTeamController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTeamController.swift; sourceTree = "<group>"; };
 		FA289AF52118DFEB00237375 /* SelectMatchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectMatchController.swift; sourceTree = "<group>"; };
 		FA289AF72118EA9700237375 /* SelectEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectEvent.swift; sourceTree = "<group>"; };
@@ -131,6 +136,9 @@
 		FAB059842108F34300ABED45 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FAB059862108F34400ABED45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FAB0598E2108F4B800ABED45 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		FACCAB70211CCD9A0049BEDB /* DataAnalysisListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataAnalysisListController.swift; sourceTree = "<group>"; };
+		FACCAB72211CDE2C0049BEDB /* ScoutDataAnalysisService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoutDataAnalysisService.swift; sourceTree = "<group>"; };
+		FACCAB77211D16700049BEDB /* DATemplateFieldCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DATemplateFieldCell.swift; sourceTree = "<group>"; };
 		FAD2B671210E4D7500320DFB /* StatictTemplateController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatictTemplateController.swift; sourceTree = "<group>"; };
 		FAD2B673210E544900320DFB /* StepperTemplateCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepperTemplateCellView.swift; sourceTree = "<group>"; };
 		FAD2B675210E54C900320DFB /* SwitchTemplateCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchTemplateCellView.swift; sourceTree = "<group>"; };
@@ -162,7 +170,7 @@
 		FAE975D1210BC32A00E2A951 /* EventsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsController.swift; sourceTree = "<group>"; };
 		FAE975D3210BCF3F00E2A951 /* IndividualEventController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndividualEventController.swift; sourceTree = "<group>"; };
 		FAF5B40F211A4644005A748B /* DataExport.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DataExport.storyboard; sourceTree = "<group>"; };
-		FAF5B412211A46B9005A748B /* ExportSignInController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportSignInController.swift; sourceTree = "<group>"; };
+		FAF5B412211A46B9005A748B /* SingleDataAnalysisController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleDataAnalysisController.swift; sourceTree = "<group>"; };
 		FAF5B416211A7F2F005A748B /* GTLRSheetsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GTLRSheetsHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -210,6 +218,7 @@
 				FA17B68D21093F1F005FEF30 /* ScoutTeamService.swift */,
 				FA0BC891210ACD6E0089E1C1 /* ScoutDataService.swift */,
 				FA64971921095758002A40C1 /* BlueAllianceAPIService.swift */,
+				FACCAB72211CDE2C0049BEDB /* ScoutDataAnalysisService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -241,6 +250,7 @@
 		FA64971D210967A6002A40C1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				FACCAB74211D15DB0049BEDB /* DataAnalysis */,
 				FA41D7412112785800BE50EE /* CurrentScoutTeamCell.swift */,
 				FA41D73D2112724600BE50EE /* UserCellView.swift */,
 				FA41D73521126F2800BE50EE /* ScoutTeamRequestCellView.swift */,
@@ -321,6 +331,15 @@
 				FAF5B40F211A4644005A748B /* DataExport.storyboard */,
 			);
 			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		FACCAB74211D15DB0049BEDB /* DataAnalysis */ = {
+			isa = PBXGroup;
+			children = (
+				FA2360C2211E46A80032462A /* DAFieldCell.swift */,
+				FACCAB77211D16700049BEDB /* DATemplateFieldCell.swift */,
+			);
+			path = DataAnalysis;
 			sourceTree = "<group>";
 		};
 		FADA6D1A2110F88700C78618 /* Matches */ = {
@@ -425,7 +444,8 @@
 		FAF5B411211A4695005A748B /* Data Export */ = {
 			isa = PBXGroup;
 			children = (
-				FAF5B412211A46B9005A748B /* ExportSignInController.swift */,
+				FAF5B412211A46B9005A748B /* SingleDataAnalysisController.swift */,
+				FACCAB70211CCD9A0049BEDB /* DataAnalysisListController.swift */,
 			);
 			path = "Data Export";
 			sourceTree = "<group>";
@@ -524,6 +544,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Scoutable/Pods-Scoutable-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleAPIClientForREST/GoogleAPIClientForREST.framework",
@@ -535,6 +556,7 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleAPIClientForREST.framework",
@@ -598,6 +620,7 @@
 			files = (
 				FA0BC89B210AE6030089E1C1 /* SettingsController.swift in Sources */,
 				FA035A59211225780040B10D /* DynamicTemplateController.swift in Sources */,
+				FACCAB78211D16700049BEDB /* DATemplateFieldCell.swift in Sources */,
 				FA41D73621126F2800BE50EE /* ScoutTeamRequestCellView.swift in Sources */,
 				FA64971C210957C0002A40C1 /* BATeamSimple.swift in Sources */,
 				FADCDA4D210F853E0044E841 /* ScoutCell.swift in Sources */,
@@ -637,6 +660,8 @@
 				FA41D73A211270A300BE50EE /* UsersController.swift in Sources */,
 				FADA6D112110D00F00C78618 /* MatchesController.swift in Sources */,
 				FA289AF62118DFEB00237375 /* SelectMatchController.swift in Sources */,
+				FACCAB71211CCD9A0049BEDB /* DataAnalysisListController.swift in Sources */,
+				FACCAB73211CDE2C0049BEDB /* ScoutDataAnalysisService.swift in Sources */,
 				FAE975C6210B9EFA00E2A951 /* DistrictCellView.swift in Sources */,
 				FAE1343D210CEDFE00CF69BE /* MatchCellView.swift in Sources */,
 				FAE1344D210D061400CF69BE /* EventTeamCellView.swift in Sources */,
@@ -646,6 +671,7 @@
 				FA035A5521118E3F0040B10D /* DynamicScoutingController.swift in Sources */,
 				FAE975C0210B0C6800E2A951 /* ReceivedRequestCellView.swift in Sources */,
 				FA41D7422112785900BE50EE /* CurrentScoutTeamCell.swift in Sources */,
+				FA2360C3211E46A80032462A /* DAFieldCell.swift in Sources */,
 				FADA6D202111726300C78618 /* ChooseTeamCellView.swift in Sources */,
 				FA17B68621090CA3005FEF30 /* ScoutTeamController.swift in Sources */,
 				FA0BC895210AD3090089E1C1 /* Constants.swift in Sources */,
@@ -659,7 +685,7 @@
 				FA0BC892210ACD6E0089E1C1 /* ScoutDataService.swift in Sources */,
 				FA289AFC2118F67300237375 /* ChooseScoutTypeController.swift in Sources */,
 				FAD2B67E210E691200320DFB /* ScoutTemplateCell.swift in Sources */,
-				FAF5B413211A46B9005A748B /* ExportSignInController.swift in Sources */,
+				FAF5B413211A46B9005A748B /* SingleDataAnalysisController.swift in Sources */,
 				FAD2B674210E544900320DFB /* StepperTemplateCellView.swift in Sources */,
 				FAB059782108F34100ABED45 /* AppDelegate.swift in Sources */,
 				FA17B6882109107D005FEF30 /* UsernameController.swift in Sources */,

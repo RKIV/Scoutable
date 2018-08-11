@@ -16,5 +16,6 @@ target 'Scoutable' do
   pod 'FirebaseUI/Google'
   pod 'GoogleAPIClientForREST/Sheets'
   pod 'GoogleAPIClientForREST/Drive'
+  pod 'Charts'
 
 end

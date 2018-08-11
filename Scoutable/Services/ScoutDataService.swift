@@ -106,12 +106,10 @@ struct ScoutDataService{
         }
     }
     
-    
     static func addStaticScoutField(name: String, type: String, cellID: String, value: Any, roboticsTeam: Int, year: Int, scoutTeam: String){
         let dataRef = Database.database().reference().child("scoutTeams").child(scoutTeam).child("data").child("static").child(String(year)).child(String(roboticsTeam)).child(cellID)
         dataRef.updateChildValues(["type" : type as Any, "name" : name as Any, "value" : value])
     }
-    
     
     static func getStaticScoutData(forTeam roboticsTeam: Int, andYear year: Int, complete: @escaping (_ regularCells: [ScoutCell], _ ghostCells: [ScoutCell]) -> ()){
         let dataRef = Database.database().reference().child("scoutTeams").child((User.current?.scoutTeam)!).child("data").child("static").child(String(year)).child(String(roboticsTeam))

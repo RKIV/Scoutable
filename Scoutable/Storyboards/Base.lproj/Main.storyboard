@@ -320,7 +320,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Go-C6-Wo2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1622" y="-2232"/>
+            <point key="canvasLocation" x="1217" y="-2232"/>
         </scene>
         <!--Individual Team Controller-->
         <scene sceneID="fOx-sa-BgH">
@@ -561,7 +561,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pPp-0V-f3v" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2608.8000000000002" y="-2755.7721139430287"/>
+            <point key="canvasLocation" x="2294" y="-2232"/>
         </scene>
         <!--Scout Team-->
         <scene sceneID="LQL-Qs-aQA">
@@ -978,8 +978,15 @@
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5nX-Ro-Ycr">
+                            <rect key="frame" x="256" y="169" width="48" height="30"/>
+                            <state key="normal" title="Cancel"/>
+                            <connections>
+                                <action selector="cancelButtonTapped:" destination="OlT-8T-Ptf" eventType="touchUpInside" id="Fw0-j5-NnK"/>
+                            </connections>
+                        </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zMj-xX-neW">
-                            <rect key="frame" x="141.5" y="171" width="37" height="30"/>
+                            <rect key="frame" x="141.5" y="169" width="37" height="30"/>
                             <state key="normal" title="Done"/>
                             <connections>
                                 <action selector="doneButtoneTapped:" destination="OlT-8T-Ptf" eventType="touchUpInside" id="rS8-h9-LgT"/>
@@ -988,12 +995,14 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstItem="Jw0-zz-CLg" firstAttribute="bottom" secondItem="zMj-xX-neW" secondAttribute="bottom" constant="5" id="5tg-y6-aaB"/>
-                        <constraint firstItem="zMj-xX-neW" firstAttribute="top" secondItem="mF2-bJ-GMz" secondAttribute="bottom" constant="10" id="7cv-TX-m7P"/>
-                        <constraint firstItem="zMj-xX-neW" firstAttribute="centerX" secondItem="dhi-J3-mi5" secondAttribute="centerX" id="Ahf-p4-MXw"/>
                         <constraint firstItem="gCL-dJ-BHW" firstAttribute="leading" secondItem="Jw0-zz-CLg" secondAttribute="leading" id="IEJ-vq-J10"/>
+                        <constraint firstItem="5nX-Ro-Ycr" firstAttribute="top" secondItem="mF2-bJ-GMz" secondAttribute="bottom" constant="8" id="J5P-Xw-N9b"/>
+                        <constraint firstItem="zMj-xX-neW" firstAttribute="top" secondItem="mF2-bJ-GMz" secondAttribute="bottom" constant="8" id="OQI-bt-WY2"/>
+                        <constraint firstItem="mF2-bJ-GMz" firstAttribute="top" secondItem="gCL-dJ-BHW" secondAttribute="bottom" constant="1" id="QIf-9T-LWi"/>
+                        <constraint firstItem="zMj-xX-neW" firstAttribute="centerX" secondItem="dhi-J3-mi5" secondAttribute="centerX" id="Sto-vQ-6Ck"/>
                         <constraint firstItem="mF2-bJ-GMz" firstAttribute="leading" secondItem="Jw0-zz-CLg" secondAttribute="leading" id="UIy-6S-KG3"/>
                         <constraint firstItem="gCL-dJ-BHW" firstAttribute="trailing" secondItem="Jw0-zz-CLg" secondAttribute="trailing" id="VXa-Jn-4ch"/>
+                        <constraint firstItem="Jw0-zz-CLg" firstAttribute="trailing" secondItem="5nX-Ro-Ycr" secondAttribute="trailing" constant="16" id="Xe1-aC-JkT"/>
                         <constraint firstItem="gCL-dJ-BHW" firstAttribute="top" secondItem="Jw0-zz-CLg" secondAttribute="top" id="fUC-EQ-2QP"/>
                         <constraint firstItem="Jw0-zz-CLg" firstAttribute="trailing" secondItem="mF2-bJ-GMz" secondAttribute="trailing" id="osU-Y3-Vyk"/>
                     </constraints>
@@ -1412,7 +1421,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vac-TR-BEX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-961" y="1166"/>
+            <point key="canvasLocation" x="-1561" y="1513"/>
         </scene>
         <!--Requests Received Controller-->
         <scene sceneID="ows-aw-bus">
@@ -1542,7 +1551,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Aw-an-yaD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1705" y="-395"/>
+            <point key="canvasLocation" x="-1391" y="36"/>
         </scene>
         <!--Events Controller-->
         <scene sceneID="Fhw-Ez-Mqi">
@@ -1859,7 +1868,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xqo-8K-Q4z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2030" y="1165"/>
+            <point key="canvasLocation" x="-644" y="802"/>
         </scene>
         <!--Team Rankings-->
         <scene sceneID="gaD-RM-9N7">
@@ -2415,7 +2424,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a7P-SC-JhH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3381.5999999999999" y="1537.7811094452775"/>
+            <point key="canvasLocation" x="3337" y="939"/>
         </scene>
         <!--Select Team to Scout for Match-->
         <scene sceneID="tbp-7O-Gqe">
@@ -2908,9 +2917,18 @@
                                 <action selector="doneButtoneTapped:" destination="C2b-8R-Mvp" eventType="touchUpInside" id="P7V-F9-Gg0"/>
                             </connections>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9XK-eK-nBs">
+                            <rect key="frame" x="256" y="171" width="48" height="30"/>
+                            <state key="normal" title="Cancel"/>
+                            <connections>
+                                <action selector="cancelButtonTapped:" destination="C2b-8R-Mvp" eventType="touchUpInside" id="LF4-qs-Egx"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
+                        <constraint firstItem="9XK-eK-nBs" firstAttribute="top" secondItem="zog-12-JFv" secondAttribute="bottom" constant="10" id="9vG-zt-Ss4"/>
+                        <constraint firstItem="lRi-W9-GgP" firstAttribute="trailing" secondItem="9XK-eK-nBs" secondAttribute="trailing" constant="16" id="AZd-lg-c8E"/>
                         <constraint firstItem="vzO-rD-e5J" firstAttribute="leading" secondItem="lRi-W9-GgP" secondAttribute="leading" id="An8-RZ-nQj"/>
                         <constraint firstItem="lRi-W9-GgP" firstAttribute="trailing" secondItem="zog-12-JFv" secondAttribute="trailing" id="GYS-no-YJp"/>
                         <constraint firstItem="vzO-rD-e5J" firstAttribute="top" secondItem="lRi-W9-GgP" secondAttribute="top" id="ReW-zB-hAA"/>
@@ -2931,7 +2949,7 @@
                 <viewControllerPlaceholder storyboardName="DataExport" id="xMj-uI-InQ" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cif-1f-MhR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1602" y="-1657"/>
+            <point key="canvasLocation" x="2074" y="-1842"/>
         </scene>
         <!--Scout Team-->
         <scene sceneID="hVc-CC-dfh">
@@ -3147,7 +3165,7 @@
         <segue reference="ezl-wJ-hga"/>
         <segue reference="Mol-hA-z6V"/>
         <segue reference="UbB-QN-j2Q"/>
-        <segue reference="s3W-qK-36V"/>
+        <segue reference="99R-Ei-nFZ"/>
         <segue reference="xnW-me-X5o"/>
     </inferredMetricsTieBreakers>
 </document>

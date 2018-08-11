@@ -68,6 +68,8 @@ class DynamicTemplateController: UITableViewController{
         addCellView.center.x = self.view.center.x
         addCellView.transform = CGAffineTransform.init(scaleX: 1.3, y: 1.3)
         addCellView.alpha = 0
+        addCellView.layer.borderColor = UIColor.gray.cgColor
+        addCellView.layer.borderWidth = 3.0
         
         UIView.animate(withDuration: 0.4) {
             //            self.visualEffectView.effect = self.effect
@@ -112,6 +114,11 @@ class DynamicTemplateController: UITableViewController{
         }
         
     }
+    
+    @IBAction func cancelButtonTapped(_ sender: Any) {
+        animateAddCellViewOut()
+    }
+    
     
     @IBAction func saveButtonTapped(_ sender: Any) {
         

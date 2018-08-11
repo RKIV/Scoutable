@@ -68,16 +68,20 @@ class StaticTemplateController: UITableViewController{
         addCellView.center.x = self.view.center.x
         addCellView.transform = CGAffineTransform.init(scaleX: 1.3, y: 1.3)
         addCellView.alpha = 0
+        addCellView.layer.borderColor = UIColor.gray.cgColor
+        addCellView.layer.borderWidth = 3.0
         
         UIView.animate(withDuration: 0.4) {
             //            self.visualEffectView.effect = self.effect
             self.addCellView.alpha = 1
+            self.tableView.backgroundView?.alpha = 0.5
             self.addCellView.transform = CGAffineTransform.identity
         }
     }
     func animateAddCellViewOut(){
         UIView.animate(withDuration: 0.3, animations: {
             self.addCellView.transform = CGAffineTransform.init(scaleX: 1.3, y: 1.3)
+            self.tableView.backgroundView?.alpha = 1
             self.addCellView.alpha = 0
             //            self.visualEffectView.effect = nil
         }) { (success) in
@@ -110,6 +114,11 @@ class StaticTemplateController: UITableViewController{
         }
         
     }
+    
+    @IBAction func cancelButtonTapped(_ sender: Any) {
+        animateAddCellViewOut()
+    }
+    
     
     @IBAction func saveButtonTapped(_ sender: Any) {
         

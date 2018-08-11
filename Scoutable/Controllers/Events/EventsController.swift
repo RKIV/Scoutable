@@ -19,7 +19,7 @@ class EventsController: UITableViewController{
     override func viewDidLoad() {
         refreshControl?.beginRefreshing()
         guard let districtID = districtKey else {return}
-        BlueAllianceAPIService.eventsList(forDistrict: districtID) { (swiftyData) in
+        BlueAllianceAPIService.events(forDistrict: districtID) { (swiftyData) in
             self.eventsArray = swiftyData.array!
             self.tableView.reloadData()
             self.refreshControl?.endRefreshing()

@@ -9,6 +9,7 @@
 import Foundation
 import FirebaseDatabase.FIRDataSnapshot
 import GoogleAPIClientForREST
+import GoogleSignIn
 
 class User: Codable {
     
@@ -39,6 +40,7 @@ class User: Codable {
     }
     
     static func logOut(){
+        GIDSignIn.sharedInstance()?.signOut()
         UserDefaults.standard.set(nil, forKey: "currentUser")
         UserDefaults.standard.set(nil, forKey: "isGuestUser")
         _current = nil
